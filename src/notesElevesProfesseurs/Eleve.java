@@ -1,10 +1,9 @@
 package notesElevesProfesseurs;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 public class Eleve extends Personne implements Collection {
@@ -17,12 +16,14 @@ public class Eleve extends Personne implements Collection {
 	static private int numIdentifiant;
 	private Date dateNaissance;
 	private Evaluation evaluation;
+	static private Promotion numPromotion;
 
 
 	//---CONSTRUCTEURS---
 	public Eleve(String nom, String prenom, int numIdentifiant) {
 		super(nom, prenom);
 		this.numIdentifiant = numIdentifiant;
+		
 	}
 	public Eleve() {
 		super();
@@ -107,7 +108,8 @@ public class Eleve extends Personne implements Collection {
 		+"\nNotes : " 
 		+"\nMoyenne : " + this.moyenne()
 		+"\nMediane : " + this.mediane()
-		+"\nCorrecteur(s) : ";
+		+"\nCorrecteur(s) : "
+		+"\nPromotion : " + this.numPromotion.getNom();
 	}
 	
 	
