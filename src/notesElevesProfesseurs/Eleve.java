@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class Eleve extends Personne implements Collection {
 	
@@ -89,15 +90,71 @@ public class Eleve extends Personne implements Collection {
 		return mediane;
 	}
 	
+	//---LISTE CORRECTEUR---
+	public Set<Professeur> getCorrecteurs() {
+		Professeur correcteur = null;
+		
+		getCorrecteurs().add(correcteur);
+		return null;
+		
+	}
+	
 	
 	//---TOSTRING---
 	@Override
 	public String toString() {
-		return "(" + this.prenom + ", " + this.nom + ") ";
+		return "(" + this.prenom + ", " + this.nom + ") " + "id : " + this.getNumIdentifiant()
+		+"\nNotes : " 
+		+"\nMoyenne : " + this.moyenne()
+		+"\nMediane : " + this.mediane()
+		+"\nCorrecteur(s) : ";
 	}
+	
+	
+	
+	
+	
+	//---HASHCODE---
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + NB_EVALUATIONS;
+		result = prime * result + ((dateNaissance == null) ? 0 : dateNaissance.hashCode());
+		result = prime * result + ((evaluation == null) ? 0 : evaluation.hashCode());
+		return result;
+	}
+	
+	//---EQUALS---
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Eleve other = (Eleve) obj;
+		if (NB_EVALUATIONS != other.NB_EVALUATIONS)
+			return false;
+		if (dateNaissance == null) {
+			if (other.dateNaissance != null)
+				return false;
+		} else if (!dateNaissance.equals(other.dateNaissance))
+			return false;
+		if (evaluation == null) {
+			if (other.evaluation != null)
+				return false;
+		} else if (!evaluation.equals(other.evaluation))
+			return false;
+		return true;
+	}
+	
+	
+	
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 	@Override
