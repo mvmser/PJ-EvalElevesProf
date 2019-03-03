@@ -15,6 +15,7 @@ public class Promotion extends Eleve {
 	public String getNom() {
 		return nom;
 	}
+	
 
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -24,13 +25,13 @@ public class Promotion extends Eleve {
 		return eleves;
 	}
 	
+	//rechercher
 	public Eleve rechercher(int numId) {
 		for(int i = 0; i < eleves.size(); i++) {
 			if(this.eleves.get(i).getNumIdentifiant() == numId) {
 				return this.eleves.get(i);
 			}
 		}	
-		
 		return null;
 	}
 }
