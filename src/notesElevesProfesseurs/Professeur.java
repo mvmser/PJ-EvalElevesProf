@@ -2,7 +2,7 @@ package notesElevesProfesseurs;
 
 public class Professeur extends Personne {
 
-	
+	//---CONSTRUCTEURS---
 	public Professeur(String nom, String prenom) {
 		super(nom, prenom);
 	}
@@ -10,7 +10,8 @@ public class Professeur extends Personne {
 		super();
 	}
 	
-	
+
+	//---ACCESSEURS : Getteurs--- 
 	public void rechercheEleve(Eleve eleve) {
 		
 	}
@@ -18,9 +19,11 @@ public class Professeur extends Personne {
 
 	}
 
+	
+	//---TOSTRING---
 	@Override
 	public String toString() {
-		return "Professeur []" + "Nom : " + this.nom + "Prenom : " + this.prenom;
+		return "(" + this.prenom + ", " + this.nom + ") ";
 	}
 	
 	

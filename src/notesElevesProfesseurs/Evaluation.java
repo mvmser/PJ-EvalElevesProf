@@ -1,15 +1,36 @@
 package notesElevesProfesseurs;
 
-public class Evaluation {
+import java.util.ArrayList;
 
+public class Evaluation {
+	
+	//ATTRIBUTS
+	private String matiere; 
+	private ArrayList<Double> note = new ArrayList<>();
+	private Eleve eleveCorrige;
+	private Professeur professeurCorrecteur;
+
+	
+	//---CONSTRUCTEUR
+	public Evaluation(String matiere, ArrayList<Double> note, Eleve eleveCorrige, Professeur professeurCorrecteur ) {
+		this.matiere = matiere;
+		this.note = note; 
+		this.eleveCorrige = eleveCorrige;
+		this.professeurCorrecteur = professeurCorrecteur;
+	}
 	public Evaluation() {
 		
 	}
 	
-	private String matiere; 
-	private double note; 
-	private Eleve eleveCorrige;
-	private Professeur professeurCorrecteur;
+	public ArrayList<Double> getNote() {
+		return note;
+	}
+	
+	@Override
+	public String toString() {
+		return "(" + eleveCorrige.toString() + professeurCorrecteur.toString() 
+		+ this.matiere + this.note + ")";
+	}
 
 	
 	
