@@ -11,6 +11,7 @@ public class Promotion extends Eleve {
 	public Promotion(String nom) {
 		this.nom = nom;
 	}
+	
 
 	public String getNom() {
 		return nom;
