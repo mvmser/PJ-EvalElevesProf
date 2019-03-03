@@ -45,7 +45,7 @@ public class Eleve extends Personne implements Collection {
 		double total = 0;
 		Eleve eleve = new Eleve();
 	
-		System.out.println("Calcul moyenne de " + eleve.toString());
+		System.out.println("Calcul moyenne de " +  eleve.getPrenom() + " "+ eleve.getNom());
 		
 		try {
 			if(evaluation.getNote().size() > 0) {
@@ -67,7 +67,7 @@ public class Eleve extends Personne implements Collection {
 		double mediane = 0;
 		Eleve eleve = new Eleve();
 		
-		System.out.println("Calcul mediane de " + eleve.toString());
+		System.out.println("Calcul mediane de " +  eleve.getPrenom() + " "+ eleve.getNom());
 		
 		try {
 			if(evaluation.getNote().size() > 0) {
@@ -161,63 +161,50 @@ public class Eleve extends Personne implements Collection {
 	}
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public Iterator iterator() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public Object[] toArray(Object[] a) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public boolean add(Object e) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public boolean containsAll(Collection c) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public boolean addAll(Collection c) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public boolean removeAll(Collection c) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public boolean retainAll(Collection c) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
-	public void clear() {
-		// TODO Auto-generated method stub
-		
+	public void clear() {		
 	}
 	
 	

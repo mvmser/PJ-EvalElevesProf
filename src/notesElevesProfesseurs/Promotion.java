@@ -7,7 +7,7 @@ public abstract class Promotion extends Eleve {
 	private String nom;
 	private ArrayList<Eleve> eleves;
 	
-	/* constructeur � 1 parametre*/
+	/* constructeur a 1 parametre*/
 	public Promotion(String nom) {
 		this.nom = nom;
 	}

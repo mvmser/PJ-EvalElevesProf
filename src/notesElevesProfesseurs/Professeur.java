@@ -10,9 +10,17 @@ public abstract class Professeur extends Personne {
 		super();
 	}
 	
-
-	//---ACCESSEURS : Getteurs--- 
-	public void rechercheEleve(Eleve eleve) {
+	//---RECHERCHER ELEVE---
+	public Eleve rechercheEleve(int numId) {
+		Eleve eleve = new Eleve();
+		Promotion promo = null;
+		
+		for(int i = 0; i < promo.getEleves().size(); i++) {
+			if(eleve.getNumIdentifiant() == numId) {
+				return eleve;
+			}
+		}	
+		return null;
 		
 	}
 	public void modifierNote(Eleve eleve){
