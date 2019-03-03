@@ -2,7 +2,7 @@ package notesElevesProfesseurs;
 
 import java.util.ArrayList;
 
-public class Promotion extends Eleve {
+public abstract class Promotion extends Eleve {
 
 	private String nom;
 	private ArrayList<Eleve> eleves;
