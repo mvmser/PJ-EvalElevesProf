@@ -21,7 +21,7 @@ public class Eleve extends Personne {
 	private int numIdentifiant;
 	private Date dateNaissance;
 	private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
-	private Promotion numPromotion;
+	private Promotion promotion;
 
 
 	//---CONSTRUCTEURS---\\
@@ -157,8 +157,8 @@ public class Eleve extends Personne {
 		+"\nMoyenne : " + this.moyenne()
 		+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
-		//+"\nPromotion : " 
-		//+ this.numPromotion.getNom()
+		+"\nPromotion : " 
+		+ this.promotion.getNom()
 		;
 	}
 	
@@ -197,5 +197,4 @@ public class Eleve extends Personne {
 			return false;
 		return true;
 	}
-	
 }
