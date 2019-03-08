@@ -49,7 +49,7 @@ public class Eleve extends Personne implements Collection {
 		System.out.println("Calcul moyenne de " +  eleve.getPrenom() + " "+ eleve.getNom());
 		
 		try {
-			if(evaluation.getNote().size() > 0) {
+			if(evaluation.getNote() > 0) {
 				for (Double note : evaluation.getNote()) {
 				    total += note;
 				}

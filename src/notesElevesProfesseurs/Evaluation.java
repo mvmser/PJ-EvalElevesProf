@@ -24,7 +24,7 @@ public class Evaluation {
 		
 	}
 	
-	public ArrayList<Double> getNote() {
+	public double getNote() {
 		return note;
 	}
 	
