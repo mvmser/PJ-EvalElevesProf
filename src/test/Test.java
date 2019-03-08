@@ -43,29 +43,27 @@ public class Test {
 		Evaluation eval14 = new Evaluation("communication", 17, elev3, prof4);
 		Evaluation eval15 = new Evaluation("finance", 13, elev3, prof5);
 		
-		
 		Evaluation eval16 = new Evaluation("maths", 20, elev1, prof1);
 		Evaluation eval17 = new Evaluation("physique", 11, elev1, prof2);
 		Evaluation eval18 = new Evaluation("informatique", 19, elev1, prof3);
 		Evaluation eval19 = new Evaluation("communication", 17, elev1, prof4);
 		Evaluation eval20 = new Evaluation("finance", 13, elev1, prof5);
-				
 		
+		/*
+		System.out.print("Affichage des évaluations");
 		System.out.print(eval1);
 		System.out.print(eval2);
 		System.out.print(eval3);
 		System.out.print(eval4);
 		System.out.print(eval5);
+		*/
 		
 		//On rentre les eval dans elev1
 		elev1.setEvaluation(eval1);
 		elev1.setEvaluation(eval2);
 		elev1.setEvaluation(eval4);
 		elev1.setEvaluation(eval5);
-		System.out.print(elev1);
 		
-
-
-
+		System.out.print(elev1);
 	}
 }

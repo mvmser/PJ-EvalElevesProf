@@ -170,13 +170,31 @@ public class Eleve extends Personne {
 		}
 		return notes;
 	}
+	/*
+	 * permet de retouver les matiere et notes de l'eleve
+	 * sous la forme : (ex) maths 20.0 physique 11.0 ...
+	 * 
+	 * @param
+	 * @return String avec toutes les notes par matiere
+	 */
+	public String getMatieresAndNotes(){
+		String MatieresAndNotes = "";
+		
+		for(Evaluation evaluation: evaluations) {
+			MatieresAndNotes += evaluation.getMatiere();
+			MatieresAndNotes += " ";
+			MatieresAndNotes += evaluation.getNote();
+			MatieresAndNotes += " ";
+		}
+		return MatieresAndNotes;
+	}
 	
 	//---TOSTRING---\\
 	@Override
 	public String toString() {
 		return "(" + this.prenom + ", " + this.nom + ") " 
 		+ "id : " + this.getNumIdentifiant()
-		+"\nNotes : " + getMatieres() + " " + getNotes()  // METTRE JUSTE LA MATIERE ET LA NOTE 
+		+"\nNotes : " + getMatieresAndNotes()
 		+"\nMoyenne : " + this.moyenne()
 		//+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
