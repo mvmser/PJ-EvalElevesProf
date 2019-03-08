@@ -2,7 +2,7 @@ package notesElevesProfesseurs;
 
 import java.util.ArrayList;
 
-public abstract class Promotion extends Eleve {
+public class Promotion extends Eleve {
 
 	private String nom;
 	private ArrayList<Eleve> eleves;
@@ -10,6 +10,9 @@ public abstract class Promotion extends Eleve {
 	/* constructeur a 1 parametre*/
 	public Promotion(String nom) {
 		this.nom = nom;
+	}
+	public Promotion() {
+		
 	}
 	
 

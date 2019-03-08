@@ -10,16 +10,20 @@ public class Professeur extends Personne {
 		super();
 	}
 	
-	//---RECHERCHER ELEVE---
+	//---RECHERCHER ELEVE---\\
 	public Eleve rechercheEleve(int numId) {
 		Eleve eleve = new Eleve();
-		Promotion promo = null;
-		
-		for(int i = 0; i < promo.getEleves().size(); i++) {
-			if(eleve.getNumIdentifiant() == numId) {
-				return eleve;
-			}
-		}	
+		Promotion promo = new Promotion();
+		try{
+			for(int i = 0; i < promo.getEleves().size(); i++) {
+				if(eleve.getNumIdentifiant() == numId) {
+					return eleve;
+				}
+			}	
+		}
+		catch(IllegalStateException e) {
+			System.out.println(promo + " n'existe pas");
+		}
 		return null;
 		
 	}
