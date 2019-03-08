@@ -32,7 +32,7 @@ public class Eleve extends Personne {
 		this.numIdentifiant = registre;
 		registre++;
 		
-		//A chaque creation deleve, on l'ajoute à l'arrayList eleves
+		//A chaque creation deleve, on l'ajoute ï¿½ l'arrayList eleves
 		eleves.add(this);
 	}
 	
@@ -42,7 +42,7 @@ public class Eleve extends Personne {
 		this.numIdentifiant = numIdentifiant;
 		registre++;
 		
-		//A chaque creation deleve, on l'ajoute à l'arrayList eleves
+		//A chaque creation deleve, on l'ajoute ï¿½ l'arrayList eleves
 		eleves.add(this);
 	}
 	

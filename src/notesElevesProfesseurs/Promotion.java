@@ -10,9 +10,9 @@ public class Promotion extends Eleve {
 	/* constructeur a 1 parametre*/
 	public Promotion(String nom) {
 		this.nom = nom;
-	}
-	public Promotion() {
 		
+		//A chaque creation deleve, on l'ajoute � l'arrayList eleves
+		eleves.add(this);
 	}
 	
 
