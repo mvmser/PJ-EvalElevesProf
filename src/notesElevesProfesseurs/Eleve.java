@@ -1,9 +1,6 @@
 package notesElevesProfesseurs;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /*
  *
@@ -11,7 +8,7 @@ import java.util.Set;
  */
 public class Eleve extends Personne {
 	
-	//---Variable de classe qui s'inscremente � chaque creation d'eleve---\\
+	//---Variable de classe qui s'inscremente a chaque creation d'eleve---\\
 	static private int registre = 0;
 	
 	//---CONSTANTE---\\
