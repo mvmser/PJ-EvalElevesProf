@@ -1,9 +1,7 @@
 package notesElevesProfesseurs;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Set;
 
 /*
@@ -30,7 +28,6 @@ public class Eleve extends Personne {
 		super(nom, prenom);
 		this.numIdentifiant = registre;
 		registre++;
-		
 	}
 	
 	//---CONSTRUCTEURS---
