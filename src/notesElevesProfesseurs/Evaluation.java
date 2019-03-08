@@ -6,13 +6,15 @@ public class Evaluation {
 	
 	//ATTRIBUTS
 	private String matiere; 
-	private ArrayList<Double> note = new ArrayList<>();
+	//private ArrayList<Double> notes = new ArrayList<>();
+	private double note;
 	private Eleve eleveCorrige;
-	private ArrayList<Professeur> professeurCorrecteur = new ArrayList<>();
+	//private ArrayList<Professeur> professeursCorrecteurs = new ArrayList<>();
+	private Professeur professeurCorrecteur;
 
 	
 	//---CONSTRUCTEUR
-	public Evaluation(String matiere, ArrayList<Double> note, Eleve eleveCorrige, ArrayList<Professeur> professeurCorrecteur ) {
+	public Evaluation(String matiere, double note, Eleve eleveCorrige, Professeur professeurCorrecteur ) {
 		this.matiere = matiere;
 		this.note = note; 
 		this.eleveCorrige = eleveCorrige;

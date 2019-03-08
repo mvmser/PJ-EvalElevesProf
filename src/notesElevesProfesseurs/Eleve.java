@@ -17,7 +17,7 @@ public class Eleve extends Personne implements Collection {
 	static private int numIdentifiant;
 	private Date dateNaissance;
 	private Evaluation evaluation;
-	static private Promotion numPromotion;
+	private Promotion numPromotion;
 
 
 	//---CONSTRUCTEURS---
