@@ -14,8 +14,6 @@ public class Eleve extends Personne {
 	//---Variable de classe qui s'inscremente � chaque creation d'eleve---\\
 	static private int registre = 0;
 	
-	static private ArrayList<Eleve> eleves = new ArrayList<Eleve>();
-
 	//---CONSTANTE---\\
 	final int NB_EVALUATIONS = 10; 
 
@@ -31,8 +29,6 @@ public class Eleve extends Personne {
 		super(nom, prenom);
 		this.numIdentifiant = registre;
 		registre++;
-		//A chaque creation deleve, on l'ajoute � l'arrayList eleves
-		eleves.add(this);
 	}
 	
 	//---CONSTRUCTEURS---
@@ -40,10 +36,6 @@ public class Eleve extends Personne {
 		super(nom, prenom);
 		this.numIdentifiant = numIdentifiant;
 		registre++;
-		
-		//A chaque creation deleve, on l'ajoute � l'arrayList eleves
-		eleves.add(this);
-
 	}
 	
 	public Eleve() {
