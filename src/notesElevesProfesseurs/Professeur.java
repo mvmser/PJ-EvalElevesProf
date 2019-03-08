@@ -1,4 +1,5 @@
 package notesElevesProfesseurs;
+im
 
 public class Professeur extends Personne {
 
@@ -10,10 +11,18 @@ public class Professeur extends Personne {
 		super();
 	}
 	
+	
+	public double setNote(Promotion promo, int numId, double note, int indice) {
+		//for(Eleve evaluation : evaluations)
+		
+		return 1.0; 
+	}
+	
+	
+	
 	//---RECHERCHER ELEVE---\\
 	public Eleve rechercheEleve(int numId) {
-		Eleve eleve = new Eleve();
-		Promotion promo = new Promotion();
+
 		try{
 			for(int i = 0; i < promo.getEleves().size(); i++) {
 				if(eleve.getNumIdentifiant() == numId) {
@@ -26,9 +35,6 @@ public class Professeur extends Personne {
 		}
 		return null;
 		
-	}
-	public void modifierNote(Eleve eleve){
-
 	}
 
 	

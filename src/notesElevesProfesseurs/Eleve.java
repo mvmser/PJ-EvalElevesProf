@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public class Eleve extends Personne {
 	
-	//---Variable de classe qui s'inscremente à chaque creation d'eleve---\\
+	//---Variable de classe qui s'inscremente ï¿½ chaque creation d'eleve---\\
 	static private int registre = 0;
 
 	//---CONSTANTE---\\
@@ -51,6 +51,11 @@ public class Eleve extends Personne {
 		return dateNaissance;
 	}	
 
+
+	public ArrayList<Evaluation> getEvaluations() {
+		return evaluations;
+	}
+
 	/*
 	 * @param une evaluation
 	 * 
@@ -64,7 +69,7 @@ public class Eleve extends Personne {
 					this.evaluations.add(evaluation);
 			}
 		}catch(IllegalStateException e) {
-			System.out.println(this.toString() + " a deja 10 évaluations!");
+			System.out.println(this.toString() + " a deja 10 ï¿½valuations!");
 		}
 	}
 
