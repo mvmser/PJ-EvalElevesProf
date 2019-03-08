@@ -1,7 +1,5 @@
 package notesElevesProfesseurs;
 
-import java.util.ArrayList;
-
 public class Evaluation implements Comparable<Evaluation>{
 	
 	//ATTRIBUTS
