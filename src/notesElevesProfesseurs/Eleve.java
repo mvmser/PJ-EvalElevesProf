@@ -59,8 +59,8 @@ public class Eleve extends Personne {
 	/*
 	 * @param une evaluation
 	 * 
-	 * @throw IllegalStateException si il deja enregistre ses 10 eval
-	 * attention : rajouter la verificaton de si l'evaluation appartient bien a leleve en cours
+	 * @throws IllegalStateException si il deja enregistre ses 10 eval
+	 * 
 	 */
 	public void setEvaluation(Evaluation evaluation) {
 		try {
