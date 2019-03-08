@@ -69,7 +69,7 @@ public class Eleve extends Personne {
 					this.evaluations.add(evaluation);
 			}
 		}catch(IllegalStateException e) {
-			System.out.println(this.toString() + " a deja 10 �valuations!");
+			System.out.println(this.toString() + " a deja 10 evaluations!");
 		}
 	}
 
@@ -83,7 +83,7 @@ public class Eleve extends Personne {
 		double moyenne = 0;
 		double total = 0;
 	
-		System.out.println("Calcul moyenne de " +  this.getPrenom() + " "+ this.getNom());
+		//System.out.println("Calcul moyenne de " +  this.getPrenom() + " "+ this.getNom());
 		
 		try {
 			if(evaluations.size() > 0) {
@@ -108,7 +108,7 @@ public class Eleve extends Personne {
 		double mediane = 0;
 		Eleve eleve = new Eleve();
 		
-		System.out.println("Calcul mediane de " +  eleve.getPrenom() + " "+ eleve.getNom());
+		//System.out.println("Calcul mediane de " +  eleve.getPrenom() + " "+ eleve.getNom());
 		
 		try {
 			if(evaluations.size() > 0) {
@@ -158,7 +158,7 @@ public class Eleve extends Personne {
 		+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
 		+"\nPromotion : " 
-		+ this.promotion.getNom()
+		//+ this.promotion.getNom()
 		;
 	}
 	

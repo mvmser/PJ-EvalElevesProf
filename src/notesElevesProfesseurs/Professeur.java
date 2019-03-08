@@ -1,5 +1,4 @@
 package notesElevesProfesseurs;
-im
 
 public class Professeur extends Personne {
 
@@ -26,9 +25,9 @@ public class Professeur extends Personne {
 		Eleve eleve = new Eleve();
 		try{
 			for(int i = 0; i < promo.getEleves().size(); i++) {
-				if(this.eleve.get(i).getNumIdentifiant() == numId) {
-					return this.eleve.get(i);
-				}
+//				if(this.eleve.get(i).getNumIdentifiant() == numId) {
+//					return this.eleve.get(i);
+//				}
 			}	
 			
 			
