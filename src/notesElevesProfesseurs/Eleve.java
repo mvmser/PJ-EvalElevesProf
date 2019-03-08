@@ -150,7 +150,7 @@ public class Eleve extends Personne {
 	public String toString() {
 		return "\n(" + this.prenom + ", " + this.nom + ") " 
 		+ "id : " + this.getNumIdentifiant()
-		+"\nNotes : " + evaluations
+		+"\nNotes : " + evaluations  // METTRE JUSTE LA MATIERE ET LA NOTE 
 		+"\nMoyenne : " + this.moyenne()
 		//+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
