@@ -144,14 +144,13 @@ public class Eleve extends Personne {
 	//---TOSTRING---\\
 	@Override
 	public String toString() {
-		return "\n(" + this.prenom + ", " + this.nom + ") " 
+		return "(" + this.prenom + ", " + this.nom + ") " 
 		+ "id : " + this.getNumIdentifiant()
 		+"\nNotes : " + evaluations
 		+"\nMoyenne : " + this.moyenne()
 		//+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
-		+"\nPromotion : " 
-		//+ this.promotion.getNom()
+		+"\nPromotion : " //+ this.promotion.getNom()
 		;
 	}
 	
