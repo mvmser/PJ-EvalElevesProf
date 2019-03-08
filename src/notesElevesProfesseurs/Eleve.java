@@ -2,6 +2,7 @@ package notesElevesProfesseurs;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 /*
@@ -54,11 +55,14 @@ public class Eleve extends Personne {
 	 * @param une evaluation
 	 * 
 	 * @throw IllegalStateException si il deja enregistre ses 10 eval
+	 * attention : rajouter la verificaton de si l'evaluation appartient bien a leleve en cours
 	 */
 	public void setEvaluation(Evaluation evaluation) {
 		try {
-			if(evaluations.size() < NB_EVALUATIONS)
-				this.evaluations.add(evaluation);
+			if(evaluations.size() < NB_EVALUATIONS) {
+				if(evaluation.getEleveCorrige() == this)
+					this.evaluations.add(evaluation);
+			}
 		}catch(IllegalStateException e) {
 			System.out.println(this.toString() + " a deja 10 évaluations!");
 		}
@@ -127,16 +131,19 @@ public class Eleve extends Personne {
 	}
 	
 	
-	//---LISTE CORRECTEUR---
+	//---LISTE CORRECTEUR---\\
 	public Set<Professeur> getCorrecteurs() {
-		Professeur correcteur = null;
+		HashSet<Professeur> correcteurs = new HashSet<Professeur>();
+			
+		for (Evaluation evaluation : evaluations) {
+			Professeur correcteur = evaluation.getProfesseurCorrecteur();
+			correcteurs.add(correcteur);
+		}
 		
-		getCorrecteurs().add(correcteur);
-		return null;
-		
+		return correcteurs;
 	}
 	
-	//---TOSTRING---
+	//---TOSTRING---\\
 	@Override
 	public String toString() {
 		return "(" + this.prenom + ", " + this.nom + ") " 
