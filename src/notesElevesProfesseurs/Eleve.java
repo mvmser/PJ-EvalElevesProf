@@ -141,12 +141,42 @@ public class Eleve extends Personne {
 		return correcteurs;
 	}
 	
+	//---LISTE MATIERE PAR EVALUATION---\\
+	/*
+	 * 
+	 * @return les matieres d'une evaluation
+	 */
+	public HashSet<String> getMatieres() {
+		HashSet<String> matieres = new HashSet<String>();
+			
+		for (Evaluation evaluation : evaluations) {
+			String matiere = evaluation.getMatiere();
+			matieres.add(matiere);
+		}
+		return matieres;
+	}
+	
+	//---LISTE NOTES PAR EVALUATION---\\
+	/*
+	 * 
+	 * @return les notes d'une evaluation
+	 */
+	public HashSet<Double> getNotes() {
+		HashSet<Double> notes = new HashSet<Double>();
+			
+		for (Evaluation evaluation : evaluations) {
+			Double note = evaluation.getNote();
+			notes.add(note);
+		}
+		return notes;
+	}
+	
 	//---TOSTRING---\\
 	@Override
 	public String toString() {
 		return "(" + this.prenom + ", " + this.nom + ") " 
 		+ "id : " + this.getNumIdentifiant()
-		+"\nNotes : " + evaluations  // METTRE JUSTE LA MATIERE ET LA NOTE 
+		+"\nNotes : " + getMatieres() + " " + getNotes()  // METTRE JUSTE LA MATIERE ET LA NOTE 
 		+"\nMoyenne : " + this.moyenne()
 		//+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
