@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
 
+
 public class Eleve extends Personne implements Collection {
 	
 	//---CONSTANTE---

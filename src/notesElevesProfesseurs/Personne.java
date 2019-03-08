@@ -1,5 +1,6 @@
 package notesElevesProfesseurs;
 
+//Eleve et Professeur hérite de Personne car ils ont des propriétés communes (prenom et nom)
 public abstract class Personne {
 
 	//---ATTRIBUTS---
