@@ -15,7 +15,6 @@ public class Promotion extends Eleve {
 		eleves.add(this);
 	}
 	
-
 	public String getNom() {
 		return nom;
 	}

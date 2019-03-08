@@ -3,7 +3,7 @@ package notesElevesProfesseurs;
 import java.util.*;
 
 /*
- *
+ * @author SERHIR ZARGA
  * @version 1.0
  */
 public class Eleve extends Personne {
@@ -18,8 +18,7 @@ public class Eleve extends Personne {
 	private int numIdentifiant;
 	private Date dateNaissance;
 	private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
-	private Promotion promotion;
-
+	//private Promotion promotion;
 
 	//---CONSTRUCTEURS---\\
 	public Eleve(String nom, String prenom) {
@@ -54,7 +53,7 @@ public class Eleve extends Personne {
 	
 
 	/*
-	 * @param une evaluation
+	 * @param Une evaluation
 	 * 
 	 * @throws IllegalStateException si il deja enregistre ses 10 eval
 	 * 
@@ -111,8 +110,6 @@ public class Eleve extends Personne {
 			if(evaluations.size() > 0) {
 				Collections.sort(evaluations); //trier les notes
 
-				for (Evaluation evaluation : evaluations) {
-					
 					if(evaluations.size() %2 == 0) 
 					{
 						int milieu = (evaluations.size()/2);
@@ -124,7 +121,6 @@ public class Eleve extends Personne {
 						int milieu = (evaluations.size()/2);
 						mediane = evaluations.get(milieu+1).getNote();
 					}
-				}
 			}
 		}catch(IllegalStateException e) {
 			System.out.println(eleve.toString() + " n'a pas de note");
@@ -152,7 +148,7 @@ public class Eleve extends Personne {
 		+ "id : " + this.getNumIdentifiant()
 		+"\nNotes : " + evaluations
 		+"\nMoyenne : " + this.moyenne()
-		+"\nMediane : " + this.mediane()
+		//+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
 		+"\nPromotion : " 
 		//+ this.promotion.getNom()
