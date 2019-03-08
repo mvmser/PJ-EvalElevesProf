@@ -2,7 +2,7 @@ package notesElevesProfesseurs;
 
 import java.util.ArrayList;
 
-public class Evaluation {
+public class Evaluation implements Comparable<Evaluation>{
 	
 	//ATTRIBUTS
 	private String matiere; 
@@ -19,6 +19,14 @@ public class Evaluation {
 		this.note = note; 
 		this.eleveCorrige = eleveCorrige;
 		this.professeurCorrecteur = professeurCorrecteur;
+	}
+	
+	/*
+	 * a verifier
+	 * 
+	 */
+	public int compareTo(Evaluation evaluation){
+		return (int) (this.note - evaluation.note);
 	}
 	
 	public String getMatiere() {
@@ -43,7 +51,7 @@ public class Evaluation {
 	@Override
 	public String toString() {
 		return "(" + eleveCorrige.toString() + professeurCorrecteur.toString() 
-		+ this.matiere + this.note + ")";
+		+ this.matiere + " " + this.note + ")";
 	}
 
 }

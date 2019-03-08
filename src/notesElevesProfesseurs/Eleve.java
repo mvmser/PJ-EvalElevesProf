@@ -1,72 +1,103 @@
 package notesElevesProfesseurs;
 
-
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
 
-
-public class Eleve extends Personne implements Collection {
+/*
+ *
+ * @version 1.0
+ */
+public class Eleve extends Personne {
 	
-	//---CONSTANTE---
+	//---Variable de classe qui s'inscremente à chaque creation d'eleve---\\
+	static private int registre = 0;
+
+	//---CONSTANTE---\\
 	final int NB_EVALUATIONS = 10; 
 
-	
-	//---ATTRIBUTS---
-	static private int numIdentifiant;
+	//---ATTRIBUTS---\\
+	private int numIdentifiant;
 	private Date dateNaissance;
-	private Evaluation evaluation;
+	private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
 	private Promotion numPromotion;
 
 
+	//---CONSTRUCTEURS---\\
+	public Eleve(String nom, String prenom) {
+		super(nom, prenom);
+		this.numIdentifiant = registre;
+		registre++;
+		
+	}
+	
 	//---CONSTRUCTEURS---
 	public Eleve(String nom, String prenom, int numIdentifiant) {
 		super(nom, prenom);
 		this.numIdentifiant = numIdentifiant;
-		
+		registre++;
 	}
+	
 	public Eleve() {
 		super();
 	}
 	
 	
-	//---ACCESSEURS : Getteurs--- 
+	//---ACCESSEURS : Getters--- 
 	public int getNumIdentifiant() {
 		return numIdentifiant;
 	}
 	public Date getDateNaissance() {
 		return dateNaissance;
-	}
-	
+	}	
 
-	//---MOYENNE---
 	/*
+	 * @param une evaluation
+	 * 
+	 * @throw IllegalStateException si il deja enregistre ses 10 eval
+	 */
+	public void setEvaluation(Evaluation evaluation) {
+		try {
+			if(evaluations.size() < NB_EVALUATIONS)
+				this.evaluations.add(evaluation);
+		}catch(IllegalStateException e) {
+			System.out.println(this.toString() + " a deja 10 évaluations!");
+		}
+	}
+
+	//---MOYENNE---\\
+	/*
+	 * @return la moyenne calculee de l'eleve
+	 * 
+	 * @throw IllegalStateException si l'eleve n'a aucune note
+	 */
 	public double moyenne() {
 		double moyenne = 0;
 		double total = 0;
-		Eleve eleve = new Eleve();
 	
-		System.out.println("Calcul moyenne de " +  eleve.getPrenom() + " "+ eleve.getNom());
+		System.out.println("Calcul moyenne de " +  this.getPrenom() + " "+ this.getNom());
 		
 		try {
-			if(evaluation.getNote() > 0) {
-				for (Double note : evaluation.getNote()) {
-				    total += note;
+			if(evaluations.size() > 0) {
+				for (Evaluation evaluation : evaluations) {
+				    total += evaluation.getNote();
 				}
-				moyenne = total / evaluation.getNote().size();
+				moyenne = total / evaluations.size();
 			}
 		}catch(IllegalStateException e) {
-			System.out.println(eleve.toString() + " n'a pas de note");
-		
+			System.out.println(this.toString() + " n'a pas de note");
 		}
 		
 		return moyenne;
 	}
-	*/
 	
-	//---MEDIANE---
+	//---MEDIANE---\\
 	/*
+	 * @return la mediane de ses notes
+	 * @throw IllegalStateException s'il na pas de notes
+	 */
 	public double mediane() {
 		double mediane = 0;
 		Eleve eleve = new Eleve();
@@ -74,19 +105,22 @@ public class Eleve extends Personne implements Collection {
 		System.out.println("Calcul mediane de " +  eleve.getPrenom() + " "+ eleve.getNom());
 		
 		try {
-			if(evaluation.getNote().size() > 0) {
-				Collections.sort(evaluation.getNote()); //trier les notes
-				
-				if(evaluation.getNote().size() %2 == 0) 
-				{
-					int milieu = (evaluation.getNote().size()/2);
-					double termeMilieu1 = evaluation.getNote().get(milieu);
-					double termeMilieu2 = evaluation.getNote().get(milieu+1);
-					mediane = (termeMilieu1 + termeMilieu2)/2;
-				}
-				else {
-					int milieu = (evaluation.getNote().size()/2);
-					mediane = evaluation.getNote().get(milieu+1);
+			if(evaluations.size() > 0) {
+				Collections.sort(evaluations); //trier les notes
+
+				for (Evaluation evaluation : evaluations) {
+					
+					if(evaluations.size() %2 == 0) 
+					{
+						int milieu = (evaluations.size()/2);
+						double termeMilieu1 = evaluations.get(milieu).getNote();
+						double termeMilieu2 = evaluations.get(milieu+1).getNote();
+						mediane = (termeMilieu1 + termeMilieu2)/2;
+					}
+					else {
+						int milieu = (evaluations.size()/2);
+						mediane = evaluations.get(milieu+1).getNote();
+					}
 				}
 			}
 		}catch(IllegalStateException e) {
@@ -94,7 +128,8 @@ public class Eleve extends Personne implements Collection {
 		}
 		return mediane;
 	}
-	*/
+	
+	
 	//---LISTE CORRECTEUR---
 	public Set<Professeur> getCorrecteurs() {
 		Professeur correcteur = null;
@@ -104,21 +139,19 @@ public class Eleve extends Personne implements Collection {
 		
 	}
 	
-	
 	//---TOSTRING---
 	@Override
 	public String toString() {
-		return "(" + this.prenom + ", " + this.nom + ") " + "id : " + this.getNumIdentifiant()
-		+"\nNotes : " 
+		return "(" + this.prenom + ", " + this.nom + ") " 
+		//+ "id : " + this.getNumIdentifiant()
+		//+"\nNotes : " 
 		//+"\nMoyenne : " + this.moyenne()
 		//+"\nMediane : " + this.mediane()
-		+"\nCorrecteur(s) : "
-		+"\nPromotion : " + this.numPromotion.getNom();
+		//+"\nCorrecteur(s) : "
+		//+"\nPromotion : " 
+		//+ this.numPromotion.getNom()
+		;
 	}
-	
-	
-	
-	
 	
 	//---HASHCODE---
 	@Override
@@ -127,7 +160,7 @@ public class Eleve extends Personne implements Collection {
 		int result = 1;
 		result = prime * result + NB_EVALUATIONS;
 		result = prime * result + ((dateNaissance == null) ? 0 : dateNaissance.hashCode());
-		result = prime * result + ((evaluation == null) ? 0 : evaluation.hashCode());
+		result = prime * result + ((evaluations == null) ? 0 : evaluations.hashCode());
 		return result;
 	}
 	
@@ -148,69 +181,12 @@ public class Eleve extends Personne implements Collection {
 				return false;
 		} else if (!dateNaissance.equals(other.dateNaissance))
 			return false;
-		if (evaluation == null) {
-			if (other.evaluation != null)
+		if (evaluations == null) {
+			if (other.evaluations != null)
 				return false;
-		} else if (!evaluation.equals(other.evaluation))
+		} else if (!evaluations.equals(other.evaluations))
 			return false;
 		return true;
 	}
-	
-	
-	
-	@Override
-	public int size() {
-		
-		return 0;
-	}
-	@Override
-	public boolean isEmpty() {
-		return false;
-	}
-	@Override
-	public boolean contains(Object o) {
-		return false;
-	}
-	@Override
-	public Iterator iterator() {
-		return null;
-	}
-	@Override
-	public Object[] toArray() {
-		return null;
-	}
-	@Override
-	public Object[] toArray(Object[] a) {
-		return null;
-	}
-	@Override
-	public boolean add(Object e) {
-		return false;
-	}
-	@Override
-	public boolean remove(Object o) {
-		return false;
-	}
-	@Override
-	public boolean containsAll(Collection c) {
-		return false;
-	}
-	@Override
-	public boolean addAll(Collection c) {
-		return false;
-	}
-	@Override
-	public boolean removeAll(Collection c) {
-		return false;
-	}
-	@Override
-	public boolean retainAll(Collection c) {
-		return false;
-	}
-	@Override
-	public void clear() {		
-	}
-	
-	
 	
 }

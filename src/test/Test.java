@@ -11,9 +11,7 @@ public class Test {
 		Eleve elev1 = new Eleve("SERHIR", "Mohamed", 1);
 		Professeur prof1 = new Professeur("Teller", "Patrick");
 		
-		Evaluation eval1 = new Evaluation("Maths", 19, elev1, prof1);
-		System.out.print("test");
-
+		Evaluation eval1 = new Evaluation("Mathématiques", 19, elev1, prof1);
+		System.out.print(eval1);
 	}
-
 }
