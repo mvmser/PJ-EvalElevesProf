@@ -41,6 +41,7 @@ public class Eleve extends Personne implements Collection {
 	
 
 	//---MOYENNE---
+	/*
 	public double moyenne() {
 		double moyenne = 0;
 		double total = 0;
@@ -62,8 +63,10 @@ public class Eleve extends Personne implements Collection {
 		
 		return moyenne;
 	}
+	*/
 	
 	//---MEDIANE---
+	/*
 	public double mediane() {
 		double mediane = 0;
 		Eleve eleve = new Eleve();
@@ -91,7 +94,7 @@ public class Eleve extends Personne implements Collection {
 		}
 		return mediane;
 	}
-	
+	*/
 	//---LISTE CORRECTEUR---
 	public Set<Professeur> getCorrecteurs() {
 		Professeur correcteur = null;
@@ -107,8 +110,8 @@ public class Eleve extends Personne implements Collection {
 	public String toString() {
 		return "(" + this.prenom + ", " + this.nom + ") " + "id : " + this.getNumIdentifiant()
 		+"\nNotes : " 
-		+"\nMoyenne : " + this.moyenne()
-		+"\nMediane : " + this.mediane()
+		//+"\nMoyenne : " + this.moyenne()
+		//+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : "
 		+"\nPromotion : " + this.numPromotion.getNom();
 	}

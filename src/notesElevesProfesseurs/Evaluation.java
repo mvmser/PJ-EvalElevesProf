@@ -20,21 +20,30 @@ public class Evaluation {
 		this.eleveCorrige = eleveCorrige;
 		this.professeurCorrecteur = professeurCorrecteur;
 	}
-	public Evaluation() {
-		
-	}
 	
+	public String getMatiere() {
+		return matiere;
+	}
+
+
 	public double getNote() {
 		return note;
 	}
-	
+
+
+	public Eleve getEleveCorrige() {
+		return eleveCorrige;
+	}
+
+
+	public Professeur getProfesseurCorrecteur() {
+		return professeurCorrecteur;
+	}
+
 	@Override
 	public String toString() {
 		return "(" + eleveCorrige.toString() + professeurCorrecteur.toString() 
 		+ this.matiere + this.note + ")";
 	}
-
-	
-	
 
 }

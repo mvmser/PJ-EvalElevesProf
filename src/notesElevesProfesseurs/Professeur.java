@@ -1,6 +1,6 @@
 package notesElevesProfesseurs;
 
-public abstract class Professeur extends Personne {
+public class Professeur extends Personne {
 
 	//---CONSTRUCTEURS---
 	public Professeur(String nom, String prenom) {
