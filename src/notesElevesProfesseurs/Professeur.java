@@ -22,7 +22,6 @@ public class Professeur extends Personne {
 	
 	//---RECHERCHER ELEVE---\\
 	public Eleve rechercheEleve(int numId) {
-
 		try{
 			for(int i = 0; i < promo.getEleves().size(); i++) {
 				if(eleve.getNumIdentifiant() == numId) {

@@ -31,9 +31,12 @@ public class Eleve extends Personne {
 		super(nom, prenom);
 		this.numIdentifiant = registre;
 		registre++;
+<<<<<<< HEAD
 		
 		//A chaque creation deleve, on l'ajoute � l'arrayList eleves
 		eleves.add(this);
+=======
+>>>>>>> 53260457316be7ed904720f687cdb568b8f92cad
 	}
 	
 	//---CONSTRUCTEURS---
@@ -41,9 +44,13 @@ public class Eleve extends Personne {
 		super(nom, prenom);
 		this.numIdentifiant = numIdentifiant;
 		registre++;
+<<<<<<< HEAD
 		
 		//A chaque creation deleve, on l'ajoute � l'arrayList eleves
 		eleves.add(this);
+=======
+
+>>>>>>> 53260457316be7ed904720f687cdb568b8f92cad
 	}
 	
 	public Eleve() {
@@ -63,10 +70,6 @@ public class Eleve extends Personne {
 		return evaluations;
 	}
 	
-
-	public static ArrayList<Eleve> getEleves() {
-		return eleves;
-	}
 
 	/*
 	 * @param une evaluation
