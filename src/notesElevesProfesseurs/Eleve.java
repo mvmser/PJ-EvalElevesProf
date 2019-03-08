@@ -14,8 +14,6 @@ public class Eleve extends Personne {
 	//---Variable de classe qui s'inscremente � chaque creation d'eleve---\\
 	static private int registre = 0;
 	
-	static private ArrayList<Eleve> eleves = new ArrayList<Eleve>();
-
 	//---CONSTANTE---\\
 	final int NB_EVALUATIONS = 10; 
 
@@ -23,7 +21,7 @@ public class Eleve extends Personne {
 	private int numIdentifiant;
 	private Date dateNaissance;
 	private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
-	private Promotion numPromotion;
+	private Promotion promotion;
 
 
 	//---CONSTRUCTEURS---\\
@@ -31,8 +29,6 @@ public class Eleve extends Personne {
 		super(nom, prenom);
 		this.numIdentifiant = registre;
 		registre++;
-		//A chaque creation deleve, on l'ajoute � l'arrayList eleves
-		eleves.add(this);
 	}
 	
 	//---CONSTRUCTEURS---
@@ -40,10 +36,6 @@ public class Eleve extends Personne {
 		super(nom, prenom);
 		this.numIdentifiant = numIdentifiant;
 		registre++;
-		
-		//A chaque creation deleve, on l'ajoute � l'arrayList eleves
-		eleves.add(this);
-
 	}
 	
 	public Eleve() {
@@ -165,8 +157,8 @@ public class Eleve extends Personne {
 		+"\nMoyenne : " + this.moyenne()
 		+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
-		//+"\nPromotion : " 
-		//+ this.numPromotion.getNom()
+		+"\nPromotion : " 
+		+ this.promotion.getNom()
 		;
 	}
 	
@@ -205,5 +197,4 @@ public class Eleve extends Personne {
 			return false;
 		return true;
 	}
-	
 }
