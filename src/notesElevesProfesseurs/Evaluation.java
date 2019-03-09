@@ -24,8 +24,13 @@ public class Evaluation implements Comparable<Evaluation>{
 	 * 
 	 */
 	public int compareTo(Evaluation evaluation){
-		return (int) (this.note - evaluation.note);
+		if(evaluation.note < this.note)
+	          return -1;
+	    else if(this.note < evaluation.note)
+	          return 1;
+	    return 0;
 	}
+	
 	
 	public String getMatiere() {
 		return matiere;

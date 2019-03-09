@@ -92,6 +92,7 @@ public class Eleve extends Personne {
 			System.out.println(this.toString() + " n'a pas de note");
 		}
 		
+		//Arrondir moyenne, DecimalFormat ?
 		return moyenne;
 	}
 	
@@ -99,6 +100,7 @@ public class Eleve extends Personne {
 	/*
 	 * @return la mediane de ses notes
 	 * @throw IllegalStateException s'il na pas de notes
+	 * fausse
 	 */
 	public double mediane() {
 		double mediane = 0;
@@ -108,18 +110,22 @@ public class Eleve extends Personne {
 		
 		try {
 			if(evaluations.size() > 0) {
-				Collections.sort(evaluations); //trier les notes
+				//Collections.sort(evaluations); //trier les notes
+				System.out.println("evals: "+ evaluations);
 
 					if(evaluations.size() %2 == 0) 
 					{
 						int milieu = (evaluations.size()/2);
-						double termeMilieu1 = evaluations.get(milieu).getNote();
-						double termeMilieu2 = evaluations.get(milieu+1).getNote();
+						System.out.println(milieu);
+						//Notre arraylist debute a 0 et non pas a 1
+						//On soustrait alors 1 aux 2 operations suivantes
+						double termeMilieu1 = evaluations.get(milieu - 1).getNote();
+						double termeMilieu2 = evaluations.get((milieu + 1) - 1).getNote();
 						mediane = (termeMilieu1 + termeMilieu2)/2;
 					}
 					else {
 						int milieu = (evaluations.size()/2);
-						mediane = evaluations.get(milieu+1).getNote();
+						mediane = evaluations.get(milieu).getNote();
 					}
 			}
 		}catch(IllegalStateException e) {
@@ -178,6 +184,8 @@ public class Eleve extends Personne {
 	 * @return String avec toutes les notes par matiere
 	 */
 	public String getMatieresAndNotes(){
+		Collections.sort(evaluations); //trier les notes
+
 		String MatieresAndNotes = "";
 		
 		for(Evaluation evaluation: evaluations) {
@@ -196,7 +204,7 @@ public class Eleve extends Personne {
 		+ "id : " + this.getNumIdentifiant()
 		+"\nNotes : " + getMatieresAndNotes()
 		+"\nMoyenne : " + this.moyenne()
-		//+"\nMediane : " + this.mediane()
+		+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
 		+"\nPromotion : " //+ this.promotion.getNom()
 		;

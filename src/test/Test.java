@@ -27,10 +27,11 @@ public class Test {
 		//initialisation des evaluations\\
 		Evaluation eval1 = new Evaluation("maths", 20, elev1, prof1);
 		Evaluation eval2 = new Evaluation("physique", 11, elev1, prof2);
-		Evaluation eval3 = new Evaluation("informatique", 19, elev1, prof3);
-		Evaluation eval4 = new Evaluation("communication", 17, elev1, prof4);
+		Evaluation eval3 = new Evaluation("informatique", 19.5, elev1, prof3);
+		Evaluation eval4 = new Evaluation("communication", 19.6, elev1, prof4);
 		Evaluation eval5 = new Evaluation("finance", 13, elev1, prof5);
-		
+		Evaluation eval5bis = new Evaluation("finance", 15, elev1, prof5);
+
 		Evaluation eval6 = new Evaluation("maths", 20, elev2, prof1);
 		Evaluation eval7 = new Evaluation("physique", 11, elev2, prof2);
 		Evaluation eval8 = new Evaluation("informatique", 19, elev2, prof3);
@@ -61,9 +62,11 @@ public class Test {
 		//On rentre les eval dans elev1
 		elev1.setEvaluation(eval1);
 		elev1.setEvaluation(eval2);
+		elev1.setEvaluation(eval3);
 		elev1.setEvaluation(eval4);
 		elev1.setEvaluation(eval5);
-		
+		elev1.setEvaluation(eval5bis);
+
 		System.out.print(elev1);
 	}
 }
