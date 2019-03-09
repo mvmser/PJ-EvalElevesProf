@@ -2,17 +2,14 @@ package notesElevesProfesseurs;
 
 import java.util.ArrayList;
 
-public class Promotion extends Eleve {
+public class Promotion {
 
 	private String nom;
-	private ArrayList<Eleve> eleves;
+	private ArrayList<Eleve> eleves = new ArrayList<Eleve>();
 	
 	/* constructeur a 1 parametre*/
 	public Promotion(String nom) {
 		this.nom = nom;
-		
-		//A chaque creation deleve, on l'ajoute ï¿½ l'arrayList eleves
-		eleves.add(this);
 	}
 	
 	public String getNom() {
@@ -23,16 +20,24 @@ public class Promotion extends Eleve {
 		this.nom = nom;
 	}
 
+	/*
+	 * un accesseur en lecture getEleves. Justifier sa signature en commentaires dans le
+	 * code. Attention à ne pas violer le principe d’encapsulation.
+	 */
 	public ArrayList<Eleve> getEleves() {
 		return eleves;
 	}
 	
+	
+	public void setEleves(Eleve eleve) {
+		eleves.add(eleve);
+	}
+
 	//rechercher
 	public Eleve rechercher(int numId) {
-		for(int i = 0; i < eleves.size(); i++) {
-			if(this.eleves.get(i).getNumIdentifiant() == numId) {
-				return this.eleves.get(i);
-			}
+		for(Eleve eleve: this.eleves) {
+			if(eleve.getNumIdentifiant() == numId)
+				return eleve;
 		}	
 		return null;
 	}

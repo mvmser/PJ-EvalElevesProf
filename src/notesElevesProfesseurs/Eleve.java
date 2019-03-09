@@ -110,8 +110,8 @@ public class Eleve extends Personne {
 		
 		try {
 			if(evaluations.size() > 0) {
-				//Collections.sort(evaluations); //trier les notes
-				System.out.println("evals: "+ evaluations);
+				//Collections.sort(evaluations); //trier les notes : deja trié dans getMatieresAndNotes
+				//System.out.println("evals: "+ evaluations);
 
 					if(evaluations.size() %2 == 0) 
 					{

@@ -20,7 +20,7 @@ public class Evaluation implements Comparable<Evaluation>{
 	}
 	
 	/*
-	 * a verifier
+	 * compareTo
 	 * 
 	 */
 	public int compareTo(Evaluation evaluation){
