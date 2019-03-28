@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Eleve extends Personne {
 	
-	//---Variable de classe qui s'inscremente a chaque creation d'eleve---\\
+	//---Variable de classe qui s'inscremente a chaque creation d'eleve, pour connaitre le nombre d'eleve---\\
 	static private int registre = 0;
 	
 	//---CONSTANTE---\\

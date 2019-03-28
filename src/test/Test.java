@@ -10,11 +10,14 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		//initialisation de plusieur eleves
-		Eleve elev1 = new Eleve("SERHIR", "Mohamed", 1);
-		Eleve elev2 = new Eleve("ZARGA", "Ines", 2);
-		Eleve elev3 = new Eleve("AZZAOUI", "Youssef", 3);
-		Eleve elev4 = new Eleve("TAREK", "Alan", 4);
+		//Creation des promotions 
+		Promotion P2021 = new Promotion("2021");
+		
+		//Initialisation de plusieur eleves
+		Eleve elev1 = new Eleve("SERHIR", "Mohamed", 1, P2021);
+		Eleve elev2 = new Eleve("ZARGA", "Ines", 2, P2021);
+		Eleve elev3 = new Eleve("AZZAOUI", "Youssef", 3, P2021);
+		Eleve elev4 = new Eleve("TAREK", "Alan", 4, P2021);
 		
 		//initialisation de plusieur professeurs
 		Professeur prof1 = new Professeur("TELLER", "Patrick");
