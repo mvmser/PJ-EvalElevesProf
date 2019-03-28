@@ -19,7 +19,7 @@ public class Professeur extends Personne {
 		try {
 			Eleve eleve = rechercheEleve(numId);
 			//Si la note d'indice i existe alors elle est modifier
-			eleve.getNotes().get(indice);
+			//eleve.getNotes().get(indice);
 			
 			
 			}catch(IllegalStateException e) {
