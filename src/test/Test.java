@@ -30,7 +30,6 @@ public class Test {
 		Evaluation eval3 = new Evaluation("informatique", 19.5, elev1, prof3);
 		Evaluation eval4 = new Evaluation("communication", 19.6, elev1, prof4);
 		Evaluation eval5 = new Evaluation("finance", 13, elev1, prof5);
-		Evaluation eval5bis = new Evaluation("finance", 15, elev1, prof5);
 
 		Evaluation eval6 = new Evaluation("maths", 20, elev2, prof1);
 		Evaluation eval7 = new Evaluation("physique", 11, elev2, prof2);
@@ -65,8 +64,15 @@ public class Test {
 		elev1.setEvaluation(eval3);
 		elev1.setEvaluation(eval4);
 		elev1.setEvaluation(eval5);
-		elev1.setEvaluation(eval5bis);
+		elev1.setEvaluation(eval6);
 
 		System.out.print(elev1);
+		System.out.print("\n-------------------------------------------------------------\n");
+		System.out.print(elev2);
+		System.out.print("\n-------------------------------------------------------------\n");
+		System.out.print(elev3);
+		System.out.print("\n-------------------------------------------------------------\n");
+		System.out.print(elev4);
+
 	}
 }
