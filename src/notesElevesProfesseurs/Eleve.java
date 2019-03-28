@@ -3,10 +3,10 @@ package notesElevesProfesseurs;
 import java.util.*;
 
 /*
- * @author SERHIR ZARGA
- * @version 1.0
+ * @authors SERHIR & ZARGA
+ * @version 1.1
  * 
- * Manque: promotion, chaque eleve connait sa promotion.
+ * pivot table (tableau croisé dynamique) 
  */
 public class Eleve extends Personne {
 	

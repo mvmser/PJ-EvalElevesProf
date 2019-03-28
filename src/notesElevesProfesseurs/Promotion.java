@@ -2,6 +2,11 @@ package notesElevesProfesseurs;
 
 import java.util.ArrayList;
 
+/*
+ * @authors SERHIR & ZARGA
+ * @version 1.0
+ *  
+ */
 public class Promotion {
 
 	private String nom;

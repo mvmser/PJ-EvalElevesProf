@@ -2,6 +2,12 @@ package test;
 
 import notesElevesProfesseurs.*;
 
+/*
+ * @authors SERHIR & ZARGA
+ * @version 1.0
+ * 
+ * 
+ */
 public class Test {
 
 	public Test() {
@@ -12,12 +18,13 @@ public class Test {
 		
 		//Creation des promotions 
 		Promotion P2021 = new Promotion("2021");
+		Promotion P2022 = new Promotion("2022");
 		
 		//Initialisation de plusieur eleves
-		Eleve elev1 = new Eleve("SERHIR", "Mohamed", 1, P2021);
-		Eleve elev2 = new Eleve("ZARGA", "Ines", 2, P2021);
-		Eleve elev3 = new Eleve("AZZAOUI", "Youssef", 3, P2021);
-		Eleve elev4 = new Eleve("TAREK", "Alan", 4, P2021);
+		Eleve elev1 = new Eleve("SERHIR", "Mohamed", 20160251, P2021);
+		Eleve elev2 = new Eleve("ZARGA", "Ines", 20160375, P2021);
+		Eleve elev3 = new Eleve("AZZAOUI", "Youssef", 20170294, P2022);
+		Eleve elev4 = new Eleve("TAREK", "Alan", 20170403, P2022);
 		
 		//initialisation de plusieur professeurs
 		Professeur prof1 = new Professeur("TELLER", "Patrick");
