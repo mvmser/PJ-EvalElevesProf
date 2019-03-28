@@ -25,6 +25,7 @@ public class Promotion {
 	 * code. Attention à ne pas violer le principe d’encapsulation.
 	 */
 	public ArrayList<Eleve> getEleves() {
+		
 		return eleves;
 	}
 	
