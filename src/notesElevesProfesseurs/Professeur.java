@@ -18,10 +18,9 @@ public class Professeur extends Personne {
 
 		try {
 			Eleve eleve = rechercheEleve(numId);
-					//Si la note d'indice i existe alors elle est modifier
+			//Si la note d'indice i existe alors elle est modifier
+			eleve.getNotes().get(indice);
 			
-			
-				
 			
 			}catch(IllegalStateException e) {
 				System.out.println("L'eleve numero: " + numId + " n'existe pas");
@@ -39,7 +38,7 @@ public class Professeur extends Personne {
 			for(int i = 0; i < promo.getEleves().size(); i++) {
 //				if(this.eleve.get(i).getNumIdentifiant() == numId) {
 //					return this.eleve.get(i);
-//				}
+//	}
 			}			
 			for(int i = 0; i < promo.getEleves().size(); i++) {
 				if(eleve.getNumIdentifiant() == numId) {
