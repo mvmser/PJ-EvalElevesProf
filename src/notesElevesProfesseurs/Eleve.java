@@ -20,27 +20,32 @@ public class Eleve extends Personne {
 	private int numIdentifiant;
 	private Date dateNaissance;
 	private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
-	//private Promotion promotion;
+	private Promotion promotion;
 
 	//---CONSTRUCTEURS---\\
+	public Eleve() {
+		super();
+	}
+	
 	public Eleve(String nom, String prenom) {
 		super(nom, prenom);
 		this.numIdentifiant = registre;
 		registre++;
 	}
-	
-	//---CONSTRUCTEURS---
+		
 	public Eleve(String nom, String prenom, int numIdentifiant) {
 		super(nom, prenom);
 		this.numIdentifiant = numIdentifiant;
 		registre++;
 	}
 	
-	public Eleve() {
-		super();
+	public Eleve(String nom, String prenom, int numIdentifiant, Promotion promotion) {
+		super(nom, prenom);
+		this.numIdentifiant = numIdentifiant;
+		this.promotion = promotion;
+		registre++;
 	}
-	
-	
+		
 	//---ACCESSEURS : Getters--- 
 	public int getNumIdentifiant() {
 		return numIdentifiant;
@@ -208,7 +213,7 @@ public class Eleve extends Personne {
 		+"\nMoyenne : " + this.moyenne()
 		+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
-		+"\nPromotion : " //+ this.promotion.getNom()
+		+"\nPromotion : " + this.promotion.getNom()
 		;
 	}
 	
