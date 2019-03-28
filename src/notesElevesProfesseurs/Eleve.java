@@ -100,7 +100,8 @@ public class Eleve extends Personne {
 		}
 		
 		//Arrondir moyenne, DecimalFormat ?
-		return moyenne;
+		double moy = (double) Math.round(moyenne * 100) / 100;
+		return moy;
 	}
 	
 	//---MEDIANE---\\
