@@ -12,10 +12,28 @@ public class Professeur extends Personne {
 	
 	
 	public double setNote(Promotion promo, int numId, double note, int indice) {
-		//for(Eleve evaluation : evaluations)
+		Eleve eleve = new Eleve();
+		
+		for(int i = 0; i < promo.getEleves().size(); i++) {
+			try {
+				if(eleve.getNumIdentifiant() == numId) {
+					
+				
+					
+					
+					
+				}	
+			}catch(IllegalStateException e) {
+				System.out.println(eleve + " n'existe pas");
+			}
+		}
+			
+		
+		
 		
 		return 1.0; 
-	}
+		}
+	
 	
 	
 	
@@ -46,6 +64,10 @@ public class Professeur extends Personne {
 		
 	}
 
+	
+	
+
+	
 	
 	//---TOSTRING---
 	@Override

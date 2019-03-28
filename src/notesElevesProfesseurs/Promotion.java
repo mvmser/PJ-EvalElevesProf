@@ -30,6 +30,7 @@ public class Promotion {
 	 * code. Attention à ne pas violer le principe d’encapsulation : à justifier
 	 */
 	public ArrayList<Eleve> getEleves() {
+		
 		return eleves;
 	}
 	
