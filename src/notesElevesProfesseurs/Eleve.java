@@ -5,6 +5,8 @@ import java.util.*;
 /*
  * @author SERHIR ZARGA
  * @version 1.0
+ * 
+ * Manque: promotion, chaque eleve connait sa promotion.
  */
 public class Eleve extends Personne {
 	
