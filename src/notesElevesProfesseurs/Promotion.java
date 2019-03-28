@@ -2,6 +2,11 @@ package notesElevesProfesseurs;
 
 import java.util.ArrayList;
 
+/*
+ * @authors SERHIR & ZARGA
+ * @version 1.0
+ * + histoire de mutateur pour get eleves 
+ */
 public class Promotion {
 
 	private String nom;
@@ -22,7 +27,7 @@ public class Promotion {
 
 	/*
 	 * un accesseur en lecture getEleves. Justifier sa signature en commentaires dans le
-	 * code. Attention à ne pas violer le principe d’encapsulation.
+	 * code. Attention à ne pas violer le principe d’encapsulation : à justifier
 	 */
 	public ArrayList<Eleve> getEleves() {
 		
