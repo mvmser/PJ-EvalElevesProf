@@ -1,5 +1,8 @@
 package notesElevesProfesseurs;
 
+import java.util.Collections;
+import java.util.Iterator;
+
 public class Professeur extends Personne {
 
 	//---CONSTRUCTEURS---
@@ -11,30 +14,20 @@ public class Professeur extends Personne {
 	}
 	
 	
-	public double setNote(Promotion promo, int numId, double note, int indice) {
-		Eleve eleve = new Eleve();
-		
-		for(int i = 0; i < promo.getEleves().size(); i++) {
-			try {
-				if(eleve.getNumIdentifiant() == numId) {
-					
-				
-					
-					
-					
-				}	
-			}catch(IllegalStateException e) {
-				System.out.println(eleve + " n'existe pas");
-			}
-		}
+	public double setNote(Promotion promo, int numId, int note, int indice) {
+
+		try {
+			Eleve eleve = rechercheEleve(numId);
+					//Si la note d'indice i existe alors elle est modifier
 			
-		
-		
-		
+				
+			
+			}catch(IllegalStateException e) {
+				System.out.println("L'eleve numero: " + numId + " n'existe pas");
+			}
+
 		return 1.0; 
 		}
-	
-	
 	
 	
 	//---RECHERCHER ELEVE---\\
@@ -46,11 +39,7 @@ public class Professeur extends Personne {
 //				if(this.eleve.get(i).getNumIdentifiant() == numId) {
 //					return this.eleve.get(i);
 //				}
-			}	
-			
-			
-			
-			
+			}			
 			for(int i = 0; i < promo.getEleves().size(); i++) {
 				if(eleve.getNumIdentifiant() == numId) {
 					return eleve;
