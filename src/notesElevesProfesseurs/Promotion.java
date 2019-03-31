@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * @author SERHIR, ZARGA
- * @version 1.0
+ * @version 1.1
  * + histoire de mutateur pour get eleves 
  */
 public class Promotion {
@@ -70,5 +70,53 @@ public class Promotion {
 				return eleve;
 		}	
 		return null;
+	}
+	
+	/**
+	 * Permet de classer par ordre croissant en fonction des moyennes des eleves
+	 * @return Collection d'eleves
+	 * @since 1.1
+	 */
+	public ArrayList<Eleve> classementOrdreCroissantMoyenne(){
+		ArrayList<Eleve> eleveOrdreCroissantMoyenne = new ArrayList<Eleve>();
+
+		for (Eleve eleve : eleves) {
+			//ecrire algo classement
+		}
+		
+		return eleveOrdreCroissantMoyenne;
+	}
+	
+	/**
+	 * Permet de classer par ordre decroissant en fonction des moyennes des eleves
+	 * @return Collection d'eleves
+	 * @since 1.1
+	 */
+	public ArrayList<Eleve> classementOrdreDecroissantMoyenne(){
+		ArrayList<Eleve> eleveOrdreDecroissantMoyenne = new ArrayList<Eleve>();
+		
+		return eleveOrdreDecroissantMoyenne;
+	}
+	
+	/**
+	 * Permet de classer par ordre croissant en fonction des mediane des eleves
+	 * @return Collection d'eleves
+	 * @since 1.1
+	 */
+	public ArrayList<Eleve> classementOrdreCroissantMediane(){
+		ArrayList<Eleve> eleveOrdreCroissantMediane = new ArrayList<Eleve>();
+		
+		return eleveOrdreCroissantMediane;
+	}
+	
+	/**
+	 * Permet de classer par ordre decroissant en fonction des medianes des eleves
+	 * @return Collection d'eleves
+	 * @since 1.1
+	 */
+	public ArrayList<Eleve> classementOrdreDecroissantMediane(){
+		ArrayList<Eleve> eleveOrdreDecroissantMediane = new ArrayList<Eleve>();
+		
+		return eleveOrdreDecroissantMediane;
 	}
 }
