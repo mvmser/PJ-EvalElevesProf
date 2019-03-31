@@ -3,7 +3,7 @@ package test;
 import notesElevesProfesseurs.*;
 
 /*
- * @authors SERHIR & ZARGA
+ * @author SERHIR, ZARGA
  * @version 1.0
  * 
  * 
