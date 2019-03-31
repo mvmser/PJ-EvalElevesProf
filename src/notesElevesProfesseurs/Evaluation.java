@@ -9,14 +9,14 @@ public class Evaluation implements Comparable<Evaluation>{
 	
 	/**Attributs*/
 	private String matiere; 
-	private float note;
+	private double note;
 	private Eleve eleveCorrige;
 	private Professeur professeurCorrecteur;
 	//private ArrayList<Professeur> professeursCorrecteurs = new ArrayList<>();
 	//private ArrayList<Double> notes = new ArrayList<>();
 
 	/**Constructeurs*/
-	public Evaluation(String matiere, float note, Eleve eleveCorrige, Professeur professeurCorrecteur ) {
+	public Evaluation(String matiere, double note, Eleve eleveCorrige, Professeur professeurCorrecteur ) {
 		this.matiere = matiere;
 		this.note = note; 
 		this.eleveCorrige = eleveCorrige;
