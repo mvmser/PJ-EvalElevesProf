@@ -35,11 +35,11 @@ public class Test {
 		
 		
 		//initialisation des evaluations\\
-		Evaluation eval1 = new Evaluation("maths", 20, elev1, prof1);
-		Evaluation eval2 = new Evaluation("physique", 11, elev1, prof2);
-		Evaluation eval3 = new Evaluation("informatique", 19.5, elev1, prof3);
-		Evaluation eval4 = new Evaluation("communication", 19.6, elev1, prof4);
-		Evaluation eval5 = new Evaluation("finance", 13, elev1, prof5);
+		Evaluation eval1 = new Evaluation("maths", 13, elev1, prof1);
+		Evaluation eval2 = new Evaluation("physique", 19.6, elev1, prof2);
+		Evaluation eval3 = new Evaluation("informatique", 11, elev1, prof3);
+		Evaluation eval4 = new Evaluation("communication", 19.5, elev1, prof4);
+		Evaluation eval5 = new Evaluation("finance", 20, elev1, prof5);
 
 		Evaluation eval6 = new Evaluation("maths", 20, elev2, prof1);
 		Evaluation eval7 = new Evaluation("physique", 11, elev2, prof2);
@@ -83,7 +83,12 @@ public class Test {
 		System.out.print(elev3);
 		System.out.print("\n-------------------------------------------------------------\n");
 		System.out.print(elev4);
+		System.out.print("\n-------------------------------------------------------------\n");
+
 		
+		Eleve eleveTest = new Eleve("SERHIR", "Mohamed", 16, 01, 1998);
+		//System.out.print(eleveTest);
+		//System.out.print(eleveTest.getNumIdentifiant());
 
 		
 	}
