@@ -51,7 +51,6 @@ public class Promotion {
 	
 	/**
 	 * Permet d'ajouter un eleve à la promo
-	 * Verifier son utilité ? Demandé ?
 	 * @param eleve
 	 * @since 1.0
 	 */
