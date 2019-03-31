@@ -159,6 +159,7 @@ public class Eleve extends Personne {
 	/**
 	 * Moyenne des notes d'un eleve
 	 * 
+	 * need v1.3
 	 * @return la moyenne calculee de l'eleve
 	 * @throw IllegalStateException si l'eleve n'a aucune note
 	 * @since 1.1
@@ -187,6 +188,7 @@ public class Eleve extends Personne {
 	/**
 	 * Mediane de l'eleve
 	 * 
+	 * need v1.3
 	 * @return la mediane de ses notes
 	 * @throw IllegalStateException s'il na pas de notes
 	 * @since 1.2
@@ -233,7 +235,11 @@ public class Eleve extends Personne {
 		}
 	}
 	
-	//---LISTE CORRECTEUR---\\
+	/**
+	 * Permet de connaitre tous les profs
+	 * ayant corrigés cet eleve
+	 * @return Collection de professeurs
+	 */
 	public Set<Professeur> getCorrecteurs() {
 		HashSet<Professeur> correcteurs = new HashSet<Professeur>();
 			
@@ -246,9 +252,10 @@ public class Eleve extends Personne {
 	}
 	
 	//---LISTE MATIERE PAR EVALUATION---\\
-	/*
+	/**
 	 * 
 	 * @return les matieres d'une evaluation
+	 * @since 1.0
 	 */
 	public HashSet<String> getMatieres() {
 		HashSet<String> matieres = new HashSet<String>();
@@ -261,9 +268,10 @@ public class Eleve extends Personne {
 	}
 	
 	//---LISTE NOTES PAR EVALUATION---\\
-	/*
+	/**
 	 * 
 	 * @return les notes d'une evaluation
+	 * @since 1.0
 	 */
 	public HashSet<Double> getNotes() {
 		HashSet<Double> notes = new HashSet<Double>();
@@ -274,12 +282,13 @@ public class Eleve extends Personne {
 		}
 		return notes;
 	}
-	/*
+	
+	/**
 	 * permet de retouver les matiere et notes de l'eleve
 	 * sous la forme : (ex) maths 20.0 physique 11.0 ...
 	 * 
-	 * @param
 	 * @return String avec toutes les notes par matiere
+	 * @since 1.0
 	 */
 	public String getMatieresAndNotes(){
 		Collections.sort(evaluations); //trier les notes
@@ -295,7 +304,10 @@ public class Eleve extends Personne {
 		return MatieresAndNotes;
 	}
 	
-	//---HASHCODE---
+	/**
+	 * Revoir hash code et equals pour court circuité la circularité observee
+	 */
+	//---HASHCODE---\\
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -306,7 +318,7 @@ public class Eleve extends Personne {
 		return result;
 	}
 	
-	//---EQUALS---
+	//---EQUALS---\\
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
