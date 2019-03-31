@@ -221,6 +221,8 @@ public class Eleve extends Personne {
 	}
 	
 	/**
+	 * Permet de modifier une evaluation
+	 * attention: verifier si cette methode doit etre dans cette classe (besoin dans classe prof)
 	 * @param Une evaluation
 	 * @throws IllegalStateException si il deja enregistre ses 10 eval
 	 */
@@ -251,9 +253,8 @@ public class Eleve extends Personne {
 		return correcteurs;
 	}
 	
-	//---LISTE MATIERE PAR EVALUATION---\\
 	/**
-	 * 
+	 * LISTE MATIERE PAR EVALUATION
 	 * @return les matieres d'une evaluation
 	 * @since 1.0
 	 */
@@ -267,9 +268,8 @@ public class Eleve extends Personne {
 		return matieres;
 	}
 	
-	//---LISTE NOTES PAR EVALUATION---\\
 	/**
-	 * 
+	 * LISTE NOTES PAR EVALUATION
 	 * @return les notes d'une evaluation
 	 * @since 1.0
 	 */
@@ -284,7 +284,7 @@ public class Eleve extends Personne {
 	}
 	
 	/**
-	 * permet de retouver les matiere et notes de l'eleve
+	 * Permet de retouver les matiere et notes de l'eleve
 	 * sous la forme : (ex) maths 20.0 physique 11.0 ...
 	 * 
 	 * @return String avec toutes les notes par matiere
