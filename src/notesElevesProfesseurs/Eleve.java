@@ -2,27 +2,27 @@ package notesElevesProfesseurs;
 
 import java.util.*;
 
-/*
- * @authors SERHIR & ZARGA
+/**
+ * @author SERHIR, ZARGA
  * @version 1.1
  * 
- * pivot table (tableau croisé dynamique) 
+ * pivot table (tableau croisé dynamique) ?
  */
 public class Eleve extends Personne {
 	
-	//---Variable de classe qui s'inscremente a chaque creation d'eleve, pour connaitre le nombre d'eleve---\\
+	/**VARIABLE DE CLASSE qui s'inscremente a chaque creation d'eleve, pour connaitre le nombre d'eleve */
 	static private int registre = 0;
 	
-	//---CONSTANTE---\\
+	/**CONSTANTE fixant le nombre maxiaml d'evaluation possible**/
 	final int NB_EVALUATIONS = 10; 
 
-	//---ATTRIBUTS---\\
+	/**ATTRIBUTS*/
 	private int numIdentifiant;
 	private Date dateNaissance;
 	private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
 	private Promotion promotion;
 
-	//---CONSTRUCTEURS---\\
+	/**CONSTRUCTEURS*/
 	public Eleve() {
 		super();
 	}
@@ -46,10 +46,11 @@ public class Eleve extends Personne {
 		registre++;
 	}
 		
-	//---ACCESSEURS : Getters--- 
+	/** GETTERS */
 	public int getNumIdentifiant() {
 		return numIdentifiant;
 	}
+	
 	public Date getDateNaissance() {
 		return dateNaissance;
 	}	
@@ -57,13 +58,29 @@ public class Eleve extends Personne {
 	public ArrayList<Evaluation> getEvaluations() {
 		return evaluations;
 	}
+	/** End Getters*/
 	
-
-	/*
+	/**
+	 * Methode toString
+	 * @return toutes les informations d'un eleve
+	 * @since 1.0
+	 */
+	@Override
+	public String toString() {
+		return "(" + this.prenom + ", " + this.nom + ") " 
+		+ "id : " + this.getNumIdentifiant()
+		+"\nNotes : " + getMatieresAndNotes()
+		+"\nMoyenne : " + this.moyenne()
+		+"\nMediane : " + this.mediane()
+		+"\nCorrecteur(s) : " + getCorrecteurs()
+		+"\nPromotion : " + this.promotion.getNom()
+		;
+	}
+	
+	/**
 	 * @param Une evaluation
 	 * 
 	 * @throws IllegalStateException si il deja enregistre ses 10 eval
-	 * 
 	 */
 	public void setEvaluation(Evaluation evaluation) {
 		try {
@@ -203,19 +220,6 @@ public class Eleve extends Personne {
 			MatieresAndNotes += " ";
 		}
 		return MatieresAndNotes;
-	}
-	
-	//---TOSTRING---\\
-	@Override
-	public String toString() {
-		return "(" + this.prenom + ", " + this.nom + ") " 
-		+ "id : " + this.getNumIdentifiant()
-		+"\nNotes : " + getMatieresAndNotes()
-		+"\nMoyenne : " + this.moyenne()
-		+"\nMediane : " + this.mediane()
-		+"\nCorrecteur(s) : " + getCorrecteurs()
-		+"\nPromotion : " + this.promotion.getNom()
-		;
 	}
 	
 	//---HASHCODE---
