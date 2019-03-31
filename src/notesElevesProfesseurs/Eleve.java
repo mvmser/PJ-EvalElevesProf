@@ -152,7 +152,7 @@ public class Eleve extends Personne {
 		+"\nMoyenne : " + this.moyenne()
 		+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
-		//+"\nPromotion : " + this.promotion.getNom()
+		+"\nPromotion : " + this.promotion.getNom()
 		;
 	}
 
