@@ -1,6 +1,7 @@
 package notesElevesProfesseurs;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * @author SERHIR, ZARGA
@@ -78,11 +79,9 @@ public class Promotion {
 	 * @since 1.1
 	 */
 	public ArrayList<Eleve> classementOrdreCroissantMoyenne(){
-		ArrayList<Eleve> eleveOrdreCroissantMoyenne = new ArrayList<Eleve>();
+		ArrayList<Eleve> eleveOrdreCroissantMoyenne = eleves;
 
-		for (Eleve eleve : eleves) {
-			//ecrire algo classement
-		}
+		Collections.sort(eleveOrdreCroissantMoyenne, Eleve.MOYENNE_ORDER);
 		
 		return eleveOrdreCroissantMoyenne;
 	}
@@ -95,6 +94,8 @@ public class Promotion {
 	public ArrayList<Eleve> classementOrdreDecroissantMoyenne(){
 		ArrayList<Eleve> eleveOrdreDecroissantMoyenne = new ArrayList<Eleve>();
 		
+		Collections.sort(eleveOrdreDecroissantMoyenne, Eleve.MOYENNE_REVERSE_ORDER);
+
 		return eleveOrdreDecroissantMoyenne;
 	}
 	
@@ -106,6 +107,8 @@ public class Promotion {
 	public ArrayList<Eleve> classementOrdreCroissantMediane(){
 		ArrayList<Eleve> eleveOrdreCroissantMediane = new ArrayList<Eleve>();
 		
+		Collections.sort(eleveOrdreCroissantMediane, Eleve.MEDIANE_ORDER);
+
 		return eleveOrdreCroissantMediane;
 	}
 	
@@ -117,6 +120,8 @@ public class Promotion {
 	public ArrayList<Eleve> classementOrdreDecroissantMediane(){
 		ArrayList<Eleve> eleveOrdreDecroissantMediane = new ArrayList<Eleve>();
 		
+		Collections.sort(eleveOrdreDecroissantMediane, Eleve.MEDIANE_REVERSE_ORDER);
+
 		return eleveOrdreDecroissantMediane;
 	}
 }
