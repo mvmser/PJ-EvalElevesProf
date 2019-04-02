@@ -5,11 +5,11 @@ import java.util.*;
 
 /**
  * @author SERHIR, ZARGA
- * @version 1.2
+ * @version 1.3
  * 
  * pivot table (tableau croisé dynamique) ?
  */
-public class Eleve extends Personne {
+public class Eleve extends Personne implements Comparable<Eleve>{
 	
 	/**VARIABLE DE CLASSE qui s'inscremente a chaque creation d'eleve, pour connaitre le nombre d'eleve */
 	static private int registre = 1;
@@ -342,4 +342,50 @@ public class Eleve extends Personne {
 			return false;
 		return true;
 	}
+
+	/**
+	 * Override implements methode
+	 * Permet de comparer deux eleves par rapport à leur moyenne
+	 * @param eleve
+	 * @return entier 0 pour egalité, 1 si cet eleve a une meilleure moyenne que l'eleve en param ou -1
+	 * @since 1.3
+	 */
+	@Override
+	public int compareTo(Eleve eleve) {
+		if(eleve.moyenne() < this.moyenne())
+	          return -1;
+	    else if(this.moyenne() < eleve.moyenne())
+	          return 1;
+	    return 0;
+	}
+	
+	static final Comparator<Eleve> MOYENNE_ORDER = new Comparator<Eleve> (){
+		@Override
+		public int compare(Eleve eleve1, Eleve eleve2){
+			return (int)(eleve1.moyenne() - eleve2.moyenne());
+		}
+	};
+	
+	static final Comparator<Eleve> MEDIANE_ORDER = new Comparator<Eleve> (){
+		@Override
+		public int compare(Eleve eleve1, Eleve eleve2){
+			return (int)(eleve1.mediane() - eleve2.mediane());
+		}
+	};
+	
+	static final Comparator<Eleve> MOYENNE_REVERSE_ORDER = new Comparator<Eleve> (){
+		@Override
+		public int compare(Eleve eleve1, Eleve eleve2){
+			return (int)(eleve2.moyenne() - eleve1.moyenne());
+		}
+	};
+	
+	static final Comparator<Eleve> MEDIANE_REVERSE_ORDER = new Comparator<Eleve> (){
+		@Override
+		public int compare(Eleve eleve1, Eleve eleve2){
+			return (int)(eleve2.mediane() - eleve1.mediane());
+		}
+	};
+
+	
 }

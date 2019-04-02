@@ -74,21 +74,20 @@ public class Test {
 		elev1.setEvaluation(eval3);
 		elev1.setEvaluation(eval4);
 		elev1.setEvaluation(eval5);
-		elev1.setEvaluation(eval6);
+		
+		elev2.setEvaluation(eval6);
+		elev2.setEvaluation(eval7);
+		elev2.setEvaluation(eval8);
+		elev2.setEvaluation(eval9);
+		elev2.setEvaluation(eval10);
 
 		System.out.print(elev1);
 		System.out.print("\n-------------------------------------------------------------\n");
 		System.out.print(elev2);
 		System.out.print("\n-------------------------------------------------------------\n");
-		System.out.print(elev3);
-		System.out.print("\n-------------------------------------------------------------\n");
-		System.out.print(elev4);
-		System.out.print("\n-------------------------------------------------------------\n");
 
 		
-		Eleve eleveTest = new Eleve("SERHIR", "Mohamed", 16, 01, 1998);
-		//System.out.print(eleveTest);
-		//System.out.print(eleveTest.getNumIdentifiant());
+		System.out.println(P2021.classementOrdreCroissantMoyenne());
 
 		
 	}
