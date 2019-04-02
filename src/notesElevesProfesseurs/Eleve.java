@@ -152,7 +152,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		+"\nMoyenne : " + this.moyenne()
 		+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
-		+"\nPromotion : " + this.promotion.getNom()
+		//+"\nPromotion : " + this.promotion.getNom()
 		;
 	}
 
@@ -167,7 +167,6 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 	public double moyenne() {
 		double moyenne = 0;
 		double total = 0;
-		System.out.println(evaluations.size());
 
 		try {
 				for (Evaluation evaluation : evaluations) {
