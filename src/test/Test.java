@@ -1,6 +1,10 @@
 package test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import notesElevesProfesseurs.*;
+import readCSV.ReadCSV;
 
 /*
  * @author SERHIR, ZARGA
@@ -81,14 +85,24 @@ public class Test {
 		elev2.setEvaluation(eval9);
 		elev2.setEvaluation(eval10);
 
-		System.out.print(elev1);
+		/**
+		 
+		 System.out.print(elev1);
 		System.out.print("\n-------------------------------------------------------------\n");
 		System.out.print(elev2);
 		System.out.print("\n-------------------------------------------------------------\n");
-
+		 */
 		
-		System.out.println(P2021.classementOrdreCroissantMoyenne());
 
-		
+		//System.out.println(P2021.classementOrdreCroissantMoyenne());
+
+		/** Permet d'afficher tous les eleves du fichier csv*/
+		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
+		for(Eleve eleve : eleves) {
+			System.out.println(eleve);
+			System.out.println("---------------------");
+		}
+
+
 	}
 }
