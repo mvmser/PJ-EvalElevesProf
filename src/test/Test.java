@@ -96,13 +96,7 @@ public class Test {
 
 		//System.out.println(P2021.classementOrdreCroissantMoyenne());
 
-		/** Permet d'afficher tous les eleves du fichier csv*/
-		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
-		for(Eleve eleve : eleves) {
-			System.out.println(eleve);
-			System.out.println("---------------------");
-		}
-
+	
 
 	}
 }
