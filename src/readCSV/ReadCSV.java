@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import notesElevesProfesseurs.Eleve;
+import notesElevesProfesseurs.Professeur;
 
 /**
  * @author SERHIR, ZARGA
@@ -17,6 +18,8 @@ public class ReadCSV {
 	/** Attributs */
 	private final static String RESOURCES_PATH = "files/";
 	private final static String ELEVES_FILE_NAME = "eleves.csv";
+	private final static String PROFESSEURS_FILE_NAME = "professeurs.csv";
+
 	
 	/**
 	 * Permet de lire toutes les lignes d'un fichier eleves
@@ -55,12 +58,34 @@ public class ReadCSV {
 	}
 	
 	/**
-	 * Permet de lire toutes les lignes d'un fichier notes
+	 * Permet de lire toutes les lignes d'un fichier profs
 	 * exclu les lignes commentés avec #
-	 * @return Une list d'evaluations 
+	 * @return Une list de profs
 	 * @since 1.0
 	 */
-	public static List<Eleve> readEvaluationsFromCSV(){
+	public static List<Professeur> readProfesseursFromCSV(){
+		try {
+			Scanner inFile = new Scanner(new File(RESOURCES_PATH + PROFESSEURS_FILE_NAME), "utf8");
+			
+			List<Professeur> professeurs = new ArrayList<Professeur>();
+			while (inFile.hasNext()) {
+				String value = inFile.nextLine();
+				
+				if(value.charAt(0) != '#') {
+					String[] array = value.split(",");
+					try {
+						professeurs.add(new Professeur(array[0], array[1]));
+					}catch (NumberFormatException nfe) {
+						System.out.println("NumberFormatException: " + nfe.getMessage());
+					}
+					
+				}
+			}
+			inFile.close();
+			return professeurs;
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR: " + e.getMessage());
+		}
 		return null;
 	}
 	
