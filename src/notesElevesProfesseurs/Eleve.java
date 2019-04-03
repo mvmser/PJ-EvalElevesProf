@@ -87,6 +87,8 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		super(nom, prenom);
 		this.dateNaissance = new Date(jour, mois, annee);
 		this.numIdentifiant = createID();
+		/** On ajoute l'eleve à sa promo */
+		promotion.addEleve(this);
 		registre++;
 	}
 	
