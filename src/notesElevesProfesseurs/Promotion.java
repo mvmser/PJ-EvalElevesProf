@@ -55,7 +55,7 @@ public class Promotion {
 	 * @param eleve
 	 * @since 1.0
 	 */
-	public void setEleves(Eleve eleve) {
+	public void addEleve(Eleve eleve) {
 		eleves.add(eleve);
 	}
 
