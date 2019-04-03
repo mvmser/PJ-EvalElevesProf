@@ -152,7 +152,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		+"\nMoyenne : " + this.moyenne()
 		+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
-		+"\nPromotion : " + this.promotion
+		+"\nPromotion : " + this.promotion.getNom()
 		;
 	}
 
