@@ -1,14 +1,16 @@
 package IHM;
 
+import javax.swing.*;
+
 public class LauchIHM {
 
-	public LauchIHM() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		SwingUtilities.invokeLater(new Runnable(){
+			public void run(){
+				EvalFenetre frame = new EvalFenetre();
+				frame.setVisible(true);
+			}
+		});
 	}
 
 }
