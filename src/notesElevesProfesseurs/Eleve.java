@@ -5,7 +5,7 @@ import java.util.*;
 
 /**
  * @author SERHIR, ZARGA
- * @version 1.3
+ * @version 1.4
  * 
  * pivot table (tableau croisé dynamique) ?
  */
@@ -20,7 +20,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 	/**ATTRIBUTS*/
 	private int numIdentifiant;
 	private Date dateNaissance;
-	private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
+	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
 	private Promotion promotion = new Promotion("P2021");
 
 	/**CONSTRUCTEURS*/
@@ -65,7 +65,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 	public Eleve(String nom, String prenom, int numIdentifiant, Promotion promotion) {
 		super(nom, prenom);
 		this.numIdentifiant = numIdentifiant;
-		this.promotion = promotion;
+		//this.promotion = promotion;
 		registre++;
 	}
 	
@@ -74,19 +74,24 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 	 * Chaque identifiant est unique, pour le calculer : variable de classe
 	 * qui s'increment à chaque creation d'eleve, puis on concatene avec la date de creation
 	 * (date de l'inscription) pour obtenir un id sous la forme : 20160251
-	 * --> penser à verifier que ce maximum n'est pas atteint par promo ?
 	 * @param nom
 	 * @param prenom
 	 * @param jour
 	 * @param mois
 	 * @param annee
 	 * 
-	 * @since 1.2
+	 * @since 1.4
 	 */
 	public Eleve(String nom, String prenom, int jour, int mois, int annee) {
 		super(nom, prenom);
 		this.dateNaissance = new Date(jour, mois, annee);
-		this.numIdentifiant = createID();
+		
+		/** Il est possible de creer 9999 id differents, 
+		 * 0000 indique que l'eleve n'est pas censé exister*/
+		if(registre <= 9999) {
+			this.numIdentifiant = createID(); 
+		} else { this.numIdentifiant = 0000;}
+		
 		/** On ajoute l'eleve à sa promo */
 		promotion.addEleve(this);
 		registre++;
@@ -136,7 +141,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 	}	
 
 	/**Utile?*/
-	public ArrayList<Evaluation> getEvaluations() {
+	public List<Evaluation> getEvaluations() {
 		return evaluations;
 	}
 	/** End Getters*/
@@ -154,7 +159,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		+"\nMoyenne : " + this.moyenne()
 		+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
-		+"\nPromotion : " + this.promotion.getNom()
+		//+"\nPromotion : " + this.promotion.getNom()
 		;
 	}
 
