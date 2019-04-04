@@ -52,7 +52,7 @@ public class Eleve extends Personne {
 	}
 	
 
-	/*
+	/**
 	 * @param Une evaluation
 	 * 
 	 * @throws IllegalStateException si il deja enregistre ses 10 eval
@@ -110,7 +110,7 @@ public class Eleve extends Personne {
 		
 		try {
 			if(evaluations.size() > 0) {
-				//Collections.sort(evaluations); //trier les notes : deja trié dans getMatieresAndNotes
+				//Collections.sort(evaluations); //trier les notes : deja triï¿½ dans getMatieresAndNotes
 				//System.out.println("evals: "+ evaluations);
 
 					if(evaluations.size() %2 == 0) 
