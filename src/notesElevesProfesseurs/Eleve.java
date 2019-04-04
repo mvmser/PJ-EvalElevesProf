@@ -232,7 +232,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 
 		try {
 			if(evaluations.size() > 0) {
-<<<<<<< HEAD
+
 				//Collections.sort(evaluations); //trier les notes : deja tri� dans getMatieresAndNotes
 				//System.out.println("evals: "+ evaluations);
 
@@ -250,7 +250,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 						int milieu = (evaluations.size()/2);
 						mediane = evaluations.get(milieu).getNote();
 					}
-=======
+
 				if(evaluations.size() %2 == 0)
 				{
 					int milieu = (evaluations.size()/2);
@@ -265,7 +265,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 					int milieu = (evaluations.size()/2);
 					mediane = evaluations.get(milieu).getNote();
 				}
->>>>>>> 624f4cbdfb575fd3db677f7fa966defb487a69ff
+
 			}
 		}catch(IllegalStateException e) {
 			/** revoir lexception*/
