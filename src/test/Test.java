@@ -1,7 +1,15 @@
 package test;
 
-import notesElevesProfesseurs.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import notesElevesProfesseurs.*;
+import readCSV.ReadCSV;
+
+/*
+ * @author SERHIR, ZARGA
+ * @version 1.0
+ */
 public class Test {
 
 	public Test() {
@@ -10,11 +18,15 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		//initialisation de plusieur eleves
-		Eleve elev1 = new Eleve("SERHIR", "Mohamed", 1);
-		Eleve elev2 = new Eleve("ZARGA", "Ines", 2);
-		Eleve elev3 = new Eleve("AZZAOUI", "Youssef", 3);
-		Eleve elev4 = new Eleve("TAREK", "Alan", 4);
+		//Creation des promotions 
+		Promotion P2021 = new Promotion("2021");
+		Promotion P2022 = new Promotion("2022");
+		
+		//Initialisation de plusieur eleves
+		Eleve elev1 = new Eleve("SERHIR", "Mohamed", 20160251, P2021);
+		Eleve elev2 = new Eleve("ZARGA", "Ines", 20160375, P2021);
+		Eleve elev3 = new Eleve("AZZAOUI", "Youssef", 20170294, P2022);
+		Eleve elev4 = new Eleve("TAREK", "Alan", 20170403, P2022);
 		
 		//initialisation de plusieur professeurs
 		Professeur prof1 = new Professeur("TELLER", "Patrick");
@@ -25,12 +37,11 @@ public class Test {
 		
 		
 		//initialisation des evaluations\\
-		Evaluation eval1 = new Evaluation("maths", 20, elev1, prof1);
-		Evaluation eval2 = new Evaluation("physique", 11, elev1, prof2);
-		Evaluation eval3 = new Evaluation("informatique", 19.5, elev1, prof3);
-		Evaluation eval4 = new Evaluation("communication", 19.6, elev1, prof4);
-		Evaluation eval5 = new Evaluation("finance", 13, elev1, prof5);
-		Evaluation eval5bis = new Evaluation("finance", 15, elev1, prof5);
+		Evaluation eval1 = new Evaluation("maths", 11, elev1, prof1);
+		Evaluation eval2 = new Evaluation("physique", 19.6, elev1, prof2);
+		Evaluation eval3 = new Evaluation("informatique", 13, elev1, prof3);
+		Evaluation eval4 = new Evaluation("communication", 19.5, elev1, prof4);
+		Evaluation eval5 = new Evaluation("finance", 20, elev1, prof5);
 
 		Evaluation eval6 = new Evaluation("maths", 20, elev2, prof1);
 		Evaluation eval7 = new Evaluation("physique", 11, elev2, prof2);
@@ -65,8 +76,25 @@ public class Test {
 		elev1.setEvaluation(eval3);
 		elev1.setEvaluation(eval4);
 		elev1.setEvaluation(eval5);
-		elev1.setEvaluation(eval5bis);
+		
+		elev2.setEvaluation(eval6);
+		elev2.setEvaluation(eval7);
+		elev2.setEvaluation(eval8);
+		elev2.setEvaluation(eval9);
+		elev2.setEvaluation(eval10);
 
-		System.out.print(elev1);
+		/**
+		 
+		 System.out.print(elev1);
+		System.out.print("\n-------------------------------------------------------------\n");
+		System.out.print(elev2);
+		System.out.print("\n-------------------------------------------------------------\n");
+		 */
+		
+
+		//System.out.println(P2021.classementOrdreCroissantMoyenne());
+
+	
+
 	}
 }

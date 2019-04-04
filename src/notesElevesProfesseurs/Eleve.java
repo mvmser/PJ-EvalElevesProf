@@ -1,119 +1,242 @@
 package notesElevesProfesseurs;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
-/*
- * @author SERHIR ZARGA
- * @version 1.0
+/**
+ * @author SERHIR, ZARGA
+ * @version 1.4
+ *
+ * pivot table (tableau crois� dynamique) ?
  */
-public class Eleve extends Personne {
-	
-	//---Variable de classe qui s'inscremente a chaque creation d'eleve---\\
-	static private int registre = 0;
-	
-	//---CONSTANTE---\\
-	final int NB_EVALUATIONS = 10; 
+public class Eleve extends Personne implements Comparable<Eleve>{
 
-	//---ATTRIBUTS---\\
+	/**VARIABLE DE CLASSE qui s'inscremente a chaque creation d'eleve, pour connaitre le nombre d'eleve */
+	static private int registre = 1;
+
+	/**CONSTANTE fixant le nombre maxiaml d'evaluation possible**/
+	final int NB_EVALUATIONS = 10;
+
+	/**ATTRIBUTS*/
 	private int numIdentifiant;
 	private Date dateNaissance;
-	private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
-	//private Promotion promotion;
+	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
 
-	//---CONSTRUCTEURS---\\
+	/** De base, l'eleve est dans la promo 2021*/
+	private Promotion promotion = new Promotion("P2021");
+
+	/**CONSTRUCTEURS*/
+	/**
+	 * @deprecated Utiliser le dernier constructeur Eleve
+	 * @since 1.0
+	 */
+	public Eleve() {
+		super();
+	}
+
+	/**
+	 * @deprecated Utiliser le dernier constructeur Eleve
+	 * @since 1.0
+	 */
 	public Eleve(String nom, String prenom) {
 		super(nom, prenom);
 		this.numIdentifiant = registre;
 		registre++;
 	}
-	
-	//---CONSTRUCTEURS---
+
+	/**
+	 * @deprecated Utiliser le dernier constructeur Eleve
+	 * @since 1.0
+	 */
 	public Eleve(String nom, String prenom, int numIdentifiant) {
 		super(nom, prenom);
 		this.numIdentifiant = numIdentifiant;
 		registre++;
 	}
-	
-	public Eleve() {
-		super();
+
+	/**
+	 * Contructeur Eleve
+	 * Chaque eleve un un ID different ex: 20160251 (9999 eleve max par promo)
+	 * @param nom
+	 * @param prenom
+	 * @param numIdentifiant
+	 * @param promotion
+	 * @deprecated Utiliser le dernier constructeur � 5 parametres
+	 * @since 1.1
+	 */
+	public Eleve(String nom, String prenom, int numIdentifiant, Promotion promotion) {
+		super(nom, prenom);
+		this.numIdentifiant = numIdentifiant;
+		//this.promotion = promotion;
+		registre++;
 	}
-	
-	
-	//---ACCESSEURS : Getters--- 
+
+	/**
+	 * Constructeur eleve tel demand� � la question 4
+	 * Chaque identifiant est unique, pour le calculer : variable de classe
+	 * qui s'increment � chaque creation d'eleve, puis on concatene avec la date de creation
+	 * (date de l'inscription) pour obtenir un id sous la forme : 20160251
+	 * @param nom
+	 * @param prenom
+	 * @param jour
+	 * @param mois
+	 * @param annee
+	 *
+	 * @since 1.4
+	 */
+	public Eleve(String nom, String prenom, int jour, int mois, int annee) {
+		super(nom, prenom);
+		this.dateNaissance = new Date(jour, mois, annee);
+
+		/** Il est possible de creer 9999 id differents,
+		 * 0000 indique que l'eleve n'est pas cens� exister*/
+		if(registre <= 9999) {
+			this.numIdentifiant = createID();
+		} else { this.numIdentifiant = 0000;}
+
+		/** On ajoute l'eleve � sa promo */
+		promotion.addEleve(this);
+		registre++;
+	}
+
+	/**
+	 * Permet de creer un ID unique par eleve
+	 * chaque ID est compos� de la date d'inscription
+	 * + un numero unique (registre qui s'increment � chaque creation)
+	 * @return numIdentifiant unique
+	 * @throw NumberFormatException s'il n'arrive pas a parser un int en string
+	 * @since 1.2
+	 */
+	private int createID() {
+		/**On recupere l'annee d'inscription (annee en cours)*/
+		Calendar calendar = Calendar.getInstance();
+		int year = calendar.get(Calendar.YEAR);
+
+		/** Notre registre doit etre sous la forme 0251 par exemple
+		 * pour que notre identifiant soit toujours not� en 8 chiffres */
+		DecimalFormat df = new DecimalFormat("0000");
+		String numRegistre = df.format(Eleve.registre);
+
+		/** On concatene notre annee et notre registre */
+		String idString = Integer.toString(year) + numRegistre;
+		int numIdentifiant = 0;
+
+		try{
+			numIdentifiant = Integer.parseInt(idString);
+	    }
+	    catch (NumberFormatException nfe){
+	      System.out.println("NumberFormatException: " + nfe.getMessage());
+	      System.out.println("ERROR: innatendu lors de la creation d'un ID");
+	    }
+
+		return numIdentifiant;
+	}
+
+	/** GETTERS */
 	public int getNumIdentifiant() {
 		return numIdentifiant;
 	}
+
+	/**Utile ?*/
 	public Date getDateNaissance() {
 		return dateNaissance;
-	}	
+	}
 
-	public ArrayList<Evaluation> getEvaluations() {
+	/**Utile?*/
+	public List<Evaluation> getEvaluations() {
 		return evaluations;
 	}
-	
 
 	/**
-	 * @param Une evaluation
-	 * 
-	 * @throws IllegalStateException si il deja enregistre ses 10 eval
-	 * 
+	 * Permet de connaitre la promotion de l'eleve
+	 * @return la promotion de l'eleve
+	 * @since 1.4
 	 */
-	public void setEvaluation(Evaluation evaluation) {
-		try {
-			if(evaluations.size() < NB_EVALUATIONS) {
-				if(evaluation.getEleveCorrige() == this)
-					this.evaluations.add(evaluation);
-			}
-		}catch(IllegalStateException e) {
-			System.out.println(this.toString() + " a deja 10 evaluations!");
-		}
+	public Promotion getPromotion() {
+		return promotion;
 	}
 
-	//---MOYENNE---\\
-	/*
+	/**
+<<<<<<< HEAD
+	 * @param Une evaluation
+	 *
+	 * @throws IllegalStateException si il deja enregistre ses 10 eval
+	 *
+=======
+	 * Par defaut, la promotion est la promo 2021
+	 * si l'eleve appartient a une autre promo, on modifie alors sa promo
+	 * @param promotion
+	 * @since 1.4
+>>>>>>> 624f4cbdfb575fd3db677f7fa966defb487a69ff
+	 */
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
+	}
+	/** End Getters*/
+
+	/**
+	 * Methode toString
+	 * @return toutes les informations d'un eleve
+	 * @since 1.2
+	 */
+	@Override
+	public String toString() {
+		return "(" + this.prenom + ", " + this.nom + ") "
+		+ "id : " + this.getNumIdentifiant()
+		+"\nNotes : " + getMatieresAndNotes()
+		+"\nMoyenne : " + this.moyenne()
+		+"\nMediane : " + this.mediane()
+		+"\nCorrecteur(s) : " + getCorrecteurs()
+		+"\nPromotion : " + this.promotion.getNom()
+		;
+	}
+
+	/**
+	 * Moyenne des notes d'un eleve
+	 *
+	 * need v1.3
 	 * @return la moyenne calculee de l'eleve
-	 * 
 	 * @throw IllegalStateException si l'eleve n'a aucune note
+	 * @since 1.1
 	 */
 	public double moyenne() {
 		double moyenne = 0;
 		double total = 0;
-	
-		//System.out.println("Calcul moyenne de " +  this.getPrenom() + " "+ this.getNom());
-		
+
 		try {
-			if(evaluations.size() > 0) {
 				for (Evaluation evaluation : evaluations) {
 				    total += evaluation.getNote();
 				}
 				moyenne = total / evaluations.size();
-			}
+
 		}catch(IllegalStateException e) {
+			/** Apres test, lexeption n'apparait pas... : pas la bonne exception */
 			System.out.println(this.toString() + " n'a pas de note");
 		}
-		
-		//Arrondir moyenne, DecimalFormat ?
-		return moyenne;
+
+		/**Arrondir moyenne � 2 chiffres apr�s la virgule*/
+		double moy = (double) Math.round(moyenne * 100) / 100;
+		return moy;
 	}
-	
-	//---MEDIANE---\\
-	/*
+
+	/**
+	 * Mediane de l'eleve
+	 *
+	 * need v1.3
 	 * @return la mediane de ses notes
 	 * @throw IllegalStateException s'il na pas de notes
-	 * fausse
+	 * @since 1.2
 	 */
 	public double mediane() {
 		double mediane = 0;
-		Eleve eleve = new Eleve();
-		
-		//System.out.println("Calcul mediane de " +  eleve.getPrenom() + " "+ eleve.getNom());
-		
+
 		try {
 			if(evaluations.size() > 0) {
+<<<<<<< HEAD
 				//Collections.sort(evaluations); //trier les notes : deja tri� dans getMatieresAndNotes
 				//System.out.println("evals: "+ evaluations);
 
-					if(evaluations.size() %2 == 0) 
+					if(evaluations.size() %2 == 0)
 					{
 						int milieu = (evaluations.size()/2);
 						System.out.println(milieu);
@@ -127,67 +250,105 @@ public class Eleve extends Personne {
 						int milieu = (evaluations.size()/2);
 						mediane = evaluations.get(milieu).getNote();
 					}
+=======
+				if(evaluations.size() %2 == 0)
+				{
+					int milieu = (evaluations.size()/2);
+					System.out.println(milieu);
+					/**Notre arraylist debute a 0 et non pas a 1
+					 * On soustrait alors 1 aux 2 operations suivantes */
+					double termeMilieu1 = evaluations.get(milieu - 1).getNote();
+					double termeMilieu2 = evaluations.get((milieu + 1) - 1).getNote();
+					mediane = (termeMilieu1 + termeMilieu2)/2;
+				}
+				else {
+					int milieu = (evaluations.size()/2);
+					mediane = evaluations.get(milieu).getNote();
+				}
+>>>>>>> 624f4cbdfb575fd3db677f7fa966defb487a69ff
 			}
 		}catch(IllegalStateException e) {
-			System.out.println(eleve.toString() + " n'a pas de note");
+			/** revoir lexception*/
+			System.out.println(this.toString() + " n'a pas de note");
 		}
 		return mediane;
 	}
-	
-	
-	//---LISTE CORRECTEUR---\\
+
+	/**
+	 * Permet de modifier une evaluation
+	 * attention: verifier si cette methode doit etre dans cette classe (besoin dans classe prof)
+	 * @param Une evaluation
+	 * @throws IllegalStateException si il deja enregistre ses 10 eval
+	 */
+	public void setEvaluation(Evaluation evaluation) {
+		try {
+			if(evaluations.size() < NB_EVALUATIONS) {
+				if(evaluation.getEleveCorrige() == this)
+					this.evaluations.add(evaluation);
+			}
+		}catch(IllegalStateException e) {
+			System.out.println(this.toString() + " a deja 10 evaluations!");
+		}
+	}
+
+	/**
+	 * Permet de connaitre tous les profs
+	 * ayant corrig�s cet eleve
+	 * @return Collection de professeurs
+	 */
 	public Set<Professeur> getCorrecteurs() {
 		HashSet<Professeur> correcteurs = new HashSet<Professeur>();
-			
+
 		for (Evaluation evaluation : evaluations) {
 			Professeur correcteur = evaluation.getProfesseurCorrecteur();
 			correcteurs.add(correcteur);
 		}
-		
+
 		return correcteurs;
 	}
-	
-	//---LISTE MATIERE PAR EVALUATION---\\
-	/*
-	 * 
+
+	/**
+	 * LISTE MATIERE PAR EVALUATION
 	 * @return les matieres d'une evaluation
+	 * @since 1.0
 	 */
 	public HashSet<String> getMatieres() {
 		HashSet<String> matieres = new HashSet<String>();
-			
+
 		for (Evaluation evaluation : evaluations) {
 			String matiere = evaluation.getMatiere();
 			matieres.add(matiere);
 		}
 		return matieres;
 	}
-	
-	//---LISTE NOTES PAR EVALUATION---\\
-	/*
-	 * 
+
+	/**
+	 * LISTE NOTES PAR EVALUATION
 	 * @return les notes d'une evaluation
+	 * @since 1.0
 	 */
 	public HashSet<Double> getNotes() {
 		HashSet<Double> notes = new HashSet<Double>();
-			
+
 		for (Evaluation evaluation : evaluations) {
 			Double note = evaluation.getNote();
 			notes.add(note);
 		}
 		return notes;
 	}
-	/*
-	 * permet de retouver les matiere et notes de l'eleve
+
+	/**
+	 * Permet de retouver les matiere et notes de l'eleve
 	 * sous la forme : (ex) maths 20.0 physique 11.0 ...
-	 * 
-	 * @param
+	 *
 	 * @return String avec toutes les notes par matiere
+	 * @since 1.0
 	 */
 	public String getMatieresAndNotes(){
 		Collections.sort(evaluations); //trier les notes
 
 		String MatieresAndNotes = "";
-		
+
 		for(Evaluation evaluation: evaluations) {
 			MatieresAndNotes += evaluation.getMatiere();
 			MatieresAndNotes += " ";
@@ -196,21 +357,11 @@ public class Eleve extends Personne {
 		}
 		return MatieresAndNotes;
 	}
-	
-	//---TOSTRING---\\
-	@Override
-	public String toString() {
-		return "(" + this.prenom + ", " + this.nom + ") " 
-		+ "id : " + this.getNumIdentifiant()
-		+"\nNotes : " + getMatieresAndNotes()
-		+"\nMoyenne : " + this.moyenne()
-		+"\nMediane : " + this.mediane()
-		+"\nCorrecteur(s) : " + getCorrecteurs()
-		+"\nPromotion : " //+ this.promotion.getNom()
-		;
-	}
-	
-	//---HASHCODE---
+
+	/**
+	 * Revoir hash code et equals pour court circuit� la circularit� observee
+	 */
+	//---HASHCODE---\\
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -220,8 +371,8 @@ public class Eleve extends Personne {
 		result = prime * result + ((evaluations == null) ? 0 : evaluations.hashCode());
 		return result;
 	}
-	
-	//---EQUALS---
+
+	//---EQUALS---\\
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -245,4 +396,50 @@ public class Eleve extends Personne {
 			return false;
 		return true;
 	}
+
+	/**
+	 * Override implements methode
+	 * Permet de comparer deux eleves par rapport � leur moyenne
+	 * @param eleve
+	 * @return entier 0 pour egalit�, 1 si cet eleve a une meilleure moyenne que l'eleve en param ou -1
+	 * @since 1.3
+	 */
+	@Override
+	public int compareTo(Eleve eleve) {
+		if(eleve.moyenne() < this.moyenne())
+	          return -1;
+	    else if(this.moyenne() < eleve.moyenne())
+	          return 1;
+	    return 0;
+	}
+
+	static final Comparator<Eleve> MOYENNE_ORDER = new Comparator<Eleve> (){
+		@Override
+		public int compare(Eleve eleve1, Eleve eleve2){
+			return (int)(eleve1.moyenne() - eleve2.moyenne());
+		}
+	};
+
+	static final Comparator<Eleve> MEDIANE_ORDER = new Comparator<Eleve> (){
+		@Override
+		public int compare(Eleve eleve1, Eleve eleve2){
+			return (int)(eleve1.mediane() - eleve2.mediane());
+		}
+	};
+
+	static final Comparator<Eleve> MOYENNE_REVERSE_ORDER = new Comparator<Eleve> (){
+		@Override
+		public int compare(Eleve eleve1, Eleve eleve2){
+			return (int)(eleve2.moyenne() - eleve1.moyenne());
+		}
+	};
+
+	static final Comparator<Eleve> MEDIANE_REVERSE_ORDER = new Comparator<Eleve> (){
+		@Override
+		public int compare(Eleve eleve1, Eleve eleve2){
+			return (int)(eleve2.mediane() - eleve1.mediane());
+		}
+	};
+
+
 }

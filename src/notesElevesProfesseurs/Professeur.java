@@ -1,57 +1,92 @@
 package notesElevesProfesseurs;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 
+ * @author SERHIR, ZARGA
+ * @version 1.2
+ *
+ */
 public class Professeur extends Personne {
 
-	//---CONSTRUCTEURS---
+	/** Un prof peut intervenir dans une ou plusieurs promotions
+	 * ces promotion sont alors contenu dans une list*/
+	List<Promotion> promotionsOfProf = new ArrayList<Promotion>();
+	
+	/**
+	 * Constructeur de professeur sans promotion
+	 * Il faudra utiliser la methode addPromotionToProf
+	 * @param nom
+	 * @param prenom
+	 * @since 1.2
+	 */
 	public Professeur(String nom, String prenom) {
 		super(nom, prenom);
+	}	
+	
+	/**
+	 * Constructeur de professeur
+	 * @param nom
+	 * @param prenom
+	 * @since 1.2
+	 */
+	public Professeur(String nom, String prenom, Promotion promotion) {
+		super(nom, prenom);
+		promotionsOfProf.add(promotion);
+	}	
+	
+	/**
+	 * Si un prof prof corrige une ou plusieurs promotions, on peut l'ajouter
+	 * @param promotion
+	 * @since 1.2
+	 */
+	public void addPromotionToProf(Promotion promotion) {
+		promotionsOfProf.add(promotion);
 	}
-	public Professeur() {
-		super();
-	}
 	
-	
-	public double setNote(Promotion promo, int numId, double note, int indice) {
-		//for(Eleve evaluation : evaluations)
-		
-		return 1.0; 
-	}
-	
-	
-	
-	//---RECHERCHER ELEVE---\\
+	/**
+	 * Permet de retrouver un eleve s'il existe
+	 * @param numId
+	 * @return l'eleve recherché sinon null
+	 * @since 1.2
+	 */
 	public Eleve rechercheEleve(int numId) {
-		Promotion promo = new Promotion(nom);
-		Eleve eleve = new Eleve();
-		try{
-			for(int i = 0; i < promo.getEleves().size(); i++) {
-//				if(this.eleve.get(i).getNumIdentifiant() == numId) {
-//					return this.eleve.get(i);
-//				}
-			}	
-			
-			
-			
-			
-			for(int i = 0; i < promo.getEleves().size(); i++) {
-				if(eleve.getNumIdentifiant() == numId) {
-					return eleve;
-				}
-			}	
-		}
-		catch(IllegalStateException e) {
-			System.out.println(promo + " n'existe pas");
+		/** On va chercher l'eleve dans les promotions ou le professeur intervient*/
+		for(Promotion promo : promotionsOfProf) {
+			Eleve eleve = promo.rechercher(numId);
+			if(eleve != null) return eleve;
 		}
 		return null;
-		
+	}
+	
+	/**
+	 * NEED TO UP
+	 * @param promo
+	 * @param numId
+	 * @param note
+	 * @param indice
+	 * @since 1.0
+	 */
+	public void setNote(Promotion promo, int numId, int note, int indice) {
+		try {
+			//Eleve eleve = rechercheEleve(numId);
+			//Si la note d'indice i existe alors elle est modifier
+			//eleve.getNotes().get(indice);
+			
+		}catch(IllegalStateException e) {
+			System.out.println("L'eleve numero: " + numId + " n'existe pas");
+		}
 	}
 
-	
-	//---TOSTRING---
+	/**
+	 *  Methode toString
+	 *  @return Un string, le nom le prenom d'un prof
+	 *  @since 1.0
+	 */
 	@Override
 	public String toString() {
 		return "(" + this.prenom + ", " + this.nom + ") ";
 	}
-	
-	
 }
