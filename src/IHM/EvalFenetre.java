@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 
 
 
@@ -44,6 +46,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		gl.setVgap(150);
 		panelMenu.setLayout(gl);
 		
+		
 		/** Creation des 3 boutons du menu */
 		buttonProfesseur = new JButton("Professeur");
 		buttonProfesseur.addActionListener(this);
@@ -73,6 +76,8 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		labelTitre = new JLabel("Accueil");
 		Font f = new Font("Lato", Font.PLAIN, 45);
 		labelTitre.setFont(f);
+		labelTitre.setHorizontalAlignment(JLabel.CENTER);
+		labelTitre.setVerticalAlignment(JLabel.CENTER);
 		panelBody.add(labelTitre, BorderLayout.CENTER);
 		
 		
