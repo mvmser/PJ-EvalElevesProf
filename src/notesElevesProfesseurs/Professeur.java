@@ -1,22 +1,39 @@
 package notesElevesProfesseurs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 
  * @author SERHIR, ZARGA
- * @version 1.1
+ * @version 1.2
  *
  */
 public class Professeur extends Personne {
 
+	/** Un prof peut intervenir dans une ou plusieurs promotions
+	 * ces promotion sont alors contenu dans une list*/
+	List<Promotion> promotionsOfProf = new ArrayList<Promotion>();
+	
 	/**
 	 * Constructeur de professeur
 	 * @param nom
 	 * @param prenom
-	 * @since 1.0
+	 * @since 1.2
 	 */
-	public Professeur(String nom, String prenom) {
+	public Professeur(String nom, String prenom, Promotion promotion) {
 		super(nom, prenom);
+		promotionsOfProf.add(promotion);
 	}	
+	
+	/**
+	 * Si un prof prof corrige plusieurs promotions, on peut l'ajouter
+	 * @param promotion
+	 * @since 1.2
+	 */
+	public void addPromotionToProf(Promotion promotion) {
+		promotionsOfProf.add(promotion);
+	}
 	
 	/**
 	 * Permet de retrouver un eleve s'il existe
