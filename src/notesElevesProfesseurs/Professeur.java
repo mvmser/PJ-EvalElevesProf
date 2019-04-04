@@ -38,7 +38,7 @@ public class Professeur extends Personne {
 	}	
 	
 	/**
-	 * Si un prof prof corrige plusieurs promotions, on peut l'ajouter
+	 * Si un prof prof corrige une ou plusieurs promotions, on peut l'ajouter
 	 * @param promotion
 	 * @since 1.2
 	 */
@@ -48,14 +48,16 @@ public class Professeur extends Personne {
 	
 	/**
 	 * Permet de retrouver un eleve s'il existe
-	 * avec l'identifiant on peut retrouver la promotion car chque leve connait sa promotion
-	 * la methode rechercher de promotion permet de savoir si un eleve est dans cette promo
 	 * @param numId
 	 * @return l'eleve recherché sinon null
-	 * @since 1.1
+	 * @since 1.2
 	 */
 	public Eleve rechercheEleve(int numId) {
-		
+		/** On va chercher l'eleve dans les promotions ou le professeur intervient*/
+		for(Promotion promo : promotionsOfProf) {
+			Eleve eleve = promo.rechercher(numId);
+			if(eleve != null) return eleve;
+		}
 		return null;
 	}
 	
