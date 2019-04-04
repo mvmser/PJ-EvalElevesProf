@@ -16,6 +16,17 @@ public class Professeur extends Personne {
 	List<Promotion> promotionsOfProf = new ArrayList<Promotion>();
 	
 	/**
+	 * Constructeur de professeur sans promotion
+	 * Il faudra utiliser la methode addPromotionToProf
+	 * @param nom
+	 * @param prenom
+	 * @since 1.2
+	 */
+	public Professeur(String nom, String prenom) {
+		super(nom, prenom);
+	}	
+	
+	/**
 	 * Constructeur de professeur
 	 * @param nom
 	 * @param prenom
