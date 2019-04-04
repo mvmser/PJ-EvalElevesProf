@@ -85,11 +85,16 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		panelBody.setLayout(new BorderLayout());
 		
 		/** Creation du JLabel pour le titre */
-		labelTitre = new JLabel("Accueil");
-		Font f = new Font("Lato", Font.PLAIN, 45);
+		labelTitre = new JLabel();
+		
+		labelTitre.setText("<html><body><u>Accueil</u></body></html>");
+		Font f = new Font("Lato", Font.PLAIN, 40);
 		labelTitre.setFont(f);
+		
+		labelTitre.setBounds(10,5,10,10);
 		labelTitre.setHorizontalAlignment(JLabel.CENTER);
 		labelTitre.setVerticalAlignment(JLabel.CENTER);
+		
 		panelBody.add(labelTitre, BorderLayout.CENTER);
 		
 		
