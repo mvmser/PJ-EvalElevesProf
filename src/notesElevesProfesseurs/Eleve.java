@@ -21,6 +21,8 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 	private int numIdentifiant;
 	private Date dateNaissance;
 	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
+	
+	/** De base, l'eleve est dans la promo 2021*/
 	private Promotion promotion = new Promotion("P2021");
 
 	/**CONSTRUCTEURS*/
@@ -96,7 +98,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		promotion.addEleve(this);
 		registre++;
 	}
-	
+
 	/**
 	 * Permet de creer un ID unique par eleve
 	 * chaque ID est composé de la date d'inscription
@@ -144,6 +146,25 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 	public List<Evaluation> getEvaluations() {
 		return evaluations;
 	}
+	
+	/**
+	 * Permet de connaitre la promotion de l'eleve
+	 * @return la promotion de l'eleve
+	 * @since 1.4
+	 */
+	public Promotion getPromotion() {
+		return promotion;
+	}
+
+	/**
+	 * Par defaut, la promotion est la promo 2021
+	 * si l'eleve appartient a une autre promo, on modifie alors sa promo
+	 * @param promotion
+	 * @since 1.4
+	 */
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
+	}
 	/** End Getters*/
 	
 	/**
@@ -159,7 +180,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		+"\nMoyenne : " + this.moyenne()
 		+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
-		//+"\nPromotion : " + this.promotion.getNom()
+		+"\nPromotion : " + this.promotion.getNom()
 		;
 	}
 
