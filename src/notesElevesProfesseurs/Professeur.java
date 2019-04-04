@@ -19,7 +19,6 @@ public class Professeur extends Personne {
 	}	
 	
 	/**
-	 * NEED TO UP
 	 * Permet de retrouver un eleve s'il existe
 	 * avec l'identifiant on peut retrouver la promotion car chque leve connait sa promotion
 	 * la methode rechercher de promotion permet de savoir si un eleve est dans cette promo
@@ -27,7 +26,8 @@ public class Professeur extends Personne {
 	 * @return l'eleve recherché sinon null
 	 * @since 1.1
 	 */
-	public Eleve rechercheEleve(String promotion, int numId) {
+	public Eleve rechercheEleve(int numId) {
+		
 		return null;
 	}
 	
