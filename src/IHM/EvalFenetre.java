@@ -42,27 +42,39 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		 */
 		panelMenu = new JPanel();
 		
-		GridLayout gl = new GridLayout(3,1);
-		gl.setVgap(150);
+		GridLayout gl = new GridLayout(5,1);
+		gl.setVgap(60);
 		panelMenu.setLayout(gl);
 		
+		/** Creation d'un label blanc pr faire une bordure en haut */
+		JLabel labelBlanc = new JLabel("");
+		labelBlanc.setSize(10, 10);
+		panelMenu.add(labelBlanc);
 		
 		/** Creation des 3 boutons du menu */
 		buttonProfesseur = new JButton("Professeur");
 		buttonProfesseur.addActionListener(this);
-		buttonProfesseur.setPreferredSize(new Dimension(200, 150));
+		buttonProfesseur.setSize(100, 100);
 		panelMenu.add(buttonProfesseur);
 		
 		buttonEleve = new JButton("Eleve");
 		buttonEleve.addActionListener(this);
-		buttonEleve.setPreferredSize(new Dimension(300, 150));
+		buttonEleve.setSize(100, 100);
 		panelMenu.add(buttonEleve);
 		
 		buttonClassement = new JButton("Classement des eleves");
 		buttonClassement.addActionListener(this);
-		buttonClassement.setPreferredSize(new Dimension(300, 150));
+		buttonClassement.setSize(100, 100);
 		panelMenu.add(buttonClassement);
 		
+		/** Creation d'un label blanc pr faire une bordure en bas */
+		JLabel labelBlanc1 = new JLabel("");
+		labelBlanc1.setSize(10, 10);
+		panelMenu.add(labelBlanc1);
+
+		
+		
+
 		
 		
 		
