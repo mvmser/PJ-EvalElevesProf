@@ -9,23 +9,30 @@ package notesElevesProfesseurs;
  */
 public abstract class Personne {
 
-	//---ATTRIBUTS---\\
+	/** Attributs d'une personne */
 	protected  String nom;
 	protected String prenom;
 	
-	
-	//---CONSTRUCTEURS---\\
+	/**
+	 * Constructeur d'une personne, avec un nom et un prenom
+	 * Utilisé pour Professeur et eleves car le nom et prenom sont des propriétés communes
+	 * @param nom
+	 * @param prenom
+	 * @since 1.0
+	 */
 	public Personne(String nom, String prenom) {
 		this.nom = nom;
 		this.prenom = prenom;
 	}
+	
+	/**
+	 * @deprecated Utiliser le constructeur à deux parametres
+	 */
 	public Personne() {
-		
 	}
 	
 	/**
-	* Accesseur permettant de recuperer
-	* le nom de la personne
+	* Accesseur permettant de recuperer le nom de la personne
 	* @return le nom
 	* @since 1.0
 	*/
@@ -34,8 +41,7 @@ public abstract class Personne {
 	}
 	
 	/**
-	* Accesseur permettant de recuperer
-	* le prenom de la personne
+	* Accesseur permettant de recuperer le prenom de la personne
 	* @return le prenom
 	* @since 1.0
 	*/
