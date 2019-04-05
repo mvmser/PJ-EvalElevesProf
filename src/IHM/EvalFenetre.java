@@ -79,7 +79,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		buttonEleve.setFocusPainted(false);
 		panelMenu.add(buttonEleve);
 		
-		buttonClassement = new JButton("Classement des eleves");
+		buttonClassement = new JButton("Classements des eleves");
 		buttonClassement.setForeground(Color.BLACK); 
 		buttonProfesseur.setBackground(new Color(219,164,164));
 		buttonClassement.setFont(new Font("Tahoma", Font.PLAIN, 15));
