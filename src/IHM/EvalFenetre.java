@@ -16,8 +16,8 @@ public class EvalFenetre extends JFrame implements ActionListener{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel labelTitre;
-	private JPanel panel, panelMenu, panelBody;
+	private JLabel labelTitre, labelTitreSec, labelFooter;
+	private JPanel panel, panelMenu, panelBody, panelTitre, panelImage, panelFooter;
 	private JButton buttonProfesseur, buttonEleve, buttonClassement;
 	
 	
@@ -50,15 +50,13 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		 * CREATION DU PANEL MENU EN WEST
 		 */
 		panelMenu = new JPanel();
-		///panelMenu.setBounds(0, 0, 800, 1500);
-		
 		panelMenu.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panelMenu.setBackground(new Color(237,237,237));
 		
 		GridLayout gl = new GridLayout(5,1);
 		gl.setVgap(60);
 		panelMenu.setLayout(gl);
 
-		
 		/** Creation d'un label blanc pr faire une bordure en haut */
 		JLabel labelBlanc = new JLabel("");
 		labelBlanc.setSize(10, 10);
@@ -66,21 +64,25 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		
 		/** Creation des 3 boutons du menu */
 		buttonProfesseur = new JButton("Professeur");
-		buttonProfesseur.setForeground(Color.GRAY); //Couleur du texte
-		buttonProfesseur.setBackground(Color.BLUE); 
+		buttonProfesseur.setForeground(Color.BLACK);
+		buttonProfesseur.setBackground(new Color(219,164,164)); 
+		buttonProfesseur.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		buttonProfesseur.addActionListener(this);
-		//buttonProfesseur.setBorderPainted(false); //on ne veut pas afficher les bordures.
 		buttonProfesseur.setFocusPainted(false); 
 		panelMenu.add(buttonProfesseur);
 		
 		buttonEleve = new JButton("Eleve");
-		buttonEleve.setForeground(Color.GRAY); //Couleur du texte
+		buttonEleve.setForeground(Color.BLACK); 
+		buttonProfesseur.setBackground(new Color(219,164,164));
+		buttonEleve.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		buttonEleve.addActionListener(this);
 		buttonEleve.setFocusPainted(false);
 		panelMenu.add(buttonEleve);
 		
 		buttonClassement = new JButton("Classement des eleves");
-		buttonClassement.setForeground(Color.GRAY); //Couleur du texte
+		buttonClassement.setForeground(Color.BLACK); 
+		buttonProfesseur.setBackground(new Color(219,164,164));
+		buttonClassement.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		buttonClassement.addActionListener(this);
 		buttonClassement.setFocusPainted(false);
 		panelMenu.add(buttonClassement);
@@ -99,27 +101,67 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		 */
 		panelBody = new JPanel();
 		panelBody.setLayout(new BorderLayout());
+		panelBody.setBackground(Color.WHITE);
+		
+		/** Creation du JPanel qui va contenir les titres du projet */
+		panelTitre = new JPanel();
+		panelTitre.setLayout(new GridBagLayout());
+		panelTitre.setBackground(Color.WHITE);
 		
 		/** Creation du JLabel pour le titre */
 		labelTitre = new JLabel();
-		
-		labelTitre.setText("<html><body><u>Accueil</u></body></html>");
-		Font f = new Font("Lato", Font.PLAIN, 40);
-		labelTitre.setFont(f);
-		
-		labelTitre.setBounds(10,5,10,10);
-		labelTitre.setHorizontalAlignment(JLabel.CENTER);
-		labelTitre.setVerticalAlignment(JLabel.CENTER);
-		
-		panelBody.add(labelTitre, BorderLayout.CENTER);
+		labelTitre.setText("Accueil");
+		labelTitre.setFont(new Font("Tahoma", Font.BOLD, 35));
+
+
+		/** Placement du labelTitre */
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = gbc.gridy = 0; 							/**  la grille commence en (0, 0)*/
+		gbc.gridwidth = GridBagConstraints.REMAINDER; 		/**  seul composant de sa colonne, il est donc le dernier. */
+		gbc.gridheight = 2; 								/**  valeur par défaut - peut s'étendre sur une seule ligne */
+		//gbc.anchor = GridBagConstraints.LINE_START; 		/**  ou BASELINE_LEADING mais pas WEST. */
+		gbc.insets = new Insets(70, 0, 20, 0); 				/**  Marge à gauche de 15 et marge au dessus de 70. */
 		
 	
+		/** Creation d'un JLabel pour le second titre*/
+		labelTitreSec = new JLabel();
+		labelTitreSec.setText("Bienvenue dans le gestionnaire de note");
+		labelTitreSec.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		labelTitreSec.setForeground(new Color(152,152,152));
+
+		panelTitre.add(labelTitre, gbc);
+		panelTitre.add(labelTitreSec);
+		
+		/** Creation du JPanel pour l'image */
+		panelImage = new JPanel();
+		panelImage.setLayout(new GridBagLayout());
+		panelImage.setBackground(Color.WHITE);
+		
+		/** Creation de l'image */
+		ImageIcon icon = new ImageIcon(new ImageIcon("img.png").getImage().getScaledInstance(300, 150, Image.SCALE_DEFAULT));		
+		JLabel image = new JLabel(icon, JLabel.CENTER); 
+		panelImage.add(image);
+		
+		/** Creation du JPanel pour le footer */
+		panelFooter = new JPanel();
+		panelFooter.setLayout(new GridBagLayout());
+		panelFooter.setBackground(Color.WHITE);
+		
+		/** Creation d'un JLabel pour le footer*/
+		labelFooter = new JLabel();
+		labelFooter.setText("© SERHIR Mohamed - ZARGA Inès");
+		labelFooter.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		labelFooter.setForeground(Color.BLACK);
+		
+		panelFooter.add(labelFooter);
+		
+	
+		panelBody.add(panelTitre, BorderLayout.NORTH);
+		panelBody.add(panelImage, BorderLayout.CENTER);
+		panelBody.add(panelFooter, BorderLayout.SOUTH);
 		panel.add(panelBody, BorderLayout.CENTER); /** au centre */
 
-		
-		/** set colors*/
-		panelMenu.setBackground(new Color(237,237,237));
-		panelBody.setBackground(new Color(255,255,255));
+	
 		
 		return panel;
 	}
