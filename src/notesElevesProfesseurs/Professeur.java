@@ -62,6 +62,18 @@ public class Professeur extends Personne {
 	}
 	
 	/**
+	 * Permet de retrouver un eleve s'il existe DANS une promotion donnee
+	 * @param numId
+	 * @return l'eleve recherché sinon null
+	 * @since 1.2
+	 */
+	public Eleve rechercheEleve(int numId, Promotion promotion) {
+			Eleve eleve = promotion.rechercher(numId);
+			if(eleve != null) return eleve;
+		return null;
+	}
+	
+	/**
 	 * NEED TO UP
 	 * @param promo
 	 * @param numId
@@ -69,11 +81,14 @@ public class Professeur extends Personne {
 	 * @param indice
 	 * @since 1.0
 	 */
-	public void setNote(Promotion promo, int numId, int note, int indice) {
+	public void setNote(Promotion promotion, int numId, int note, int indice) {
 		try {
-			//Eleve eleve = rechercheEleve(numId);
+			Eleve eleve = rechercheEleve(numId, promotion);
 			//Si la note d'indice i existe alors elle est modifier
-			//eleve.getNotes().get(indice);
+
+			//Object[] notesEleve = eleve.getNotes().toArray();
+			
+
 			
 		}catch(IllegalStateException e) {
 			System.out.println("L'eleve numero: " + numId + " n'existe pas");
