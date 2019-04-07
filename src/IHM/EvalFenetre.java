@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
@@ -452,17 +452,13 @@ public class EvalFenetre extends JFrame implements ActionListener{
 				laberEnter.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			JTextField Choice = new JTextField(30);
 				Choice.setEditable(true);
-				//Choice.setPreferredSize(new Dimension(200, 24));
-			JButton Valider = new JButton("Valider");
-				Valider.setFocusPainted(false);
-				Valider.setPreferredSize(new Dimension(190, 60));
-				Valider.addActionListener(this);
+			JButton valider = new JButton("Valider");
+				valider.setFocusPainted(false);
+				valider.setPreferredSize(new Dimension(100, 60));
+				valider.setBackground(new Color(1,127,48));
+				valider.addActionListener(this);
 			
 			GridBagConstraints gbc = new GridBagConstraints();
-//			gbc.gridx = gbc.gridy = 0; 							
-//			gbc.gridheight = 10;
-//			gbc.gridwidth = GridBagConstraints.REMAINDER;
-			
 			gbc.gridx = gbc.gridy = 0;
 			gbc.insets = new Insets(30, 0, 0, 0); 
 			gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -470,21 +466,13 @@ public class EvalFenetre extends JFrame implements ActionListener{
 			
 			gbc.gridx = 0;
 		    gbc.gridy = 1;
-		    gbc.insets = new Insets(30, 0, 0, 0);
-		    gbc.gridwidth = GridBagConstraints.REMAINDER;
 		    panelR.add(Choice, gbc);
 		    
 		    gbc.gridx = 1;
 		    gbc.gridy = 2;
-		    gbc.insets = new Insets(30, 0, 0, 0); 
-		    gbc.gridwidth = GridBagConstraints.REMAINDER;
-		    panelR.add(Valider, gbc);
-			
-			//panelR.add(laberEnter, gbc);
-			//panelR.add(Choice);
-			//panelR.add(Valider, gbc);
+		    panelR.add(valider, gbc);
+
 			panelAnwser.add(panelR, BorderLayout.NORTH);
-			
 			professeur(panel);	
 		}
 		else if(source == buttonModifierNote) {
