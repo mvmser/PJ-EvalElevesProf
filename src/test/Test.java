@@ -24,8 +24,8 @@ public class Test {
 		
 		//Initialisation de plusieur eleves
 		Eleve elev1 = new Eleve("SERHIR", "Mohamed", 20160251, P2021);
-		Eleve elev2 = new Eleve("ZARGA", "Ines", 20160375, P2021);
-		Eleve elev3 = new Eleve("AZZAOUI", "Youssef", 20170294, P2022);
+		Eleve elev2 = new Eleve("RIKA", "Saed", 20160375, P2021);
+		Eleve elev3 = new Eleve("YAI", "Yous", 20170294, P2022);
 		Eleve elev4 = new Eleve("TAREK", "Alan", 20170403, P2022);
 		
 		//initialisation de plusieur professeurs
