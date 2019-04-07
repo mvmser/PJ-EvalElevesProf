@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 /**
- * @author SERHIR, ZARGA
  * @version 1.4
  *
  * pivot table (tableau crois� dynamique) ?

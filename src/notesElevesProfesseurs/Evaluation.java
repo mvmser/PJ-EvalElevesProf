@@ -1,8 +1,6 @@
 package notesElevesProfesseurs;
 
 /**
- * 
- * @author SERHIR, ZARGA
  * @version 1.0
  */
 public class Evaluation implements Comparable<Evaluation>{

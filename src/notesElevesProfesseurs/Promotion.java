@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * @author SERHIR, ZARGA
  * @version 1.1
  * + histoire de mutateur pour get eleves 
  */
