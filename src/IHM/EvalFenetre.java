@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 
 
@@ -18,7 +19,12 @@ public class EvalFenetre extends JFrame implements ActionListener{
 	private JLabel labelTitre, labelTitreSec, labelFooter;
 	private JPanel panel, panelMenu, panelBody, panelTitre, panelImage, panelFooter;
 	private JPanel panelBodyCard, panelProfesseur, panelEleve, panelClassement;
+	private JPanel panelAnwser, panelR;
 	private JButton buttonProfesseur, buttonEleve, buttonClassement, buttonRetour;
+	private JButton buttonRecherche, buttonModifierNote, buttonAjoutEvaluation;
+	private JButton buttonConsulterNote, buttonMoyenne, buttonMediane;
+	private JButton buttonClassementMoyenne, buttonClassementMediane, buttonCourbeMatiere;
+	
 	
 	
 	public EvalFenetre() {
@@ -197,6 +203,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		
 		buttonRetour = new JButton("Retour");
 			buttonRetour.setFocusPainted(false);
+			buttonRetour.addActionListener(this);
 			
 		JLabel labelTitreProf = new JLabel();
 			labelTitreProf.setText("Professeur");
@@ -215,33 +222,40 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		/** Panel du milieu pour les differents choix*/
 		JPanel panelChooseP = new JPanel(new FlowLayout());
 			panelChooseP.setBackground(Color.WHITE);
-			buttonRetour.addActionListener(this);
-		
-		JButton buttonRecherche = new JButton("Rechercher un eleve");
+			
+		buttonRecherche = new JButton("Rechercher un eleve");
 			buttonRecherche.setBackground(Color.WHITE);
 			buttonRecherche.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			buttonRecherche.addActionListener(this);
 			buttonRecherche.setFocusPainted(false);
-			buttonRecherche.setPreferredSize(new Dimension(170, 80));
-		JButton buttonModifierNote = new JButton("Modification d'une note");
+			buttonRecherche.setPreferredSize(new Dimension(170, 60));
+			
+		buttonModifierNote = new JButton("Modification d'une note");
 			buttonModifierNote.setBackground(Color.WHITE);
 			buttonModifierNote.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			buttonModifierNote.addActionListener(this);
 			buttonModifierNote.setFocusPainted(false);
-			buttonModifierNote.setPreferredSize(new Dimension(170, 80));
-		JButton buttonAjoutEvaluation = new JButton("Ajout d'une evalution");
+			buttonModifierNote.setPreferredSize(new Dimension(170, 60));
+		buttonAjoutEvaluation = new JButton("Ajout d'une evalution");
 			buttonAjoutEvaluation.setBackground(Color.WHITE);
 			buttonAjoutEvaluation.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			buttonAjoutEvaluation.addActionListener(this);
 			buttonAjoutEvaluation.setFocusPainted(false);
-			buttonAjoutEvaluation.setPreferredSize(new Dimension(170, 80));
+			buttonAjoutEvaluation.setPreferredSize(new Dimension(170, 60));
 			
 		panelChooseP.add(buttonRecherche);
 		panelChooseP.add(buttonModifierNote);
 		panelChooseP.add(buttonAjoutEvaluation);
 		panelHaut.add(panelChooseP, BorderLayout.CENTER);
-		
 		panelProfesseur.add(panelHaut, BorderLayout.NORTH);
+		
+		/** Panel du Milieu */
+		panelAnwser = new JPanel(new BorderLayout());
+			panelAnwser.setBackground(Color.WHITE);
+	
+			
+		panelProfesseur.add(panelAnwser, BorderLayout.CENTER);
+		
 		panelBodyCard.add(panelProfesseur, "ProfesseurPage");
 		panel.add(panelBodyCard, BorderLayout.CENTER); /** au centre */
 		setContentPane(panel);
@@ -291,24 +305,24 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		JPanel panelChooseE = new JPanel(new FlowLayout());
 			panelChooseE.setBackground(Color.WHITE);
 		
-		JButton buttonConsulterNote = new JButton("Consultation de notes");
+		buttonConsulterNote = new JButton("Consultation de notes");
 			buttonConsulterNote.setBackground(Color.WHITE);
 			buttonConsulterNote.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			buttonConsulterNote.addActionListener(this);
 			buttonConsulterNote.setFocusPainted(false);
-			buttonConsulterNote.setPreferredSize(new Dimension(170, 80));
-		JButton buttonMoyenne = new JButton("Mes moyennes");
+			buttonConsulterNote.setPreferredSize(new Dimension(170, 60));
+		buttonMoyenne = new JButton("Mes moyennes");
 			buttonMoyenne.setBackground(Color.WHITE);
 			buttonMoyenne.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			buttonMoyenne.addActionListener(this);
 			buttonMoyenne.setFocusPainted(false);
-			buttonMoyenne.setPreferredSize(new Dimension(170, 80));
-		JButton buttonMediane = new JButton("Mes medianes");
+			buttonMoyenne.setPreferredSize(new Dimension(170, 60));
+		buttonMediane = new JButton("Mes medianes");
 			buttonMediane.setBackground(Color.WHITE);
 			buttonMediane.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			buttonMediane.addActionListener(this);
 			buttonMediane.setFocusPainted(false);
-			buttonMediane.setPreferredSize(new Dimension(170, 80));
+			buttonMediane.setPreferredSize(new Dimension(170, 60));
 			
 		panelChooseE.add(buttonConsulterNote);
 		panelChooseE.add(buttonMoyenne);
@@ -350,7 +364,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 			buttonRetour.addActionListener(this);
 			
 		JLabel labelTitreClassement = new JLabel();
-			labelTitreClassement.setText("Eleve");
+			labelTitreClassement.setText("Classements des eleves");
 			labelTitreClassement.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		/** Placement du labelTitreClassement */
@@ -367,24 +381,24 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		JPanel panelChooseC = new JPanel(new FlowLayout());
 			panelChooseC.setBackground(Color.WHITE);
 		
-		JButton buttonClassementMoyenne = new JButton("Classements par moyenne");
+		buttonClassementMoyenne = new JButton("Classements par moyenne");
 			buttonClassementMoyenne.setBackground(Color.WHITE);
 			buttonClassementMoyenne.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			buttonClassementMoyenne.addActionListener(this);
 			buttonClassementMoyenne.setFocusPainted(false);
-			buttonClassementMoyenne.setPreferredSize(new Dimension(190, 80));
-		JButton buttonClassementMediane = new JButton("Classements par mediane");
+			buttonClassementMoyenne.setPreferredSize(new Dimension(190, 60));
+		buttonClassementMediane = new JButton("Classements par mediane");
 			buttonClassementMediane.setBackground(Color.WHITE);
 			buttonClassementMediane.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			buttonClassementMediane.addActionListener(this);
 			buttonClassementMediane.setFocusPainted(false);
-			buttonClassementMediane.setPreferredSize(new Dimension(190, 80));
-		JButton buttonCourbeMatiere = new JButton("Courbes par matiere");
+			buttonClassementMediane.setPreferredSize(new Dimension(190, 60));
+		buttonCourbeMatiere = new JButton("Courbes par matiere");
 			buttonCourbeMatiere.setBackground(Color.WHITE);
 			buttonCourbeMatiere.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			buttonCourbeMatiere.addActionListener(this);
 			buttonCourbeMatiere.setFocusPainted(false);
-			buttonCourbeMatiere.setPreferredSize(new Dimension(190, 80));
+			buttonCourbeMatiere.setPreferredSize(new Dimension(190, 60));
 			
 		panelChooseC.add(buttonClassementMoyenne);
 		panelChooseC.add(buttonClassementMediane);
@@ -414,23 +428,92 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		else if(source == buttonEleve) {
 			System.out.println("Eleve..");
 			eleve(panel);
-			
 			CardLayout cl = (CardLayout)(panelBodyCard.getLayout()); 
 		    cl.show(panelBodyCard, "ElevePage");
 		}
 		else if(source == buttonClassement) {
 			System.out.println("Classement..");
 			classement(panel);
-			
 			CardLayout cl = (CardLayout)(panelBodyCard.getLayout());
 		    cl.show(panelBodyCard, "ClassementPage");
 		}
 
 		else if(source == buttonRetour) {
 			System.out.println("Retour à la page d'accueil..");
-
 			CardLayout cl = (CardLayout)(panelBodyCard.getLayout()); //implimented the change respectivly
 		    cl.show(panelBodyCard, "FistPage");
+		}
+		else if(source == buttonRecherche) {
+			System.out.println("Un professeur veut rechercher un eleve");
+			
+			panelR = new JPanel(new GridBagLayout());
+			panelR.setBackground(Color.WHITE);
+			JLabel laberEnter= new JLabel("Entrer le numero d'identification de l'eleve : ");
+				laberEnter.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			JTextField Choice = new JTextField(30);
+				Choice.setEditable(true);
+				//Choice.setPreferredSize(new Dimension(200, 24));
+			JButton Valider = new JButton("Valider");
+				Valider.setFocusPainted(false);
+				Valider.setPreferredSize(new Dimension(190, 60));
+				Valider.addActionListener(this);
+			
+			GridBagConstraints gbc = new GridBagConstraints();
+//			gbc.gridx = gbc.gridy = 0; 							
+//			gbc.gridheight = 10;
+//			gbc.gridwidth = GridBagConstraints.REMAINDER;
+			
+			gbc.gridx = gbc.gridy = 0;
+			gbc.insets = new Insets(30, 0, 0, 0); 
+			gbc.gridwidth = GridBagConstraints.REMAINDER;
+			panelR.add(laberEnter, gbc);
+			
+			gbc.gridx = 0;
+		    gbc.gridy = 1;
+		    gbc.insets = new Insets(30, 0, 0, 0);
+		    gbc.gridwidth = GridBagConstraints.REMAINDER;
+		    panelR.add(Choice, gbc);
+		    
+		    gbc.gridx = 1;
+		    gbc.gridy = 2;
+		    gbc.insets = new Insets(30, 0, 0, 0); 
+		    gbc.gridwidth = GridBagConstraints.REMAINDER;
+		    panelR.add(Valider, gbc);
+			
+			//panelR.add(laberEnter, gbc);
+			//panelR.add(Choice);
+			//panelR.add(Valider, gbc);
+			panelAnwser.add(panelR, BorderLayout.NORTH);
+			
+			professeur(panel);	
+		}
+		else if(source == buttonModifierNote) {
+			System.out.println("Un professeur veut rechercher un eleve");
+			
+			panelR = new JPanel(new GridBagLayout());
+			panelR.setBackground(Color.WHITE);
+			JLabel laberEnter= new JLabel("Entrer le numero d'identification de l'eleve : ");
+				laberEnter.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			JTextField Choice = new JTextField("Enter un nom", 100);
+				Choice.setEditable(true);
+				Choice.setPreferredSize( new Dimension(200, 24) );
+			JButton Valider = new JButton("Valider");
+				Valider.addActionListener(this);
+				Valider.setFocusPainted(false);
+				Valider.setPreferredSize(new Dimension(190, 60));
+				
+			GridBagConstraints gbc = new GridBagConstraints();
+			gbc.gridx = gbc.gridy = 0; 							
+			gbc.gridheight = 10;
+			gbc.gridwidth = GridBagConstraints.REMAINDER;
+			gbc.insets = new Insets(30, 1, 20, 1); 
+			
+			panelR.add(laberEnter, gbc);
+			panelR.add(Choice);
+			panelR.add(Valider);
+			panelAnwser.add(panelR, BorderLayout.NORTH);
+			
+			professeur(panel);	
 		}
 		
 	}
