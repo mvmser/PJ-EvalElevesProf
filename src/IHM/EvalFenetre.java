@@ -255,35 +255,66 @@ public class EvalFenetre extends JFrame implements ActionListener{
 	 * @return
 	 */
 	public JPanel eleve(JPanel panel) {
-		/** Panel qui va contenir la page Eleve */
+		/** Panel qui va contenir la page eleve */
 		panelEleve = new JPanel();
 			panelEleve.setLayout(new BorderLayout());
 			panelEleve.setBackground(Color.WHITE);
 		
 		/** Panel du haut */
-		JPanel panel1P = new JPanel();
-			panel1P.setLayout(new GridBagLayout());
-			panel1P.setBackground(Color.WHITE);
+		JPanel panelHaut = new JPanel(new BorderLayout());
+			panelHaut.setBackground(Color.WHITE);
+			
+		/** Panel des 2 titre */
+		JPanel panel1E = new JPanel();
+			panel1E.setLayout(new GridBagLayout());
+			panel1E.setBackground(Color.WHITE);
 		
 		buttonRetour = new JButton("Retour");
 			buttonRetour.setFocusPainted(false);
-
+			
 		JLabel labelTitreEleve = new JLabel();
 			labelTitreEleve.setText("Eleve");
 			labelTitreEleve.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
-		/** Placement du labelTitreProf */
+		/** Placement du labelTitreEleve */
 		GridBagConstraints gbc = new GridBagConstraints();
 			gbc.gridx = gbc.gridy = 0; 							
 			gbc.gridheight = 2; 								
 			gbc.insets = new Insets(60, 0, 20, 0); 				
 		
-		panel1P.add(buttonRetour);
-		panel1P.add(labelTitreEleve, gbc);
-		panelEleve.add(panel1P, BorderLayout.NORTH);
+		panel1E.add(buttonRetour);
+		panel1E.add(labelTitreEleve, gbc);	
+		panelHaut.add(panel1E, BorderLayout.NORTH);
 		
+		/** Panel du milieu pour les differents choix*/
+		JPanel panelChooseE = new JPanel(new FlowLayout());
+			panelChooseE.setBackground(Color.WHITE);
 		
+		JButton buttonConsulterNote = new JButton("Consultation de notes");
+			buttonConsulterNote.setBackground(Color.WHITE);
+			buttonConsulterNote.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			buttonConsulterNote.addActionListener(this);
+			buttonConsulterNote.setFocusPainted(false);
+			buttonConsulterNote.setPreferredSize(new Dimension(170, 80));
+		JButton buttonMoyenne = new JButton("Mes moyennes");
+			buttonMoyenne.setBackground(Color.WHITE);
+			buttonMoyenne.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			buttonMoyenne.addActionListener(this);
+			buttonMoyenne.setFocusPainted(false);
+			buttonMoyenne.setPreferredSize(new Dimension(170, 80));
+		JButton buttonMediane = new JButton("Mes medianes");
+			buttonMediane.setBackground(Color.WHITE);
+			buttonMediane.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			buttonMediane.addActionListener(this);
+			buttonMediane.setFocusPainted(false);
+			buttonMediane.setPreferredSize(new Dimension(170, 80));
+			
+		panelChooseE.add(buttonConsulterNote);
+		panelChooseE.add(buttonMoyenne);
+		panelChooseE.add(buttonMediane);
+		panelHaut.add(panelChooseE, BorderLayout.CENTER);
 		
+		panelEleve.add(panelHaut, BorderLayout.NORTH);
 		panelBodyCard.add(panelEleve, "ElevePage");
 		panel.add(panelBodyCard, BorderLayout.CENTER); /** au centre */
 		setContentPane(panel);
@@ -299,36 +330,67 @@ public class EvalFenetre extends JFrame implements ActionListener{
 	 * @return
 	 */
 	public JPanel classement(JPanel panel) {
-		/** Panel qui va contenir la page Eleve */
+		/** Panel qui va contenir la page classe */
 		panelClassement = new JPanel();
 			panelClassement.setLayout(new BorderLayout());
 			panelClassement.setBackground(Color.WHITE);
 		
 		/** Panel du haut */
-		JPanel panel1P = new JPanel();
-			panel1P.setLayout(new GridBagLayout());
-			panel1P.setBackground(Color.WHITE);
+		JPanel panelHaut = new JPanel(new BorderLayout());
+			panelHaut.setBackground(Color.WHITE);
+			
+		/** Panel des 2 titre */
+		JPanel panel1C = new JPanel();
+			panel1C.setLayout(new GridBagLayout());
+			panel1C.setBackground(Color.WHITE);
 		
 		buttonRetour = new JButton("Retour");
 			buttonRetour.setFocusPainted(false);
-
-	
+			
 		JLabel labelTitreClassement = new JLabel();
-			labelTitreClassement.setText("Classements des eleves");
+			labelTitreClassement.setText("Eleve");
 			labelTitreClassement.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
-		/** Placement du labelTitreProf */
+		/** Placement du labelTitreClassement */
 		GridBagConstraints gbc = new GridBagConstraints();
 			gbc.gridx = gbc.gridy = 0; 							
 			gbc.gridheight = 2; 								
 			gbc.insets = new Insets(60, 0, 20, 0); 				
 		
-		panel1P.add(buttonRetour);
-		panel1P.add(labelTitreClassement, gbc);
+		panel1C.add(buttonRetour);
+		panel1C.add(labelTitreClassement, gbc);	
+		panelHaut.add(panel1C, BorderLayout.NORTH);
 		
-		panelClassement.add(panel1P, BorderLayout.NORTH);
+		/** Panel du milieu pour les differents choix*/
+		JPanel panelChooseC = new JPanel(new FlowLayout());
+			panelChooseC.setBackground(Color.WHITE);
+		
+		JButton buttonClassementMoyenne = new JButton("Classements par moyenne");
+			buttonClassementMoyenne.setBackground(Color.WHITE);
+			buttonClassementMoyenne.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			buttonClassementMoyenne.addActionListener(this);
+			buttonClassementMoyenne.setFocusPainted(false);
+			buttonClassementMoyenne.setPreferredSize(new Dimension(190, 80));
+		JButton buttonClassementMediane = new JButton("Classements par mediane");
+			buttonClassementMediane.setBackground(Color.WHITE);
+			buttonClassementMediane.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			buttonClassementMediane.addActionListener(this);
+			buttonClassementMediane.setFocusPainted(false);
+			buttonClassementMediane.setPreferredSize(new Dimension(190, 80));
+		JButton buttonCourbeMatiere = new JButton("Courbes par matiere");
+			buttonCourbeMatiere.setBackground(Color.WHITE);
+			buttonCourbeMatiere.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			buttonCourbeMatiere.addActionListener(this);
+			buttonCourbeMatiere.setFocusPainted(false);
+			buttonCourbeMatiere.setPreferredSize(new Dimension(190, 80));
+			
+		panelChooseC.add(buttonClassementMoyenne);
+		panelChooseC.add(buttonClassementMediane);
+		panelChooseC.add(buttonCourbeMatiere);
+		panelHaut.add(panelChooseC, BorderLayout.CENTER);
+		
+		panelClassement.add(panelHaut, BorderLayout.NORTH);
 		panelBodyCard.add(panelClassement, "ClassementPage");
-		
 		panel.add(panelBodyCard, BorderLayout.CENTER); /** au centre */
 		setContentPane(panel);
 		return panel;
