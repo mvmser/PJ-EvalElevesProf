@@ -73,7 +73,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		
 		buttonEleve = new JButton("Eleve");
 		buttonEleve.setForeground(Color.BLACK); 
-		buttonProfesseur.setBackground(new Color(219,164,164));
+		buttonEleve.setBackground(new Color(219,164,164));
 		buttonEleve.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		buttonEleve.addActionListener(this);
 		buttonEleve.setFocusPainted(false);
@@ -81,7 +81,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		
 		buttonClassement = new JButton("Classements des eleves");
 		buttonClassement.setForeground(Color.BLACK); 
-		buttonProfesseur.setBackground(new Color(219,164,164));
+		buttonClassement.setBackground(new Color(219,164,164));
 		buttonClassement.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		buttonClassement.addActionListener(this);
 		buttonClassement.setFocusPainted(false);
@@ -167,8 +167,69 @@ public class EvalFenetre extends JFrame implements ActionListener{
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		Object  source = e.getSource();
+		if  (source == buttonProfesseur) {
+			System.out.println("Professeur..");
+			professeur(panel);
+			
+		}
+		else if(source == buttonEleve) {
+			System.out.println("Eleve..");
+			eleve(panel);
+		}
+		else if(source == buttonClassement) {
+			System.out.println("Classement..");
+			classement(panel);
+		}
 		
 	}
+	
+
+	
+	
+	/**
+	 * Affichage des panel quand on clique sur professeur
+	 * 
+	 * @param panel
+	 * @return panel
+	 */
+	public JPanel professeur(JPanel panel) {
+		
+		
+		setContentPane(panel);
+		return panel;
+	}
+	
+	/**
+	 * Affichage des panel quand on clique sur eleve
+	 * 
+	 * @param panel
+	 * @return
+	 */
+	public JPanel eleve(JPanel panel) {
+		
+		
+		setContentPane(panel);
+		return panel;
+	}
+	
+	
+	
+	/**
+	 * Affichage des panel quand on clique sur classement
+	 * 
+	 * @param panel
+	 * @return
+	 */
+	public JPanel classement(JPanel panel) {
+	
+	
+		setContentPane(panel);
+		return panel;
+	}
+	
+	
+	
+	
 }
