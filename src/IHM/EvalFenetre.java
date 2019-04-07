@@ -5,8 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
+
 import javax.swing.border.EmptyBorder;
 
 
@@ -18,6 +17,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 	
 	private JLabel labelTitre, labelTitreSec, labelFooter;
 	private JPanel panel, panelMenu, panelBody, panelTitre, panelImage, panelFooter;
+	private JPanel panelBodyCard, panelProfesseur;
 	private JButton buttonProfesseur, buttonEleve, buttonClassement;
 	
 	
@@ -99,6 +99,11 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		/** 
 		 * CREATION DU PANEL BODY EN EAST
 		 */
+		CardLayout cardLayout = new CardLayout(); 
+		panelBodyCard = new JPanel(cardLayout); /** Panel qui va contenir TOUS les Panel de chaque boutons */
+		//cardLayout.show(panelBodyCard, "FistPage");
+		
+		/** Panel qui va contenir la 1er page */
 		panelBody = new JPanel();
 		panelBody.setLayout(new BorderLayout());
 		panelBody.setBackground(Color.WHITE);
@@ -149,41 +154,23 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		
 		/** Creation d'un JLabel pour le footer*/
 		labelFooter = new JLabel();
-		labelFooter.setText("© SERHIR Mohamed - ZARGA Inès");
+		labelFooter.setText("©  - ZARGA Inès");
 		labelFooter.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		labelFooter.setForeground(Color.BLACK);
 		
 		panelFooter.add(labelFooter);
 		
-	
+		panelBodyCard.add(panelBody, "FistPage");
 		panelBody.add(panelTitre, BorderLayout.NORTH);
 		panelBody.add(panelImage, BorderLayout.CENTER);
 		panelBody.add(panelFooter, BorderLayout.SOUTH);
-		panel.add(panelBody, BorderLayout.CENTER); /** au centre */
+		panel.add(panelBodyCard, BorderLayout.CENTER); /** au centre */
 
 	
 		
 		return panel;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Object  source = e.getSource();
-		if  (source == buttonProfesseur) {
-			System.out.println("Professeur..");
-			professeur(panel);
-			
-		}
-		else if(source == buttonEleve) {
-			System.out.println("Eleve..");
-			eleve(panel);
-		}
-		else if(source == buttonClassement) {
-			System.out.println("Classement..");
-			classement(panel);
-		}
-		
-	}
 	
 
 	
@@ -196,7 +183,38 @@ public class EvalFenetre extends JFrame implements ActionListener{
 	 */
 	public JPanel professeur(JPanel panel) {
 		
+		/** Panel qui va contenir la page professeur */
+		panelProfesseur = new JPanel();
+		panelProfesseur.setLayout(new BorderLayout());
+		panelProfesseur.setBackground(Color.WHITE);
 		
+		/** Panel du haut */
+		JPanel panel1P = new JPanel();
+		panel1P.setLayout(new GridBagLayout());
+		panel1P.setBackground(Color.WHITE);
+		
+		JButton buttonRetour = new JButton("Retour");
+	
+		JLabel labelTitreProf = new JLabel();
+		labelTitreProf.setText("Professeur");
+		labelTitreProf.setFont(new Font("Tahoma", Font.BOLD, 20));
+		
+		/** Placement du labelTitreProf */
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = gbc.gridy = 0; 							
+		gbc.gridwidth = GridBagConstraints.REMAINDER; 		
+		gbc.gridheight = 2; 								
+		//gbc.anchor = GridBagConstraints.LINE_START; 		
+		gbc.insets = new Insets(20, 0, 20, 0); 				
+		
+		
+		panel1P.add(buttonRetour);
+		panel1P.add(labelTitreProf, gbc);
+		
+		panelProfesseur.add(panel1P, BorderLayout.NORTH);
+		panelBodyCard.add(panelProfesseur, "ProfesseurPage");
+		
+		panel.add(panelBodyCard, BorderLayout.CENTER); /** au centre */
 		setContentPane(panel);
 		return panel;
 	}
@@ -228,6 +246,37 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		setContentPane(panel);
 		return panel;
 	}
+	
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object  source = e.getSource();
+		
+		
+		if  (source == buttonProfesseur) {
+			
+			System.out.println("Professeur..");
+			professeur(panel);
+			
+			CardLayout cl = (CardLayout)(panelBodyCard.getLayout()); //implimented the change respectivly
+		     cl.show(panelBodyCard, e.getActionCommand());
+		     cl.show(panelBodyCard, "ProfesseurPage");
+			
+			
+			
+		}
+		else if(source == buttonEleve) {
+			System.out.println("Eleve..");
+			eleve(panel);
+		}
+		else if(source == buttonClassement) {
+			System.out.println("Classement..");
+			classement(panel);
+		}
+		
+	}
+	
 	
 	
 	
