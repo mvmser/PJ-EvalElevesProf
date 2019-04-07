@@ -101,8 +101,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		 */
 		CardLayout cardLayout = new CardLayout(); 
 		panelBodyCard = new JPanel(cardLayout); /** Panel qui va contenir TOUS les Panel de chaque boutons */
-		//cardLayout.show(panelBodyCard, "FistPage");
-		
+
 		/** Panel qui va contenir la 1er page */
 		panelBody = new JPanel();
 			panelBody.setLayout(new BorderLayout());
@@ -160,10 +159,10 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		
 		panelFooter.add(labelFooter);
 		
-		panelBodyCard.add(panelBody, "FistPage");
 		panelBody.add(panelTitre, BorderLayout.NORTH);
 		panelBody.add(panelImage, BorderLayout.CENTER);
 		panelBody.add(panelFooter, BorderLayout.SOUTH);
+		panelBodyCard.add(panelBody, "FistPage");
 		panel.add(panelBodyCard, BorderLayout.CENTER); /** au centre */
 
 	
@@ -216,6 +215,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		/** Panel du milieu pour les differents choix*/
 		JPanel panelChooseP = new JPanel(new FlowLayout());
 			panelChooseP.setBackground(Color.WHITE);
+			buttonRetour.addActionListener(this);
 		
 		JButton buttonRecherche = new JButton("Rechercher un eleve");
 			buttonRecherche.setBackground(Color.WHITE);
@@ -271,6 +271,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		
 		buttonRetour = new JButton("Retour");
 			buttonRetour.setFocusPainted(false);
+			buttonRetour.addActionListener(this);
 			
 		JLabel labelTitreEleve = new JLabel();
 			labelTitreEleve.setText("Eleve");
@@ -346,6 +347,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		
 		buttonRetour = new JButton("Retour");
 			buttonRetour.setFocusPainted(false);
+			buttonRetour.addActionListener(this);
 			
 		JLabel labelTitreClassement = new JLabel();
 			labelTitreClassement.setText("Eleve");
@@ -406,25 +408,25 @@ public class EvalFenetre extends JFrame implements ActionListener{
 			System.out.println("Professeur..");
 			professeur(panel);
 			
-			CardLayout cl = (CardLayout)(panelBodyCard.getLayout()); //implimented the change respectivly
-		     cl.show(panelBodyCard, "ProfesseurPage");	
+			CardLayout cl = (CardLayout)(panelBodyCard.getLayout()); 
+		    cl.show(panelBodyCard, "ProfesseurPage");	
 		}
 		else if(source == buttonEleve) {
 			System.out.println("Eleve..");
 			eleve(panel);
 			
-			CardLayout cl = (CardLayout)(panelBodyCard.getLayout()); //implimented the change respectivly
+			CardLayout cl = (CardLayout)(panelBodyCard.getLayout()); 
 		    cl.show(panelBodyCard, "ElevePage");
 		}
 		else if(source == buttonClassement) {
 			System.out.println("Classement..");
 			classement(panel);
 			
-			CardLayout cl = (CardLayout)(panelBodyCard.getLayout()); //implimented the change respectivly
+			CardLayout cl = (CardLayout)(panelBodyCard.getLayout());
 		    cl.show(panelBodyCard, "ClassementPage");
 		}
 
-		if(source == buttonRetour) {
+		else if(source == buttonRetour) {
 			System.out.println("Retour à la page d'accueil..");
 
 			CardLayout cl = (CardLayout)(panelBodyCard.getLayout()); //implimented the change respectivly
