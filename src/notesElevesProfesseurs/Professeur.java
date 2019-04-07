@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- * @author SERHIR, ZARGA
  * @version 1.2
  *
  */
