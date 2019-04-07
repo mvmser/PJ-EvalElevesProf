@@ -159,7 +159,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		
 		/** Creation d'un JLabel pour le footer*/
 		labelFooter = new JLabel();
-			labelFooter.setText("©  - ZARGA Inès");
+			labelFooter.setText("© SERHIR Mohamed - ZARGA Ines");
 			labelFooter.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			labelFooter.setForeground(Color.BLACK);
 		
