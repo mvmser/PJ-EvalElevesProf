@@ -34,7 +34,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 
 	public void build() {
 		this.setTitle("Evaluation Eleve / Professeur"); 
-		this.setSize(1200,700);
+		this.setSize(1500,800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); //regarder c quoi
 		this.setResizable(false); 
@@ -135,7 +135,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 	
 		/** Creation d'un JLabel pour le second titre*/
 		labelTitreSec = new JLabel();
-			labelTitreSec.setText("Bienvenue dans le gestionnaire de note");
+			labelTitreSec.setText("Bienvenue dans le gestionnaire d'evaluation");
 			labelTitreSec.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			labelTitreSec.setForeground(new Color(152,152,152));
 
@@ -159,7 +159,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		
 		/** Creation d'un JLabel pour le footer*/
 		labelFooter = new JLabel();
-			labelFooter.setText("Â© SERHIR Mohamed - ZARGA Ines");
+			labelFooter.setText("© 2019");
 			labelFooter.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			labelFooter.setForeground(Color.BLACK);
 		
