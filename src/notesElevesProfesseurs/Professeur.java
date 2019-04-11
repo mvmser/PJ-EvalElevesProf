@@ -47,7 +47,7 @@ public class Professeur extends Personne {
 	/**
 	 * Permet de retrouver un eleve s'il existe
 	 * @param numId
-	 * @return l'eleve recherché sinon null
+	 * @return l'eleve recherchï¿½ sinon null
 	 * @since 1.2
 	 */
 	public Eleve rechercheEleve(int numId) {
@@ -62,7 +62,7 @@ public class Professeur extends Personne {
 	/**
 	 * Permet de retrouver un eleve s'il existe DANS une promotion donnee
 	 * @param numId
-	 * @return l'eleve recherché sinon null
+	 * @return l'eleve recherchï¿½ sinon null
 	 * @since 1.2
 	 */
 	public Eleve rechercheEleve(int numId, Promotion promotion) {

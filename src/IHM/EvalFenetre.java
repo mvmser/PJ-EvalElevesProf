@@ -9,6 +9,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import notesElevesProfesseurs.Professeur;
 
 
 
@@ -19,11 +20,13 @@ public class EvalFenetre extends JFrame implements ActionListener{
 	private JLabel labelTitre, labelTitreSec, labelFooter;
 	private JPanel panel, panelMenu, panelBody, panelTitre, panelImage, panelFooter;
 	private JPanel panelBodyCard, panelProfesseur, panelEleve, panelClassement;
-	private JPanel panelAnwser, panelR;
+	private JPanel panelAnwser, panelR, panelNum;
 	private JButton buttonProfesseur, buttonEleve, buttonClassement, buttonRetour;
 	private JButton buttonRecherche, buttonModifierNote, buttonAjoutEvaluation;
 	private JButton buttonConsulterNote, buttonMoyenne, buttonMediane;
 	private JButton buttonClassementMoyenne, buttonClassementMediane, buttonCourbeMatiere;
+	private JButton valider;
+	private JTextField Choice;
 	
 	
 	
@@ -421,9 +424,9 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		panelR.setBackground(Color.WHITE);
 		JLabel laberEnter= new JLabel("Entrer le numero d'identification de l'eleve : ");
 			laberEnter.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		JTextField Choice = new JTextField(30);
+		Choice = new JTextField(30);
 			Choice.setEditable(true);
-		JButton valider = new JButton("Valider");
+		valider = new JButton("Valider");
 			valider.setFocusPainted(false);
 			valider.setPreferredSize(new Dimension(100, 60));
 			valider.setBackground(new Color(1,127,48));
@@ -438,7 +441,6 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		gbc.gridx = 0;
 	    gbc.gridy = 1;
 	    panelR.add(Choice, gbc);
-	    
 	    gbc.gridx = 1;
 	    gbc.gridy = 2;
 	    panelR.add(valider, gbc);
@@ -488,6 +490,47 @@ public class EvalFenetre extends JFrame implements ActionListener{
 			System.out.println("Un professeur veut rechercher un eleve");
 			rechercherEleve(panel);
 			professeur(panel);	
+			
+			
+		}
+		
+		else if(source == valider) {
+			int num = 0;
+			try {
+				StringBuffer bufNom = new StringBuffer(valider.getText()); 
+				num = Integer.parseInt(bufNom.toString());
+				
+			}catch(NumberFormatException nfe) {
+				JOptionPane.showMessageDialog(null,"error", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			Professeur professeur = new Professeur("test", "test");
+			professeur.rechercheEleve(num);
+			
+			panelNum = new JPanel(new GridBagLayout());
+			panelNum.setBackground(Color.WHITE);
+			
+			JLabel laberResult= new JLabel("Etudiant :");
+			laberResult.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			
+			JTextField etudiant = new JTextField(professeur.rechercheEleve(num).toString());
+		
+			GridBagConstraints gbc = new GridBagConstraints();
+			gbc.gridx = gbc.gridy = 0;
+			gbc.insets = new Insets(30, 0, 0, 0); 
+			gbc.gridwidth = GridBagConstraints.REMAINDER;
+			
+			gbc.gridx = 0;
+		    gbc.gridy = 1;
+		    panelNum.add(laberResult, gbc);
+		    gbc.gridx = 1;
+		    gbc.gridy = 2;
+		    panelNum.add(etudiant, gbc);
+
+			panelAnwser.add(panelNum, BorderLayout.NORTH);
+			
+			professeur(panel);
+			
+			
 		}
 		
 		/** Professeur : bouton mofidier notes */
