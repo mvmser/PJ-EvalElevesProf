@@ -497,8 +497,8 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		else if(source == valider) {
 			int num = 0;
 			try {
-				StringBuffer bufNom = new StringBuffer(valider.getText()); 
-				num = Integer.parseInt(bufNom.toString());
+				//StringBuffer bufNom = new StringBuffer(Choice.getText()); 
+				num = Integer.parseInt(Choice.getText());
 				
 			}catch(NumberFormatException nfe) {
 				JOptionPane.showMessageDialog(null,"error", "Error", JOptionPane.ERROR_MESSAGE);
