@@ -159,7 +159,7 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		
 		/** Creation d'un JLabel pour le footer*/
 		labelFooter = new JLabel();
-			labelFooter.setText("© 2019");
+			labelFooter.setText("ï¿½ 2019");
 			labelFooter.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			labelFooter.setForeground(Color.BLACK);
 		
@@ -412,12 +412,48 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		return panel;
 	}
 	
+	/**
+	 * Methode qui affiche l'interface qui permet a un professeur de rechercher un eleve 
+	 * @param panel
+	 */
+	public void rechercherEleve(JPanel panel) {
+		panelR = new JPanel(new GridBagLayout());
+		panelR.setBackground(Color.WHITE);
+		JLabel laberEnter= new JLabel("Entrer le numero d'identification de l'eleve : ");
+			laberEnter.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JTextField Choice = new JTextField(30);
+			Choice.setEditable(true);
+		JButton valider = new JButton("Valider");
+			valider.setFocusPainted(false);
+			valider.setPreferredSize(new Dimension(100, 60));
+			valider.setBackground(new Color(1,127,48));
+			valider.addActionListener(this);
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = gbc.gridy = 0;
+		gbc.insets = new Insets(30, 0, 0, 0); 
+		gbc.gridwidth = GridBagConstraints.REMAINDER;
+		panelR.add(laberEnter, gbc);
+		
+		gbc.gridx = 0;
+	    gbc.gridy = 1;
+	    panelR.add(Choice, gbc);
+	    
+	    gbc.gridx = 1;
+	    gbc.gridy = 2;
+	    panelR.add(valider, gbc);
+
+		panelAnwser.add(panelR, BorderLayout.NORTH);
+	}
+	
+	
 	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object  source = e.getSource();
 		
+		/** Quand on clique sur les 3 boutons du menu */
 		if  (source == buttonProfesseur) {
 			System.out.println("Professeur..");
 			professeur(panel);
@@ -438,69 +474,26 @@ public class EvalFenetre extends JFrame implements ActionListener{
 		    cl.show(panelBodyCard, "ClassementPage");
 		}
 
+		/** Pour revenir a la page accueil */
 		else if(source == buttonRetour) {
 			System.out.println("Retour Ã  la page d'accueil..");
-			CardLayout cl = (CardLayout)(panelBodyCard.getLayout()); //implimented the change respectivly
+			CardLayout cl = (CardLayout)(panelBodyCard.getLayout());
 		    cl.show(panelBodyCard, "FistPage");
+		    buildContentPane();
+		    
 		}
+		
+		/** Professeur : bouton rechercher eleve */
 		else if(source == buttonRecherche) {
 			System.out.println("Un professeur veut rechercher un eleve");
-			
-			panelR = new JPanel(new GridBagLayout());
-			panelR.setBackground(Color.WHITE);
-			JLabel laberEnter= new JLabel("Entrer le numero d'identification de l'eleve : ");
-				laberEnter.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			JTextField Choice = new JTextField(30);
-				Choice.setEditable(true);
-			JButton valider = new JButton("Valider");
-				valider.setFocusPainted(false);
-				valider.setPreferredSize(new Dimension(100, 60));
-				valider.setBackground(new Color(1,127,48));
-				valider.addActionListener(this);
-			
-			GridBagConstraints gbc = new GridBagConstraints();
-			gbc.gridx = gbc.gridy = 0;
-			gbc.insets = new Insets(30, 0, 0, 0); 
-			gbc.gridwidth = GridBagConstraints.REMAINDER;
-			panelR.add(laberEnter, gbc);
-			
-			gbc.gridx = 0;
-		    gbc.gridy = 1;
-		    panelR.add(Choice, gbc);
-		    
-		    gbc.gridx = 1;
-		    gbc.gridy = 2;
-		    panelR.add(valider, gbc);
-
-			panelAnwser.add(panelR, BorderLayout.NORTH);
+			rechercherEleve(panel);
 			professeur(panel);	
 		}
+		
+		/** Professeur : bouton mofidier notes */
 		else if(source == buttonModifierNote) {
 			System.out.println("Un professeur veut rechercher un eleve");
-			
-			panelR = new JPanel(new GridBagLayout());
-			panelR.setBackground(Color.WHITE);
-			JLabel laberEnter= new JLabel("Entrer le numero d'identification de l'eleve : ");
-				laberEnter.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			JTextField Choice = new JTextField("Enter un nom", 100);
-				Choice.setEditable(true);
-				Choice.setPreferredSize( new Dimension(200, 24) );
-			JButton Valider = new JButton("Valider");
-				Valider.addActionListener(this);
-				Valider.setFocusPainted(false);
-				Valider.setPreferredSize(new Dimension(190, 60));
-				
-			GridBagConstraints gbc = new GridBagConstraints();
-			gbc.gridx = gbc.gridy = 0; 							
-			gbc.gridheight = 10;
-			gbc.gridwidth = GridBagConstraints.REMAINDER;
-			gbc.insets = new Insets(30, 1, 20, 1); 
-			
-			panelR.add(laberEnter, gbc);
-			panelR.add(Choice);
-			panelR.add(Valider);
-			panelAnwser.add(panelR, BorderLayout.NORTH);
-			
+			rechercherEleve(panel);
 			professeur(panel);	
 		}
 		
