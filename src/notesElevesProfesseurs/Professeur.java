@@ -2,6 +2,7 @@ package notesElevesProfesseurs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @version 1.2
@@ -72,7 +73,7 @@ public class Professeur extends Personne {
 	}
 	
 	/**
-	 * NEED TO UP
+	 * Permet de modifier une ième note si elle existe/ de la creer
 	 * @param promo
 	 * @param numId
 	 * @param note
@@ -82,12 +83,17 @@ public class Professeur extends Personne {
 	public void setNote(Promotion promotion, int numId, int note, int indice) {
 		try {
 			Eleve eleve = rechercheEleve(numId, promotion);
-			//Si la note d'indice i existe alors elle est modifier
-
-			//Object[] notesEleve = eleve.getNotes().toArray();
-			
-
-			
+			if(eleve.getEvaluations().get(indice) != null) {
+				Evaluation eval = eleve.getEvaluations().get(indice);
+				eval.setNote(note);
+			}else {
+				System.out.println("Pour quelle matiere ?");
+				Scanner sc = new Scanner(System.in);
+				String matiere = sc.nextLine();
+				
+				Evaluation newEval = new Evaluation(matiere, note, eleve, this);
+				eleve.setEvaluation(newEval);
+			}	
 		}catch(IllegalStateException e) {
 			System.out.println("L'eleve numero: " + numId + " n'existe pas");
 		}

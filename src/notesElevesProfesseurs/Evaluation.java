@@ -38,6 +38,10 @@ public class Evaluation implements Comparable<Evaluation>{
 		return professeurCorrecteur;
 	}
 
+	public void setNote(double note) {
+		this.note = note;
+	}
+
 	/**
 	 * Methode to String
 	 * @return toutes les informations d'une evaluation

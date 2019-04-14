@@ -1,4 +1,4 @@
-package notesElevesProfesseurs;
+ package notesElevesProfesseurs;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,6 +8,8 @@ import java.util.Collections;
  * + histoire de mutateur pour get eleves 
  */
 public class Promotion {
+	/** Permet de connaitre les promotions existantes*/
+	private static ArrayList<Promotion> promotions = new ArrayList<Promotion>();
 	
 	/**Attributs*/
 	private String nom;
@@ -20,6 +22,7 @@ public class Promotion {
 	 */
 	public Promotion(String nom) {
 		this.nom = nom;
+		promotions.add(this);
 	}
 	
 	/**
@@ -38,6 +41,11 @@ public class Promotion {
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	
+	
+	public ArrayList<Promotion> getPromotions() {
+		return promotions;
 	}
 
 	/**

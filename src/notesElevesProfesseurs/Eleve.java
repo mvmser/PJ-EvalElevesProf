@@ -156,17 +156,14 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 	}
 
 	/**
-<<<<<<< HEAD
 	 * @param Une evaluation
 	 *
 	 * @throws IllegalStateException si il deja enregistre ses 10 eval
 	 *
-=======
 	 * Par defaut, la promotion est la promo 2021
 	 * si l'eleve appartient a une autre promo, on modifie alors sa promo
 	 * @param promotion
 	 * @since 1.4
->>>>>>> 624f4cbdfb575fd3db677f7fa966defb487a69ff
 	 */
 	public void setPromotion(Promotion promotion) {
 		this.promotion = promotion;
