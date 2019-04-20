@@ -80,7 +80,7 @@ public class Professeur extends Personne {
 	 * @param indice
 	 * @since 1.0
 	 */
-	public void setNote(Promotion promotion, int numId, int note, int indice) {
+	public  void setNote(Promotion promotion, int numId, int note, int indice) {
 		try {
 			Eleve eleve = rechercheEleve(numId, promotion);
 			if(eleve.getEvaluations().get(indice) != null) {
