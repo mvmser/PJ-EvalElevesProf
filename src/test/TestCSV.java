@@ -16,10 +16,12 @@ public class TestCSV {
 		/** On a besoin de la promotion pour un prof*/
 		Promotion promotion = new Promotion("P2021");
 		
-		/** Permet d'afficher tous les eleves du fichier csv*/
+		/** Permet d'enregistrer dans la memoire tous les eleves et profs des fichiers csv*/
 		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
 		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
 		
+		afficherEleve(eleves, promotion);
+		afficherProfesseur(profs, promotion);
 		//afficherEleve(eleves, promotion);
 		//afficherProfesseur(profs, promotion);
 		
