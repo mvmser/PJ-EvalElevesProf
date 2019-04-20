@@ -14,7 +14,7 @@ public class TestCSV {
 	
 	public static void main(String[] args) {
 		/** On a besoin de la promotion pour un prof*/
-		Promotion promotion = new Promotion("P2021");
+		Promotion promotion = null;
 		
 		/** Permet d'enregistrer dans la memoire tous les eleves et profs des fichiers csv*/
 		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
@@ -38,43 +38,44 @@ public class TestCSV {
 		sc.nextLine();
 		
 		if(choix == 1) {
-			whoProf(profs);
+			System.out.println(whoProf(profs));
 			System.out.println("3. Rechercher eleve ");
 			System.out.println("4. Ajouter Notes ");
 			int choix1 = sc.nextInt();
-			sc.nextLine();
-			
+		
 			if(choix1 == 3) {
 				rechercherEleve(promotion);
 			}
 			else if(choix == 4) {
-				System.out.println("\n----------Rechercher un eleve avec son identifiant :----------");
 				ajouterNote(promotion, whoProf(profs));
 			}	
 			else {
 				System.out.println("\n----------error----------");
 			}
-		}
-			else if(choix == 2) {
+		}else if(choix == 2) {
 			
 		}
 		
 	}
 	
+
+	
 	public static Professeur whoProf(List<Professeur> profs) {
-		Professeur professeur = null;
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("Quel est votre nom : ");
 		String nomm = sc.nextLine();
+		
 		for(Professeur prof : profs) {
-			if(prof.getNom() == nomm) {
-				System.out.println("Bienvenue " + prof);
-				return professeur;
-			} 
+			if(prof.getNom().equals(nomm)) {
+				return prof;
+			}
 		}
-		return null;	
+		System.out.println("Pas de prof trouvé avec ce nom");
+		return null;
 	}
+	
+	
 	public static void rechercherEleve(Promotion promotion) {
 		System.out.println("\n----------Rechercher un eleve avec son identifiant :----------");
 		System.out.printf("Quel est l'identifiant ?  ");
