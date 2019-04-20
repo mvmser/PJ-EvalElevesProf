@@ -78,9 +78,11 @@ public class Promotion {
 	public static Eleve rechercher(int numId) {
 		for(Eleve eleve: eleves) {
 			if(eleve.getNumIdentifiant() == numId) {
+				System.out.println(eleve);
 				return eleve;
 			}	
 		}	
+		System.out.println("Pas d'eleve trouvé avec cet identifiant");
 		return null;
 	}
 	

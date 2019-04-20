@@ -27,18 +27,18 @@ public class TestCSV {
 		//Rechercher un eleve avec son id
 		//ajouter une note a un eleve ou la modifier setNote de prof
 		
-		System.out.println("----------Rechercher un eleve avec son identifiant :----------");
+		System.out.println("\n----------Rechercher un eleve avec son identifiant :----------");
 		System.out.printf("Quel est l'identifiant ?  ");
 		try {
 			Scanner sc = new Scanner(System.in);
 			int numid = sc.nextInt();
 			//Promotion.rechercher(numid);
-			//Professeur.rechercheEleve(numid, promotion);
+			Professeur.rechercheEleve(numid, promotion);
 		} catch (InputMismatchException e) {
 			System.out.println("Entrer un entier");
 		}
 	
-		System.out.println("----------Ajouter une note a un eleve----------");
+		System.out.println("\n----------Ajouter une note a un eleve----------");
 		
 		
 			
