@@ -21,7 +21,7 @@ public class TestCSV {
 		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
 		
 		afficherEleve(eleves, promotion);
-		//afficherProfesseur(profs, promotion);
+		afficherProfesseur(profs, promotion);
 		
 		
 		//Rechercher un eleve avec son id
