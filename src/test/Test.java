@@ -23,10 +23,17 @@ public class Test {
 		Promotion P2022 = new Promotion("2022");
 		
 		//Initialisation de plusieur eleves
-		Eleve elev1 = new Eleve("SERHIR", "Mohamed", 20160251, P2021);
-		Eleve elev2 = new Eleve("RIKA", "Saed", 20160375, P2021);
-		Eleve elev3 = new Eleve("YAI", "Yous", 20170294, P2022);
-		Eleve elev4 = new Eleve("TAREK", "Alan", 20170403, P2022);
+//		Eleve elev1 = new Eleve("SERHIR", "Mohamed", 20160251, P2021);
+//		Eleve elev2 = new Eleve("RIKA", "Saed", 20160375, P2021);
+//		Eleve elev3 = new Eleve("YAI", "Yous", 20170294, P2022);
+//		Eleve elev4 = new Eleve("TAREK", "Alan", 20170403, P2022);
+		
+		Eleve elev1 = new Eleve("Serhir", "Mohamed", 16, 01, 1998);
+		Eleve elev2 = new Eleve("Zarga", "Ines", 25, 07, 1998);
+		Eleve elev3 = new Eleve("TAREK", "Alan", 06, 03, 1998);
+		Eleve elev4 = new Eleve("YAI", "Yous", 19, 02, 1998);
+		
+		
 		
 		//initialisation de plusieur professeurs
 		Professeur prof1 = new Professeur("TELLER", "Patrick");
@@ -62,7 +69,7 @@ public class Test {
 		Evaluation eval20 = new Evaluation("finance", 13, elev1, prof5);
 		
 		/*
-		System.out.print("Affichage des évaluations");
+		System.out.print("Affichage des ï¿½valuations");
 		System.out.print(eval1);
 		System.out.print(eval2);
 		System.out.print(eval3);
