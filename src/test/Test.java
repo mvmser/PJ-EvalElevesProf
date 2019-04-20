@@ -1,7 +1,9 @@
 package test;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 import notesElevesProfesseurs.*;
 import readCSV.ReadCSV;
@@ -19,28 +21,32 @@ public class Test {
 	public static void main(String[] args) {
 		
 		//Creation des promotions 
-		Promotion P2021 = new Promotion("2021");
-		Promotion P2022 = new Promotion("2022");
+		Promotion promotion = new Promotion("P2021");
+		List<Eleve> eleves = new ArrayList();
+		List<Professeur> profs = new ArrayList();
 		
-		//Initialisation de plusieur eleves
-//		Eleve elev1 = new Eleve("SERHIR", "Mohamed", 20160251, P2021);
-//		Eleve elev2 = new Eleve("RIKA", "Saed", 20160375, P2021);
-//		Eleve elev3 = new Eleve("YAI", "Yous", 20170294, P2022);
-//		Eleve elev4 = new Eleve("TAREK", "Alan", 20170403, P2022);
-		
+		/**Initialisation de plusieurs eleves et ajout dans arraylist*/
 		Eleve elev1 = new Eleve("Serhir", "Mohamed", 16, 01, 1998);
+		eleves.add(elev1);
 		Eleve elev2 = new Eleve("Zarga", "Ines", 25, 07, 1998);
+		eleves.add(elev2);
 		Eleve elev3 = new Eleve("TAREK", "Alan", 06, 03, 1998);
+		eleves.add(elev3);
 		Eleve elev4 = new Eleve("YAI", "Yous", 19, 02, 1998);
+		eleves.add(elev4);
 		
-		
-		
-		//initialisation de plusieur professeurs
+	
+		/**initialisation de plusieur professeurs et ajout dans arraylist*/
 		Professeur prof1 = new Professeur("TELLER", "Patrick");
+		profs.add(prof1);
 		Professeur prof2 = new Professeur("CONTEVILLE", "Laurie");
+		profs.add(prof2);
 		Professeur prof3 = new Professeur("SIROT", "Isabelle");
+		profs.add(prof3);
 		Professeur prof4 = new Professeur("SOMA", "Jean");
+		profs.add(prof4);
 		Professeur prof5 = new Professeur("FERRANDIS", "Philippe");
+		profs.add(prof5);
 		
 		
 		//initialisation des evaluations\\
@@ -62,22 +68,22 @@ public class Test {
 		Evaluation eval14 = new Evaluation("communication", 17, elev3, prof4);
 		Evaluation eval15 = new Evaluation("finance", 13, elev3, prof5);
 		
-		Evaluation eval16 = new Evaluation("maths", 20, elev1, prof1);
-		Evaluation eval17 = new Evaluation("physique", 11, elev1, prof2);
-		Evaluation eval18 = new Evaluation("informatique", 19, elev1, prof3);
-		Evaluation eval19 = new Evaluation("communication", 17, elev1, prof4);
-		Evaluation eval20 = new Evaluation("finance", 13, elev1, prof5);
+		Evaluation eval16 = new Evaluation("maths", 20, elev4, prof1);
+		Evaluation eval17 = new Evaluation("physique", 11, elev4, prof2);
+		Evaluation eval18 = new Evaluation("informatique", 19, elev4, prof3);
+		Evaluation eval19 = new Evaluation("communication", 17, elev4, prof4);
+		Evaluation eval20 = new Evaluation("finance", 13, elev4, prof5);
 		
-		/*
-		System.out.print("Affichage des �valuations");
+		
+		/**System.out.print("Affichage des �valuations");
 		System.out.print(eval1);
 		System.out.print(eval2);
 		System.out.print(eval3);
 		System.out.print(eval4);
-		System.out.print(eval5);
-		*/
+		System.out.print(eval5);*/
 		
-		//On rentre les eval dans elev1
+		
+		/**On rentre les eval dans elev1*/
 		elev1.setEvaluation(eval1);
 		elev1.setEvaluation(eval2);
 		elev1.setEvaluation(eval3);
@@ -90,13 +96,59 @@ public class Test {
 		elev2.setEvaluation(eval9);
 		elev2.setEvaluation(eval10);
 
-		/**
+		
+		 for(Eleve eleve : eleves) {
+			 System.out.print(eleve);
+			 System.out.print("\n-------------------------------------------------------------\n");
+		 }
 		 
-		 System.out.print(elev1);
-		System.out.print("\n-------------------------------------------------------------\n");
-		System.out.print(elev2);
-		System.out.print("\n-------------------------------------------------------------\n");
-		 */
+		/**RECHERCHER ELEVE*/
+		System.out.println("\n----------Rechercher un eleve avec son identifiant :----------");
+		System.out.printf("Quel est l'identifiant ?  ");
+		try {
+			Scanner sc = new Scanner(System.in);
+			int numid = sc.nextInt();
+		
+			Professeur.rechercheEleve(numid, promotion);
+		} catch (InputMismatchException e) {
+			System.out.println("Entrer un entier");
+		}
+		
+		/**AJOUTER NOTES*/
+		System.out.println("\n----------Ajouter une note a un eleve----------");
+		System.out.printf("Vous etes profs, mais qui etes-vous ? Entrer votre nom : ");
+		Scanner sc = new Scanner(System.in);
+		String nom = sc.nextLine();
+		
+		for(Professeur prof : profs) {
+			if(prof.getNom() == nom) {
+				System.out.println("Vous etes " + prof +", vous pouvez modifier une note d'un eleve : ");
+				
+				System.out.printf("Quel eleve ? Entrer son identifiant : ");
+				int numid = 0;
+				try {
+					numid = sc.nextInt();
+					Professeur.rechercheEleve(numid, promotion);
+				} catch (InputMismatchException e) {
+					System.out.println("Entrer un entier");
+				}
+				
+				try {
+					System.out.printf("Maintenant, entrer note pour cette eleve : ");
+					int note = sc.nextInt();
+					System.out.printf("Maintenant, entrer l'indice de cette note : ");
+					int indice = sc.nextInt();
+					
+					prof.setNote(promotion, numid, note, indice);
+				}catch(InputMismatchException e) {
+					System.out.println("Entrer un entier");
+				}
+			}
+			else {
+				System.out.println("Ce prof n'existe pas");
+			}
+		}
+		
 		
 
 		//System.out.println(P2021.classementOrdreCroissantMoyenne());

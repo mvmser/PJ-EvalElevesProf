@@ -36,6 +36,10 @@ public class Professeur extends Personne {
 		promotionsOfProf.add(promotion);
 	}	
 	
+	public String getNom() {
+		return nom;
+	}
+	
 	/**
 	 * Si un prof prof corrige une ou plusieurs promotions, on peut l'ajouter
 	 * @param promotion

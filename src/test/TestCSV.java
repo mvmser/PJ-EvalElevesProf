@@ -55,7 +55,7 @@ public class TestCSV {
 			System.out.printf("Maintenant, entrer l'indice de cette note : ");
 			int indice = sc.nextInt();
 			
-			Professeur.setNote(promotion, numid, note, indice);
+			//Professeur.setNote(promotion, numid, note, indice);
 		}catch(InputMismatchException e) {
 			System.out.println("Entrer un entier");
 		}
