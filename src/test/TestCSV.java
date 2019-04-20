@@ -1,6 +1,8 @@
 package test;
 
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Professeur;
@@ -12,14 +14,45 @@ public class TestCSV {
 	
 	public static void main(String[] args) {
 		/** On a besoin de la promotion pour un prof*/
-		Promotion promotion = null;
+		Promotion promotion = new Promotion("P2021");
 		
 		/** Permet d'afficher tous les eleves du fichier csv*/
 		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
+		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
 		
+		afficherEleve(eleves, promotion);
+		//afficherProfesseur(profs, promotion);
+		
+		
+		//Rechercher un eleve avec son id
+		//ajouter une note a un eleve ou la modifier setNote de prof
+		
+		System.out.println("----------Rechercher un eleve avec son identifiant :----------");
+		System.out.printf("Quel est l'identifiant ?  ");
+		try {
+			Scanner sc = new Scanner(System.in);
+			int numid = sc.nextInt();
+			//Promotion.rechercher(numid);
+			//Professeur.rechercheEleve(numid, promotion);
+		} catch (InputMismatchException e) {
+			System.out.println("Entrer un entier");
+		}
+	
+		System.out.println("----------Ajouter une note a un eleve----------");
+		
+		
+			
+	}
+	
+	/**
+	 * Permet d'afficher tous les eleves du fichier csv
+	 * @param eleves
+	 * @param promotion
+	 */
+	public static void afficherEleve(List<Eleve> eleves, Promotion promotion) {
 		/** Si le fichier contient au moins un eleve*/
 		if(eleves.size() > 0) {
-			/** On recupere la promo des eleves ajoutés (on part du principe qu'ils sont tous dans la meme promo*/
+			/** On recupere la promo des eleves ajoutï¿½s (on part du principe qu'ils sont tous dans la meme promo*/
 			promotion = eleves.get(0).getPromotion();
 			for(Eleve eleve : eleves) {			
 				System.out.println(eleve);
@@ -28,11 +61,18 @@ public class TestCSV {
 		} else {
 			System.out.println("Il n'y a pas d'eleves dans ce fichier...");
 		}
-		
+	}
+	
+	/**
+	 * Permet d'afficher tous les profs du fichier csv
+	 * @param profs
+	 * @param promotion
+	 */
+	public static void afficherProfesseur(List<Professeur> profs, Promotion promotion) {
 		/** Si le fichier contient au moins un prof*/
-		if(eleves.size() > 0) {
+		if(profs.size() > 0) {
 			/** Permet d'afficher tous les profs du fichier csv*/
-			List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
+			
 			
 			for(Professeur prof : profs) {
 				/** On ajoute a chaque prof la promotion de l'eleve */
@@ -41,8 +81,8 @@ public class TestCSV {
 				System.out.println("---------------------");
 			}
 		} else {
-			System.out.println("Il n'y a pas d'eleves dans ce fichier...");
-		}		
+			System.out.println("Il n'y a pas de professeurs dans ce fichier...");
+		}	
 	}
 
 }

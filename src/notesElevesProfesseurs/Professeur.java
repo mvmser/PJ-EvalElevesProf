@@ -66,14 +66,14 @@ public class Professeur extends Personne {
 	 * @return l'eleve recherchï¿½ sinon null
 	 * @since 1.2
 	 */
-	public Eleve rechercheEleve(int numId, Promotion promotion) {
+	public static Eleve rechercheEleve(int numId, Promotion promotion) {
 			Eleve eleve = promotion.rechercher(numId);
 			if(eleve != null) return eleve;
 		return null;
 	}
 	
 	/**
-	 * Permet de modifier une ième note si elle existe/ de la creer
+	 * Permet de modifier une iï¿½me note si elle existe/ de la creer
 	 * @param promo
 	 * @param numId
 	 * @param note

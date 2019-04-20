@@ -2,6 +2,9 @@
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
+import readCSV.ReadCSV;
 
 /**
  * @version 1.1
@@ -13,7 +16,7 @@ public class Promotion {
 	
 	/**Attributs*/
 	private String nom;
-	private ArrayList<Eleve> eleves = new ArrayList<Eleve>();
+	private static ArrayList<Eleve> eleves = new ArrayList<Eleve>();
 	
 	/**
 	 * Constructeur d'une promotion
@@ -50,7 +53,7 @@ public class Promotion {
 
 	/**
 	 * un accesseur en lecture getEleves. Justifier sa signature en commentaires dans le
-	 * code. Attention à ne pas violer le principe d’encapsulation : à justifier
+	 * code. Attention ï¿½ ne pas violer le principe dï¿½encapsulation : ï¿½ justifier
 	 * @since 1.0
 	 */
 	public ArrayList<Eleve> getEleves() {
@@ -58,7 +61,7 @@ public class Promotion {
 	}
 	
 	/**
-	 * Permet d'ajouter un eleve à la promo
+	 * Permet d'ajouter un eleve ï¿½ la promo
 	 * @param eleve
 	 * @since 1.0
 	 */
@@ -69,13 +72,14 @@ public class Promotion {
 	/**
 	 * Permet de savoir si un eleve fait parti de la promotion
 	 * @param numId
-	 * @return L'eleve recherché, si pas trouvé retourne null
+	 * @return L'eleve recherchï¿½, si pas trouvï¿½ retourne null
 	 * @since 1.0
 	 */
-	public Eleve rechercher(int numId) {
-		for(Eleve eleve: this.eleves) {
-			if(eleve.getNumIdentifiant() == numId)
+	public static Eleve rechercher(int numId) {
+		for(Eleve eleve: eleves) {
+			if(eleve.getNumIdentifiant() == numId) {
 				return eleve;
+			}	
 		}	
 		return null;
 	}
