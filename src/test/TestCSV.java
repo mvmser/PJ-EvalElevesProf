@@ -22,6 +22,8 @@ public class TestCSV {
 		
 		//afficherEleve(eleves, promotion);
 		//afficherProfesseur(profs, promotion);
+		
+		menu(promotion, profs);
 
 			
 	}
@@ -33,32 +35,45 @@ public class TestCSV {
 		System.out.println("1. Vous etes un prof ? ");
 		System.out.println("2. Vous etes un eleve ? ");
 		int choix = sc.nextInt();
+		sc.nextLine();
 		
 		if(choix == 1) {
-			System.out.println("Quel est votre nom : ");
-			String nomm = sc.nextLine();
-			 //faire methode pr savoir qui est le nom du prof
-			for(Professeur prof : profs) {
-				if(prof.getNom() == nomm) {
-					System.out.println("Bienvenue " + prof);
-				}
-			}
-			System.out.println("1. Rechercher eleve ");
-			System.out.println("2. Ajouter Notes ");
+			whoProf(profs);
+			System.out.println("3. Rechercher eleve ");
+			System.out.println("4. Ajouter Notes ");
 			int choix1 = sc.nextInt();
+			sc.nextLine();
 			
-			if(choix1 == 1) {
+			if(choix1 == 3) {
 				rechercherEleve(promotion);
 			}
-			else if(choix == 2) {
-				//ajouterNote(promotion, prof1);
+			else if(choix == 4) {
+				System.out.println("\n----------Rechercher un eleve avec son identifiant :----------");
+				ajouterNote(promotion, whoProf(profs));
+			}	
+			else {
+				System.out.println("\n----------error----------");
 			}
-			
 		}
 			else if(choix == 2) {
 			
 		}
 		
+	}
+	
+	public static Professeur whoProf(List<Professeur> profs) {
+		Professeur professeur = null;
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Quel est votre nom : ");
+		String nomm = sc.nextLine();
+		for(Professeur prof : profs) {
+			if(prof.getNom() == nomm) {
+				System.out.println("Bienvenue " + prof);
+				return professeur;
+			} 
+		}
+		return null;	
 	}
 	public static void rechercherEleve(Promotion promotion) {
 		System.out.println("\n----------Rechercher un eleve avec son identifiant :----------");
