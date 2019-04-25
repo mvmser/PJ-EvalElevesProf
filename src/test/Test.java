@@ -9,7 +9,8 @@ import notesElevesProfesseurs.*;
 import readCSV.ReadCSV;
 
 /*
- * @author SERHIR, ZARGA
+ * @author SERHIR
+ * @author ZARGA
  * @version 1.0
  */
 public class Test {

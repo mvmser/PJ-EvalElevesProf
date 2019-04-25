@@ -1,5 +1,11 @@
 package notesElevesProfesseurs;
 
+/**
+ * Classe date avec getters et setters
+ * @author SERHIR
+ * @author ZARGA
+ * @version 1.0
+ */
 public class Date {
 	private int annee;
 	private int mois;
