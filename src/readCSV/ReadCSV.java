@@ -36,13 +36,14 @@ public interface ReadCSV {
 			
 			while (inFile.hasNext()) {
 				String value = inFile.nextLine();
-				if(value.charAt(0) != '#') {
+				if(value.charAt(0) != '#' && value != null) {
 					String[] array = value.split(",");
 					try {
 						eleves.add(new Eleve(array[0], array[1], Integer.parseInt(array[2]), 
 								Integer.parseInt(array[3]), Integer.parseInt(array[4]) ));
 					}catch (NumberFormatException nfe) {
 						System.out.println("NumberFormatException: " + nfe.getMessage());
+					}catch (ArrayIndexOutOfBoundsException e) {
 					}
 					
 				}

@@ -98,7 +98,8 @@ public class NotesEleveChart extends ApplicationFrame {
 		
 		/** On attribue des notes à tous les eleves*/
 		remplirEvalEleves();
-		System.out.println(eleves.get(randomInt));
+		System.out.println("---- Bulletin de: ----");
+		System.out.println(randomEleve);
 		
         final String series1 = randomEleve.getNom() + " " + randomEleve.getPrenom();
         final String series2 = "Moyenne " + promotion.getNom();
@@ -121,16 +122,32 @@ public class NotesEleveChart extends ApplicationFrame {
         	
         	/** Moyenne de la promo pour la matiere */
         	dataset.addValue(promotion.moyenneParMatiere(matiere), series2, matiere);
-        	System.out.println(promotion.moyenneParMatiere(matiere));
+        	//System.out.println("moyenne promo pour: " + matiere + " : "+ promotion.moyenneParMatiere(matiere));
             
             /** Medianne de la promo pour la matiere */
             dataset.addValue(promotion.medianeParMatiere(matiere), series3, matiere);
-            System.out.println(promotion.medianeParMatiere(matiere));
+            //System.out.println("mediane promo pour:" + matiere + " : "  + promotion.medianeParMatiere(matiere));
 		}
-
+        
+        /** Moyenne de l'eleve*/
+        System.out.print("Moyenne generale de " + randomEleve.getNom() + ": ");
+        System.out.println(randomEleve.moyenne());
+        
+        /** Mediane de l'eleve*/
+        System.out.print("Mediane generale de " + randomEleve.getNom() +  ": ");
+        System.out.println(randomEleve.mediane());
+        
+        System.out.println("");
+        
+        /**Moyenne de la promotion*/
+        System.out.print("Moyenne generale de la promotion: ");
+        System.out.println(promotion.moyenne());
+        
+        /**Mediane de la promotion*/
+        System.out.print("Mediane generale de la promotion: ");
+        System.out.println(promotion.mediane());
         
         return dataset;
-
     }
     
     /**
