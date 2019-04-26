@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * @version 1.2
+ * @version 1.4
  *
  */
 public class Professeur extends Personne {
@@ -82,25 +82,30 @@ public class Professeur extends Personne {
 	 * @param numId
 	 * @param note
 	 * @param indice
-	 * @since 1.0
+	 * @since 1.4
 	 */
-	public  void setNote(Promotion promotion, int numId, int note, int indice) {
+	public boolean setNote(Promotion promotion, int numId, int note, int indice) {
 		try {
 			Eleve eleve = rechercheEleve(numId, promotion);
-			if(eleve.getEvaluations().get(indice) != null) {
+			if(indice <= eleve.getEvaluations().size() && eleve.getEvaluations() != null) {
 				Evaluation eval = eleve.getEvaluations().get(indice);
 				eval.setNote(note);
-			}else {
+			}else if(indice <= eleve.getEvaluations().size() + 1){
 				System.out.println("Pour quelle matiere ?");
 				Scanner sc = new Scanner(System.in);
 				String matiere = sc.nextLine();
 				
 				Evaluation newEval = new Evaluation(matiere, note, eleve, this);
 				eleve.setEvaluation(newEval);
-			}	
+			}else {
+				System.out.println("Indice incorrect.");
+				return false;
+			}
 		}catch(IllegalStateException e) {
 			System.out.println("L'eleve numero: " + numId + " n'existe pas");
+			return false;
 		}
+		return true;
 	}
 
 	/**

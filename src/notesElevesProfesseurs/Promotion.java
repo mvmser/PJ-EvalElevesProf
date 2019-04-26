@@ -17,7 +17,7 @@ public class Promotion {
 	
 	/**Attributs*/
 	private String nom;
-	private static ArrayList<Eleve> eleves = new ArrayList<Eleve>();
+	private ArrayList<Eleve> eleves = new ArrayList<Eleve>();
 	
 	/**
 	 * Constructeur d'une promotion
@@ -76,14 +76,14 @@ public class Promotion {
 	 * @return L'eleve recherchï¿½, si pas trouvï¿½ retourne null
 	 * @since 1.0
 	 */
-	public static Eleve rechercher(int numId) {
+	public Eleve rechercher(int numId) {
 		for(Eleve eleve: eleves) {
 			if(eleve.getNumIdentifiant() == numId) {
 				System.out.println(eleve);
 				return eleve;
 			}	
 		}	
-		System.out.println("Pas d'eleve trouvÃ© avec cet identifiant");
+		System.out.println("Pas d'eleve trouvé avec cet identifiant");
 		return null;
 	}
 	
@@ -106,7 +106,7 @@ public class Promotion {
 	 * @since 1.1
 	 */
 	public ArrayList<Eleve> classementOrdreDecroissantMoyenne(){
-		ArrayList<Eleve> eleveOrdreDecroissantMoyenne = new ArrayList<Eleve>();
+		ArrayList<Eleve> eleveOrdreDecroissantMoyenne = eleves;
 		
 		Collections.sort(eleveOrdreDecroissantMoyenne, Eleve.MOYENNE_REVERSE_ORDER);
 
@@ -119,7 +119,7 @@ public class Promotion {
 	 * @since 1.1
 	 */
 	public ArrayList<Eleve> classementOrdreCroissantMediane(){
-		ArrayList<Eleve> eleveOrdreCroissantMediane = new ArrayList<Eleve>();
+		ArrayList<Eleve> eleveOrdreCroissantMediane = eleves;
 		
 		Collections.sort(eleveOrdreCroissantMediane, Eleve.MEDIANE_ORDER);
 
@@ -132,7 +132,7 @@ public class Promotion {
 	 * @since 1.1
 	 */
 	public ArrayList<Eleve> classementOrdreDecroissantMediane(){
-		ArrayList<Eleve> eleveOrdreDecroissantMediane = new ArrayList<Eleve>();
+		ArrayList<Eleve> eleveOrdreDecroissantMediane = eleves;
 		
 		Collections.sort(eleveOrdreDecroissantMediane, Eleve.MEDIANE_REVERSE_ORDER);
 

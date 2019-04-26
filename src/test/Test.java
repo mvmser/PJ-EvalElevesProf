@@ -11,20 +11,15 @@ import readCSV.ReadCSV;
 /*
  * @author SERHIR
  * @author ZARGA
- * @version 1.0
+ * @version 2.0
  */
 public class Test {
 
-	public Test() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public static void main(String[] args) {
 		
-		//Creation des promotions 
-		Promotion promotion = new Promotion("P2021");
+		/** Les eleves et professeurs codés en dur seront enregistré dans des arraylist*/
 		List<Eleve> eleves = new ArrayList();
-		List<Professeur> profs = new ArrayList();
+		List<Professeur> profs = new ArrayList();		
 		
 		/**Initialisation de plusieurs eleves et ajout dans arraylist*/
 		Eleve elev1 = new Eleve("Serhir", "Mohamed", 16, 01, 1998);
@@ -36,8 +31,7 @@ public class Test {
 		Eleve elev4 = new Eleve("YAI", "Yous", 19, 02, 1998);
 		eleves.add(elev4);
 		
-	
-		/**initialisation de plusieur professeurs et ajout dans arraylist*/
+		/**Initialisation de plusieur professeurs et ajout dans arraylist*/
 		Professeur prof1 = new Professeur("TELLER", "Patrick");
 		profs.add(prof1);
 		Professeur prof2 = new Professeur("CONTEVILLE", "Laurie");
@@ -50,41 +44,38 @@ public class Test {
 		profs.add(prof5);
 		
 		
-		//initialisation des evaluations\\
+		/** On cree une promotion et on met tous les eleves dedans */
+		Promotion P2021 = new Promotion("P2021");
+		for (Eleve eleve : eleves) {
+			eleve.setPromotion(P2021);
+		}
+		
+		/**Initialisation des evaluations*/
 		Evaluation eval1 = new Evaluation("maths", 11, elev1, prof1);
 		Evaluation eval2 = new Evaluation("physique", 19.6, elev1, prof2);
 		Evaluation eval3 = new Evaluation("informatique", 13, elev1, prof3);
-		Evaluation eval4 = new Evaluation("communication", 19.5, elev1, prof4);
+		Evaluation eval4 = new Evaluation("communication", 13, elev1, prof4);
 		Evaluation eval5 = new Evaluation("finance", 20, elev1, prof5);
 
 		Evaluation eval6 = new Evaluation("maths", 20, elev2, prof1);
 		Evaluation eval7 = new Evaluation("physique", 11, elev2, prof2);
-		Evaluation eval8 = new Evaluation("informatique", 19, elev2, prof3);
+		Evaluation eval8 = new Evaluation("informatique", 13, elev2, prof3);
 		Evaluation eval9 = new Evaluation("communication", 17, elev2, prof4);
-		Evaluation eval10 = new Evaluation("finance", 13, elev2, prof5);
+		Evaluation eval10 = new Evaluation("finance", 15, elev2, prof5);
 
 		Evaluation eval11 = new Evaluation("maths", 20, elev3, prof1);
 		Evaluation eval12 = new Evaluation("physique", 11, elev3, prof2);
 		Evaluation eval13 = new Evaluation("informatique", 19, elev3, prof3);
-		Evaluation eval14 = new Evaluation("communication", 17, elev3, prof4);
+		Evaluation eval14 = new Evaluation("communication", 9, elev3, prof4);
 		Evaluation eval15 = new Evaluation("finance", 13, elev3, prof5);
 		
 		Evaluation eval16 = new Evaluation("maths", 20, elev4, prof1);
-		Evaluation eval17 = new Evaluation("physique", 11, elev4, prof2);
-		Evaluation eval18 = new Evaluation("informatique", 19, elev4, prof3);
-		Evaluation eval19 = new Evaluation("communication", 17, elev4, prof4);
-		Evaluation eval20 = new Evaluation("finance", 13, elev4, prof5);
+		Evaluation eval17 = new Evaluation("physique", 5, elev4, prof2);
+		Evaluation eval18 = new Evaluation("informatique", 6, elev4, prof3);
+		Evaluation eval19 = new Evaluation("communication",6, elev4, prof4);
+		Evaluation eval20 = new Evaluation("finance", 13.5, elev4, prof5);	
 		
-		
-		/**System.out.print("Affichage des ï¿½valuations");
-		System.out.print(eval1);
-		System.out.print(eval2);
-		System.out.print(eval3);
-		System.out.print(eval4);
-		System.out.print(eval5);*/
-		
-		
-		/**On rentre les eval dans elev1*/
+		/**Initialisation des evaluations*/
 		elev1.setEvaluation(eval1);
 		elev1.setEvaluation(eval2);
 		elev1.setEvaluation(eval3);
@@ -96,32 +87,135 @@ public class Test {
 		elev2.setEvaluation(eval8);
 		elev2.setEvaluation(eval9);
 		elev2.setEvaluation(eval10);
+		
+		elev3.setEvaluation(eval11);
+		elev3.setEvaluation(eval12);
+		elev3.setEvaluation(eval13);
+		elev3.setEvaluation(eval13);
+		elev3.setEvaluation(eval15);
+
+		elev4.setEvaluation(eval16);
+		elev4.setEvaluation(eval17);
+		elev4.setEvaluation(eval18);
+		elev4.setEvaluation(eval19);
+		elev4.setEvaluation(eval20);
+		
+		/**Afficher un eleve*/
+		System.out.print(elev1);
 
 		
-		 for(Eleve eleve : eleves) {
+		/** Afficher tous les eleves de la promo 2021*/
+		System.out.print("-------------------------ELEVES:-----------------\n");
+		for(Eleve eleve : P2021.getEleves()) {
+			 System.out.print(eleve);
+		 }
+		System.out.print("\n-------------------------------------------------------------\n");
+		 
+		System.out.print("\n-------------classementOrdreCroissantMoyenne--------------\n");
+		System.out.println(P2021.classementOrdreCroissantMoyenne());
+		
+		System.out.print("\n------------classementOrdreDecroissantMoyenne-----------------\n");
+		System.out.println(P2021.classementOrdreDecroissantMoyenne());
+		
+		System.out.print("\n------------classementOrdreCroissantMediane---------------\n");
+		System.out.println(P2021.classementOrdreCroissantMediane());
+
+		System.out.print("\n----------classementOrdreDecroissantMediane------------------\n");
+		System.out.println(P2021.classementOrdreDecroissantMediane());
+		 
+		/**----RECHERCHER ELEVE et l'afficher----*/
+		System.out.println("\n----------Rechercher un eleve avec son identifiant :----------");
+		System.out.printf("Quel est l'identifiant ?  ");
+		Scanner sc = new Scanner(System.in);
+
+		try {
+			int numid = sc.nextInt();
+		
+			Professeur.rechercheEleve(numid, P2021);
+		} catch (InputMismatchException e) {
+			System.out.println("Entrer un entier");
+			sc.nextLine();
+		}
+		
+		
+		/**----AJOUTER/MODIFIER NOTES----*/
+		System.out.println("\n----------Ajouter ou modifier une note a un eleve----------");
+		System.out.println("Vous etes profs, mais qui etes-vous ? ");
+		int i = 0;
+		for (Professeur prof : profs) {
+			System.out.println(i + ". " + prof.getNom());
+			i++;
+		}
+		
+		String nomProf = null;
+		int numProf = Integer.MAX_VALUE;
+		
+		@SuppressWarnings("unused")
+		boolean OK = true;
+		
+		do {
+			try {
+				 numProf = sc.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("Entrer un entier");
+				OK = false;
+				sc.nextLine();
+			}
+			
+			if(numProf <= profs.size()){
+				nomProf = profs.get(numProf).getNom();
+				OK = true;
+			}else {
+				System.out.println("Veuillez entre un numero valide");
+				OK = false;
+			}
+		}while(OK == false);
+		
+		
+		System.out.println("Vous etes " + nomProf +", vous pouvez modifier une note d'un eleve : ");
+				
+		System.out.printf("Quel eleve ? Entrer son identifiant : ");
+		int numid = 0;
+		try {
+			numid = sc.nextInt();
+			Professeur.rechercheEleve(numid, P2021);
+		} catch (InputMismatchException e) {
+			System.out.println("Entrer un entier");
+			sc.nextLine();
+		}
+		
+		
+		try {
+			System.out.printf("Maintenant, entrer note pour cette eleve : ");
+			int note = sc.nextInt();
+			System.out.printf("Maintenant, entrer l'indice de cette note : ");
+			int indice = sc.nextInt();
+			
+			if(profs.get(numProf).setNote(P2021, numid, note, indice)) {
+				System.out.println("La note a été ajoutée");
+			}else {
+				System.out.println("Aucune note ajoutée");
+			}
+		}catch(InputMismatchException e) {
+			System.out.println("Entrer un entier");
+			sc.nextLine();
+		}
+		
+		
+		for(Eleve eleve : eleves) {
 			 System.out.print(eleve);
 			 System.out.print("\n-------------------------------------------------------------\n");
 		 }
 		 
-		/**RECHERCHER ELEVE*/
-		System.out.println("\n----------Rechercher un eleve avec son identifiant :----------");
-		System.out.printf("Quel est l'identifiant ?  ");
-		try {
-			Scanner sc = new Scanner(System.in);
-			int numid = sc.nextInt();
 		
-			Professeur.rechercheEleve(numid, promotion);
-		} catch (InputMismatchException e) {
-			System.out.println("Entrer un entier");
-		}
 		
-		/**AJOUTER NOTES*/
-		System.out.println("\n----------Ajouter une note a un eleve----------");
-		System.out.printf("Vous etes profs, mais qui etes-vous ? Entrer votre nom : ");
-		Scanner sc = new Scanner(System.in);
-		String nom = sc.nextLine();
+
 		
-		for(Professeur prof : profs) {
+	}
+		
+		
+		/** idee ines:
+		 * for(Professeur prof : profs) {
 			if(prof.getNom() == nom) {
 				System.out.println("Vous etes " + prof +", vous pouvez modifier une note d'un eleve : ");
 				
@@ -149,12 +243,6 @@ public class Test {
 				System.out.println("Ce prof n'existe pas");
 			}
 		}
-		
-		
+		 */
 
-		//System.out.println(P2021.classementOrdreCroissantMoyenne());
-
-	
-
-	}
 }

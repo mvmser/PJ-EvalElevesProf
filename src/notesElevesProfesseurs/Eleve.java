@@ -21,8 +21,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 	private Date dateNaissance;
 	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
 
-	/** De base, l'eleve est dans la promo 2021*/
-	private Promotion promotion = new Promotion("P2021");
+	private Promotion promotion; 
 
 	/**CONSTRUCTEURS*/
 	/**
@@ -94,7 +93,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		} else { this.numIdentifiant = 0000;}
 
 		/** On ajoute l'eleve � sa promo */
-		promotion.addEleve(this);
+		//promotion.addEleve(this);
 		registre++;
 	}
 
@@ -168,6 +167,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 	 */
 	public void setPromotion(Promotion promotion) {
 		this.promotion = promotion;
+		promotion.addEleve(this);
 	}
 	/** End Getters*/
 
@@ -185,6 +185,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		+"\nMediane : " + this.mediane()
 		+"\nCorrecteur(s) : " + getCorrecteurs()
 		+"\nPromotion : " + this.promotion.getNom()
+		+ "\n\n"
 		;
 	}
 
