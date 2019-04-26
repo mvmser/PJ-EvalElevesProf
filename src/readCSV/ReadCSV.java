@@ -34,7 +34,9 @@ public class ReadCSV {
 		try {
 			Scanner inFile = new Scanner(new File(RESOURCES_PATH + ELEVES_FILE_NAME), "utf8");
 			List<Eleve> eleves = new ArrayList<Eleve>();
+			
 			while (inFile.hasNext()) {
+				System.out.println("test");
 				String value = inFile.nextLine();
 				if(value.charAt(0) != '#') {
 					String[] array = value.split(",");

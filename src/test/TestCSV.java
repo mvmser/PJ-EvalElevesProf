@@ -15,16 +15,16 @@ public class TestCSV {
 	
 	public static void main(String[] args) {
 		/** On a besoin de la promotion pour un prof*/
-		Promotion promotion = null;
+		//Promotion promotion = null;
 		
 		/** Permet d'enregistrer dans la memoire tous les eleves et profs des fichiers csv*/
 		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
 		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
-		System.out.println(eleves);
+		//System.out.println(eleves);
 		Eleve eleve1 = new Eleve("SERHIR", "Mohamed", 16, 01, 1998);
-		//afficherEleve(eleves, promotion);
-		//afficherProfesseur(profs, promotion);
-		WriteCSV.writeEleveToCSV(eleve1);
+		afficherEleve(eleves);
+		afficherProfesseur(profs);
+		//WriteCSV.writeEleveToCSV(eleve1);
 		//menu(promotion, profs);
 
 			
@@ -121,7 +121,7 @@ public class TestCSV {
 	 */
 	public static void afficherEleve(List<Eleve> eleves) {
 		/** Si le fichier contient au moins un eleve*/
-		if(eleves.size() > 0) {
+		if(eleves != null && eleves.size() >= 1) {
 			for(Eleve eleve : eleves) {			
 				System.out.println(eleve);
 				System.out.println("---------------------");
@@ -136,15 +136,13 @@ public class TestCSV {
 	 * @param profs
 	 * @param promotion
 	 */
-	public static void afficherProfesseur(List<Professeur> profs, Promotion promotion) {
+	public static void afficherProfesseur(List<Professeur> profs) {
 		/** Si le fichier contient au moins un prof*/
-		if(profs.size() > 0) {
+		if(profs != null && profs.size() >= 1) {
 			/** Permet d'afficher tous les profs du fichier csv*/
-			
-			
 			for(Professeur prof : profs) {
-				/** On ajoute a chaque prof la promotion de l'eleve */
-				prof.addPromotionToProf(promotion);
+				///** On ajoute a chaque prof la promotion de l'eleve */
+				//prof.addPromotionToProf(promotion);
 				System.out.println(prof);
 				System.out.println("---------------------");
 			}
