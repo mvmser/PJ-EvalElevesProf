@@ -33,11 +33,9 @@ public class ReadCSV {
 	public static List<Eleve> readElevesFromCSV(){
 		try {
 			Scanner inFile = new Scanner(new File(RESOURCES_PATH + ELEVES_FILE_NAME), "utf8");
-			
 			List<Eleve> eleves = new ArrayList<Eleve>();
 			while (inFile.hasNext()) {
 				String value = inFile.nextLine();
-				
 				if(value.charAt(0) != '#') {
 					String[] array = value.split(",");
 					try {
@@ -88,19 +86,5 @@ public class ReadCSV {
 		}
 		return null;
 	}
-	
-	
-	
-	
-	
-	/**
-	 * BufferedReader br = new BufferedReader(new FileReader(file));
-		String line;
-		while ((line = br.readLine()) != null) {
-		   // process the line.
-		}
-		br.close();
-	 */
-
 
 }
