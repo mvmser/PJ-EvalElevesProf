@@ -181,8 +181,6 @@ public class Test {
 			 System.out.print(eleve);
 			 System.out.print("\n-------------------------------------------------------------\n");
 		 }
-		 
-		
 		
 		sc.close();
 		

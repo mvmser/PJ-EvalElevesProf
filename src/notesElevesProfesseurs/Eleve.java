@@ -360,6 +360,19 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		return MatieresAndNotes;
 	}
 
+	/**
+	 * Permet d'avoir une note aléatoire
+	 * 1 chance sur deux davoir une note comprise entre 8 et 16
+	 * @return
+	 */
+	public double randomMark() {
+		Random random = new Random();
+		if(random.nextBoolean())
+			return random.nextDouble() * 20;
+		else
+			return 8 + random.nextInt(16 - 8);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
