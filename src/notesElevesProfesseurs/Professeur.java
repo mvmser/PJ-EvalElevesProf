@@ -97,6 +97,7 @@ public class Professeur extends Personne {
 				
 				Evaluation newEval = new Evaluation(matiere, note, eleve, this);
 				eleve.setEvaluation(newEval);
+				sc.close();
 			}else {
 				System.out.println("Indice incorrect.");
 				return false;

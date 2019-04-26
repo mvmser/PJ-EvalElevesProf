@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import notesElevesProfesseurs.*;
-import readCSV.ReadCSV;
+
 
 /*
  * @author SERHIR
@@ -18,8 +18,8 @@ public class Test {
 	public static void main(String[] args) {
 		
 		/** Les eleves et professeurs codés en dur seront enregistré dans des arraylist*/
-		List<Eleve> eleves = new ArrayList();
-		List<Professeur> profs = new ArrayList();		
+		List<Eleve> eleves = new ArrayList<Eleve>();
+		List<Professeur> profs = new ArrayList<Professeur>();		
 		
 		/**Initialisation de plusieurs eleves et ajout dans arraylist*/
 		Eleve elev1 = new Eleve("Serhir", "Mohamed", 16, 01, 1998);
@@ -184,7 +184,7 @@ public class Test {
 		 
 		
 		
-
+		sc.close();
 		
 	}
 		

@@ -55,7 +55,7 @@ public class TestCSV {
 		}else if(choix == 2) {
 			
 		}
-		
+		sc.close();		
 	}
 	
 
@@ -68,10 +68,12 @@ public class TestCSV {
 		
 		for(Professeur prof : profs) {
 			if(prof.getNom().equals(nomm)) {
+				sc.close();
 				return prof;
 			}
 		}
 		System.out.println("Pas de prof trouvé avec ce nom");
+		sc.close();
 		return null;
 	}
 	
@@ -79,14 +81,16 @@ public class TestCSV {
 	public static void rechercherEleve(Promotion promotion) {
 		System.out.println("\n----------Rechercher un eleve avec son identifiant :----------");
 		System.out.printf("Quel est l'identifiant ?  ");
+		Scanner sc = new Scanner(System.in);
+
 		try {
-			Scanner sc = new Scanner(System.in);
 			int numid = sc.nextInt();
 		
 			Professeur.rechercheEleve(numid, promotion);
 		} catch (InputMismatchException e) {
 			System.out.println("Entrer un entier");
 		}
+		sc.close();
 	}
 	public static void ajouterNote(Promotion promotion, Professeur prof) {
 		System.out.println("\n----------Ajouter une note a un eleve----------");
@@ -110,6 +114,7 @@ public class TestCSV {
 		}catch(InputMismatchException e) {
 			System.out.println("Entrer un entier");
 		}
+		sc.close();
 	}
 	
 	/**
