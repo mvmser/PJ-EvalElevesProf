@@ -36,7 +36,6 @@ public class ReadCSV {
 			List<Eleve> eleves = new ArrayList<Eleve>();
 			
 			while (inFile.hasNext()) {
-				System.out.println("test");
 				String value = inFile.nextLine();
 				if(value.charAt(0) != '#') {
 					String[] array = value.split(",");

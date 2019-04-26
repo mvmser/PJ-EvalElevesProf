@@ -12,10 +12,10 @@ import writeCSV.WriteCSV;
 
 public class TestCSV {
 
-	
+	private static Promotion P2021 = new Promotion("2021");
+
 	public static void main(String[] args) {
 		/** On a besoin de la promotion pour un prof*/
-		//Promotion promotion = null;
 		
 		/** Permet d'enregistrer dans la memoire tous les eleves et profs des fichiers csv*/
 		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
@@ -24,10 +24,8 @@ public class TestCSV {
 		Eleve eleve1 = new Eleve("SERHIR", "Mohamed", 16, 01, 1998);
 		afficherEleve(eleves);
 		afficherProfesseur(profs);
-		//WriteCSV.writeEleveToCSV(eleve1);
+		WriteCSV.writeEleveToCSV(eleve1);
 		//menu(promotion, profs);
-
-			
 	}
 	
 	
@@ -122,7 +120,8 @@ public class TestCSV {
 	public static void afficherEleve(List<Eleve> eleves) {
 		/** Si le fichier contient au moins un eleve*/
 		if(eleves != null && eleves.size() >= 1) {
-			for(Eleve eleve : eleves) {			
+			for(Eleve eleve : eleves) {	
+				//eleve.setPromotion(P2021);
 				System.out.println(eleve);
 				System.out.println("---------------------");
 			}
@@ -141,8 +140,8 @@ public class TestCSV {
 		if(profs != null && profs.size() >= 1) {
 			/** Permet d'afficher tous les profs du fichier csv*/
 			for(Professeur prof : profs) {
-				///** On ajoute a chaque prof la promotion de l'eleve */
-				//prof.addPromotionToProf(promotion);
+				/** On ajoute a chaque prof la promotion de l'eleve */
+				prof.addPromotionToProf(P2021);
 				System.out.println(prof);
 				System.out.println("---------------------");
 			}

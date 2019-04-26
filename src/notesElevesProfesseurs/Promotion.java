@@ -8,7 +8,7 @@ import readCSV.ReadCSV;
 
 /**
  * @version 1.1
- * + histoire de mutateur pour get eleves 
+ * 
  */
 
 public class Promotion {
@@ -48,7 +48,7 @@ public class Promotion {
 	}
 	
 	
-	public ArrayList<Promotion> getPromotions() {
+	public static ArrayList<Promotion> getPromotions() {
 		return promotions;
 	}
 

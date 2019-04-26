@@ -93,7 +93,11 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		} else { this.numIdentifiant = 0000;}
 
 		/** On ajoute l'eleve � sa promo */
-		//promotion.addEleve(this);
+		if(!Promotion.getPromotions().isEmpty()) {
+			promotion = Promotion.getPromotions().get(0);
+			promotion.addEleve(this);
+		}
+		
 		registre++;
 	}
 
