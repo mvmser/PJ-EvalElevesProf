@@ -356,10 +356,6 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		return MatieresAndNotes;
 	}
 
-	/**
-	 * Revoir hash code et equals pour court circuit� la circularit� observee
-	 */
-	//---HASHCODE---\\
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -367,10 +363,11 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		result = prime * result + NB_EVALUATIONS;
 		result = prime * result + ((dateNaissance == null) ? 0 : dateNaissance.hashCode());
 		result = prime * result + ((evaluations == null) ? 0 : evaluations.hashCode());
+		result = prime * result + numIdentifiant;
+		result = prime * result + ((promotion == null) ? 0 : promotion.hashCode());
 		return result;
 	}
 
-	//---EQUALS---\\
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -392,8 +389,17 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 				return false;
 		} else if (!evaluations.equals(other.evaluations))
 			return false;
+		if (numIdentifiant != other.numIdentifiant)
+			return false;
+		if (promotion == null) {
+			if (other.promotion != null)
+				return false;
+		} else if (!promotion.equals(other.promotion))
+			return false;
 		return true;
 	}
+	
+	
 
 	/**
 	 * Override implements methode
