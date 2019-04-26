@@ -13,14 +13,13 @@ import notesElevesProfesseurs.Professeur;
  * @author SERHIR, ZARGA
  * @version 1.0
  */
-public class ReadCSV {
+public interface ReadCSV {
 
 	/** Attributs */
-	private final static String RESOURCES_PATH = "files/";
-	private final static String ELEVES_FILE_NAME = "eleves.csv";
-	private final static String PROFESSEURS_FILE_NAME = "professeurs.csv";
+	public final static String RESOURCES_PATH = "files/";
+	public final static String ELEVES_FILE_NAME = "eleves.csv";
+	public final static String PROFESSEURS_FILE_NAME = "professeurs.csv";
 
-	
 	/**
 	 * Permet de lire toutes les lignes d'un fichier eleves
 	 * exclu les lignes commentées avec #

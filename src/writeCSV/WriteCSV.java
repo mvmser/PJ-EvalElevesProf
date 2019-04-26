@@ -4,16 +4,10 @@
 package writeCSV;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.logging.Logger;
-
 import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Professeur;
 import readCSV.ReadCSV;
@@ -22,12 +16,12 @@ import readCSV.ReadCSV;
  * @author SERHIR, ZARGA
  * @version 1.0
  */
-public class WriteCSV {
+public interface WriteCSV{
 
 	/** Attributs */
-	private final static String RESOURCES_PATH = "files/";
-	private final static String ELEVES_FILE_NAME = "eleves.csv";
-	private final static String PROFESSEURS_FILE_NAME = "professeurs.csv";
+	public final static String RESOURCES_PATH = "files/";
+	public final static String ELEVES_FILE_NAME = "eleves.csv";
+	public final static String PROFESSEURS_FILE_NAME = "professeurs.csv";
 
 	
 	/**
@@ -37,9 +31,8 @@ public class WriteCSV {
 	 */
 	public static boolean writeEleveToCSV(Eleve eleve){
 		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
-		if(eleves.equals(eleve)) System.out.println("OKKKKKK");
-		System.out.println(" PAS OKKKKKK");
-		if(!eleves.contains(eleve)) {
+		
+		if(!isEleveExist(eleves, eleve)) {
 			BufferedWriter bufWriter = null;
 	        FileWriter fileWriter = null;
 	        try {
@@ -88,5 +81,12 @@ public class WriteCSV {
 		return false; 
 	}
 	
+	public static boolean isEleveExist (List<Eleve> eleves, Eleve addedEleve) {
+		for (Eleve eleve : eleves) {
+			if(eleve.getNom() == addedEleve.getNom() && eleve.getPrenom() == addedEleve.getPrenom())
+				return true;
+		}
+		return false;
+	}
 
 }
