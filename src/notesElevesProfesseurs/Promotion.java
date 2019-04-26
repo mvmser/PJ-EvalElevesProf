@@ -135,4 +135,41 @@ public class Promotion {
 
 		return eleveOrdreDecroissantMediane;
 	}
+	
+	public double moyenne() {
+		double moyenne = 0;
+		double total = 0;
+
+		for (Eleve eleve : eleves) {
+		    total += eleve.moyenne();
+		}
+		moyenne = total / eleves.size();
+
+		return (double) Math.round(moyenne * 100) / 100;
+	}
+	
+	public double mediane() {
+		double mediane = 0;
+		ArrayList<Eleve> elevesOrdreCroissantMediane = classementOrdreCroissantMediane();
+		
+		try {
+			if(elevesOrdreCroissantMediane.size() > 0) {
+				if(elevesOrdreCroissantMediane.size() %2 == 0)
+				{
+					int milieu = (elevesOrdreCroissantMediane.size()/2);
+
+					double termeMilieu1 = elevesOrdreCroissantMediane.get(milieu - 1).mediane();
+					double termeMilieu2 = elevesOrdreCroissantMediane.get((milieu + 1) - 1).mediane();
+					mediane = (termeMilieu1 + termeMilieu2)/2;
+				}
+				else {
+					int milieu = (elevesOrdreCroissantMediane.size()/2);
+					mediane = elevesOrdreCroissantMediane.get(milieu).mediane();
+				}
+			}
+		}catch(IllegalStateException e) {
+			System.out.println(this.toString() + " n'a pas de note");
+		}
+		return (double) Math.round(mediane * 100) / 100;
+	}
 }

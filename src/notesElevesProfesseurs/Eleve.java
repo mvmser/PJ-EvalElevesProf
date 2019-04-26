@@ -241,7 +241,6 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 					if(evaluations.size() %2 == 0)
 					{
 						int milieu = (evaluations.size()/2);
-						System.out.println(milieu);
 						//Notre arraylist debute a 0 et non pas a 1
 						//On soustrait alors 1 aux 2 operations suivantes
 						double termeMilieu1 = evaluations.get(milieu - 1).getNote();
@@ -256,7 +255,6 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 				if(evaluations.size() %2 == 0)
 				{
 					int milieu = (evaluations.size()/2);
-					System.out.println(milieu);
 					/**Notre arraylist debute a 0 et non pas a 1
 					 * On soustrait alors 1 aux 2 operations suivantes */
 					double termeMilieu1 = evaluations.get(milieu - 1).getNote();
@@ -273,7 +271,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 			/** revoir lexception*/
 			System.out.println(this.toString() + " n'a pas de note");
 		}
-		return mediane;
+		return (double) Math.round(mediane * 100) / 100;
 	}
 
 	/**
@@ -368,9 +366,9 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 	public double randomMark() {
 		Random random = new Random();
 		if(random.nextBoolean())
-			return random.nextDouble() * 20;
+			return (double) Math.round( (random.nextDouble() * 20) * 100) / 100;
 		else
-			return 8 + random.nextInt(16 - 8);
+			return (double) Math.round( (8 + random.nextInt(16 - 8)) * 100) / 100;
 	}
 	
 	@Override

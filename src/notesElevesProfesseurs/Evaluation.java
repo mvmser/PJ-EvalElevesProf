@@ -10,8 +10,6 @@ public class Evaluation implements Comparable<Evaluation>{
 	private double note;
 	private Eleve eleveCorrige;
 	private Professeur professeurCorrecteur;
-	//private ArrayList<Professeur> professeursCorrecteurs = new ArrayList<>();
-	//private ArrayList<Double> notes = new ArrayList<>();
 
 	/**Constructeurs*/
 	public Evaluation(String matiere, double note, Eleve eleveCorrige, Professeur professeurCorrecteur ) {
@@ -54,10 +52,6 @@ public class Evaluation implements Comparable<Evaluation>{
 				+ this.matiere + " " + this.note + ")\n";
 	}
 	
-	/*
-	 * compareTo
-	 * 
-	 */
 	public int compareTo(Evaluation evaluation){
 		if(evaluation.note < this.note)
 	          return -1;
