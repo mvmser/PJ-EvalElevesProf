@@ -13,6 +13,7 @@ import writeCSV.WriteCSV;
 public class TestCSV {
 
 	private static Promotion P2021 = new Promotion("2021");
+	static int numProf;
 
 	public static void main(String[] args) {
 		/** On a besoin de la promotion pour un prof*/
@@ -22,10 +23,10 @@ public class TestCSV {
 		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
 		//System.out.println(eleves);
 		Eleve eleve1 = new Eleve("SERHIR", "Mohamed", 16, 01, 1998);
-		afficherEleve(eleves);
-		afficherProfesseur(profs);
+		//afficherEleve(eleves);
+		//afficherProfesseur(profs);
 		WriteCSV.writeEleveToCSV(eleve1);
-		//menu(promotion, profs);
+		menu(P2021, profs);
 	}
 	
 	
@@ -46,8 +47,9 @@ public class TestCSV {
 			if(choix1 == 3) {
 				rechercherEleve(promotion);
 			}
-			else if(choix == 4) {
-				ajouterNote(promotion, whoProf(profs));
+			if(choix == 4) {	
+				//whoProf(profs);
+				ajouterNote(profs, whoProf(profs));	
 			}	
 			else {
 				System.out.println("\n----------error----------");
@@ -60,21 +62,54 @@ public class TestCSV {
 	
 
 	
-	public static Professeur whoProf(List<Professeur> profs) {
+	public static String whoProf(List<Professeur> profs) {
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Quel est votre nom : ");
-		String nomm = sc.nextLine();
+//		System.out.println("Quel est votre nom : ");
+//		String nomm = sc.nextLine();
+//		
+//		for(Professeur prof : profs) {
+//			if(prof.getNom().equals(nomm)) {
+//				sc.close();
+//				return prof;
+//			}
+//		}
+//		System.out.println("Pas de prof trouvé avec ce nom");
+//		sc.close();
+//		return null;
 		
-		for(Professeur prof : profs) {
-			if(prof.getNom().equals(nomm)) {
-				sc.close();
-				return prof;
-			}
+		System.out.println("Vous etes profs, mais qui etes-vous ? ");
+		int i = 0;
+		for (Professeur prof : profs) {
+			System.out.println(i + ". " + prof.getNom());
+			i++;
 		}
-		System.out.println("Pas de prof trouvé avec ce nom");
-		sc.close();
-		return null;
+		
+		String nomProf = null;
+		int numProf = Integer.MAX_VALUE;
+		
+		@SuppressWarnings("unused")
+		boolean OK = true;
+		
+		do {
+			try {
+				 numProf = sc.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("Entrer un entier");
+				OK = false;
+				sc.nextLine();
+			}
+			
+			if(numProf <= profs.size()){
+				nomProf = profs.get(numProf).getNom();
+				OK = true;
+			}else {
+				System.out.println("Veuillez entre un numero valide");
+				OK = false;
+			}
+		}while(OK == false);
+		
+		return nomProf;
 	}
 	
 	
@@ -92,17 +127,44 @@ public class TestCSV {
 		}
 		sc.close();
 	}
-	public static void ajouterNote(Promotion promotion, Professeur prof) {
-		System.out.println("\n----------Ajouter une note a un eleve----------");
-		System.out.printf("Quel eleve ? Entrer son identifiant : ");
+	public static void ajouterNote(List<Professeur> profs, String nomProf) {
+//		System.out.println("\n----------Ajouter une note a un eleve----------");
+//		System.out.printf("Quel eleve ? Entrer son identifiant : ");
+//		Scanner sc = new Scanner(System.in);
+//		int numid = 0;
+//		try {
+//			numid = sc.nextInt();
+//			Professeur.rechercheEleve(numid, promotion);
+//		} catch (InputMismatchException e) {
+//			System.out.println("Entrer un entier");
+//		}
+//		
+//		try {
+//			System.out.printf("Maintenant, entrer note pour cette eleve : ");
+//			int note = sc.nextInt();
+//			System.out.printf("Maintenant, entrer l'indice de cette note : ");
+//			int indice = sc.nextInt();
+//			
+//			prof.setNote(promotion, numid, note, indice);
+//		}catch(InputMismatchException e) {
+//			System.out.println("Entrer un entier");
+//		}
+//		sc.close();
+		
 		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Vous etes " + nomProf +", vous pouvez modifier une note d'un eleve : ");
+		
+		System.out.printf("Quel eleve ? Entrer son identifiant : ");
 		int numid = 0;
 		try {
 			numid = sc.nextInt();
-			Professeur.rechercheEleve(numid, promotion);
+			Professeur.rechercheEleve(numid, P2021);
 		} catch (InputMismatchException e) {
 			System.out.println("Entrer un entier");
+			sc.nextLine();
 		}
+		
 		
 		try {
 			System.out.printf("Maintenant, entrer note pour cette eleve : ");
@@ -110,11 +172,15 @@ public class TestCSV {
 			System.out.printf("Maintenant, entrer l'indice de cette note : ");
 			int indice = sc.nextInt();
 			
-			prof.setNote(promotion, numid, note, indice);
+			if(profs.get(numProf).setNote(P2021, numid, note, indice)) {
+				System.out.println("La note a ete ajoutee");
+			}else {
+				System.out.println("Aucune note ajoutee");
+			}
 		}catch(InputMismatchException e) {
 			System.out.println("Entrer un entier");
+			sc.nextLine();
 		}
-		sc.close();
 	}
 	
 	/**

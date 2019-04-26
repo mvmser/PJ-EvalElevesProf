@@ -17,7 +17,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		/** Les eleves et professeurs codés en dur seront enregistré dans des arraylist*/
+		/** Les eleves et professeurs codï¿½s en dur seront enregistrï¿½ dans des arraylist*/
 		List<Eleve> eleves = new ArrayList<Eleve>();
 		List<Professeur> profs = new ArrayList<Professeur>();		
 		
@@ -167,9 +167,9 @@ public class Test {
 			int indice = sc.nextInt();
 			
 			if(profs.get(numProf).setNote(P2021, numid, note, indice)) {
-				System.out.println("La note a été ajoutée");
+				System.out.println("La note a ete ajoutee");
 			}else {
-				System.out.println("Aucune note ajoutée");
+				System.out.println("Aucune note ajoutee");
 			}
 		}catch(InputMismatchException e) {
 			System.out.println("Entrer un entier");
