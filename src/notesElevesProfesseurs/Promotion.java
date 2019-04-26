@@ -148,6 +148,31 @@ public class Promotion {
 		return (double) Math.round(moyenne * 100) / 100;
 	}
 	
+	public double moyenneParMatiere(String matiere) {
+		double moyenne = 0;
+		double total = 0;
+		int nbNotes = 0;
+
+		
+		/** Une moyenne sur tous les eleves de la promo, on va recuperer les evaluations
+		 * de chacun et ensuite comparer si c la matiere dont nous souhaitons connaitre
+		 * la moyenne*/
+		for (Eleve eleve : eleves) {
+			for (Evaluation evaluation : eleve.getEvaluations()) {
+				if(evaluation.getMatiere() == matiere){
+					total += evaluation.getNote();
+					nbNotes++;
+				}
+			}
+		}
+		if(nbNotes != 0)
+			moyenne = total / nbNotes;
+		else 
+			moyenne = 0;
+
+		return (double) Math.round(moyenne * 100) / 100;
+	}
+	
 	public double mediane() {
 		double mediane = 0;
 		ArrayList<Eleve> elevesOrdreCroissantMediane = classementOrdreCroissantMediane();
@@ -170,6 +195,46 @@ public class Promotion {
 		}catch(IllegalStateException e) {
 			System.out.println(this.toString() + " n'a pas de note");
 		}
+		return (double) Math.round(mediane * 100) / 100;
+	}
+	
+	/**
+	 * Permet de connaitre la mediane de la promotion par matiere
+	 * on enregistre tout dabord les notes de la matiere voulu
+	 * @return
+	 */
+	public double medianeParMatiere(String matiere) {
+		double mediane = 0;
+		
+		ArrayList<Double> notesMatiere = new ArrayList<Double>();
+		
+		for (Eleve eleve : eleves) {
+			for (Evaluation evaluation : eleve.getEvaluations()) {
+				if(evaluation.getMatiere() == matiere){
+					notesMatiere.add(evaluation.getNote());
+				}
+			}
+		}
+		
+		try {
+			if(notesMatiere.size() > 0) {
+				if(notesMatiere.size() %2 == 0)
+				{
+					int milieu = (notesMatiere.size()/2);
+
+					double termeMilieu1 = notesMatiere.get(milieu - 1);
+					double termeMilieu2 = notesMatiere.get((milieu + 1) - 1);
+					mediane = (termeMilieu1 + termeMilieu2)/2;
+				}
+				else {
+					int milieu = (notesMatiere.size()/2);
+					mediane = notesMatiere.get(milieu);
+				}
+			}
+		}catch(IllegalStateException e) {
+			System.out.println(this.toString() + " n'a pas de note");
+		}
+		
 		return (double) Math.round(mediane * 100) / 100;
 	}
 }

@@ -11,8 +11,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.AxisLocation;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.DatasetRenderingOrder;
 import org.jfree.chart.plot.PlotOrientation;
@@ -42,7 +40,7 @@ public class NotesEleveChart extends ApplicationFrame {
 		profs = ReadCSV.readProfesseursFromCSV();
 		
 		/** On lance notre graphique**/
-		final NotesEleveChart notesEleve = new NotesEleveChart("Notes eleve test");
+		final NotesEleveChart notesEleve = new NotesEleveChart("Bulletin de notes");
 		notesEleve.pack();
         RefineryUtilities.centerFrameOnScreen(notesEleve);
         notesEleve.setVisible(true);
@@ -61,7 +59,7 @@ public class NotesEleveChart extends ApplicationFrame {
 
         // create the chart...
         final JFreeChart chart = ChartFactory.createBarChart(
-            "Notes eleve test",        // chart title
+            "Bulletin de notes",        // chart title
             "Matiere",               // domain axis label
             "Note",                  // range axis label
             dataset1,                 // data
@@ -105,49 +103,32 @@ public class NotesEleveChart extends ApplicationFrame {
         final String series1 = randomEleve.getNom() + " " + randomEleve.getPrenom();
         final String series2 = "Moyenne " + promotion.getNom();
         final String series3 = "Mediane "+ promotion.getNom();
-
-        final String matiere1 = "Mathematiques";
-        final String matiere2 = "Physique";
-        final String matiere3 = "Anglais";
-        final String matiere4 = "Finance";
-        final String matiere5 = "Informatique";
-        final String matiere6 = "Algorithmie";
-        final String matiere7 = "Communication";
-        final String matiere8 = "LV2";
-        final String matiere9 = "Marketing";
-        final String matiere10 = "Management";
+        
+//        final ArrayList<String> matieres = new ArrayList<String>();
+//        for (Evaluation evaluation : randomEleve.getEvaluations()) {
+//        	matieres.add(evaluation.getMatiere());
+//		}
+//        
+        System.out.println(eleves);
 
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         /** Les notes de l'eleve*/
         for (Evaluation evaluation : randomEleve.getEvaluations()) {
-        	dataset.addValue(evaluation.getNote(), series1, evaluation.getMatiere());
+        	String matiere = evaluation.getMatiere();
+        	
+        	dataset.addValue(evaluation.getNote(), series1, matiere);
+        	
+        	/** Moyenne de la promo pour la matiere */
+        	dataset.addValue(promotion.moyenneParMatiere(matiere), series2, matiere);
+        	System.out.println(promotion.moyenneParMatiere(matiere));
+            
+            /** Medianne de la promo pour la matiere */
+            dataset.addValue(promotion.medianeParMatiere(matiere), series3, matiere);
+            System.out.println(promotion.medianeParMatiere(matiere));
 		}
-        
-        /** les moyennes de la promo */
-        dataset.addValue(1.0, series2, matiere1);
-        dataset.addValue(4.0, series2, matiere2);
-        dataset.addValue(3.0, series2, matiere3);
-        dataset.addValue(5.0, series2, matiere4);
-        dataset.addValue(5.0, series2, matiere5);
-        dataset.addValue(7.0, series2, matiere6);
-        dataset.addValue(7.0, series2, matiere7);
-        dataset.addValue(8.0, series2, matiere8);
-        dataset.addValue(8.0, series2, matiere9);
-        dataset.addValue(20.0, series2, matiere10);
-        
-        dataset.addValue(1.0, series3, matiere1);
-        dataset.addValue(4.0, series3, matiere2);
-        dataset.addValue(3.0, series3, matiere3);
-        dataset.addValue(5.0, series3, matiere4);
-        dataset.addValue(5.0, series3, matiere5);
-        dataset.addValue(7.0, series3, matiere6);
-        dataset.addValue(7.0, series3, matiere7);
-        dataset.addValue(8.0, series3, matiere8);
-        dataset.addValue(8.0, series3, matiere9);
-        dataset.addValue(20.0, series3, matiere10);
 
-
+        
         return dataset;
 
     }
@@ -158,18 +139,17 @@ public class NotesEleveChart extends ApplicationFrame {
      */
     public static void remplirEvalEleves() {
     	for (Eleve eleve : eleves) {
-    		for (Professeur prof : profs) {
-    			eleve.setEvaluation(new Evaluation("Mathematiques", eleve.randomMark() , eleve, prof));
-    			eleve.setEvaluation(new Evaluation("Physique", eleve.randomMark(), eleve, prof));
-    			eleve.setEvaluation(new Evaluation("Anglais", eleve.randomMark(), eleve, prof));
-    			eleve.setEvaluation(new Evaluation("Finance", eleve.randomMark(), eleve, prof));
-    			eleve.setEvaluation(new Evaluation("Informatique", eleve.randomMark(), eleve, prof));
-    			eleve.setEvaluation(new Evaluation("Algorithmie", eleve.randomMark(), eleve, prof));
-    			eleve.setEvaluation(new Evaluation("Communication", eleve.randomMark(), eleve, prof));
-    			eleve.setEvaluation(new Evaluation("LV2", eleve.randomMark(), eleve, prof));
-    			eleve.setEvaluation(new Evaluation("Marketing", eleve.randomMark(), eleve, prof));
-    			eleve.setEvaluation(new Evaluation("Management", eleve.randomMark(), eleve, prof));
-    		}
+			eleve.setEvaluation(new Evaluation("Mathematiques", eleve.randomMark() , eleve, profs.get(0)));
+			eleve.setEvaluation(new Evaluation("Physique", eleve.randomMark(), eleve, profs.get(1)));
+			eleve.setEvaluation(new Evaluation("Anglais", eleve.randomMark(), eleve, profs.get(2)));
+			eleve.setEvaluation(new Evaluation("Finance", eleve.randomMark(), eleve, profs.get(3)));
+			eleve.setEvaluation(new Evaluation("Informatique", eleve.randomMark(), eleve, profs.get(4)));
+			eleve.setEvaluation(new Evaluation("Algorithmie", eleve.randomMark(), eleve, profs.get(5)));
+			eleve.setEvaluation(new Evaluation("Communication", eleve.randomMark(), eleve, profs.get(6)));
+			eleve.setEvaluation(new Evaluation("LV2", eleve.randomMark(), eleve, profs.get(7)));
+			eleve.setEvaluation(new Evaluation("Marketing", eleve.randomMark(), eleve, profs.get(8)));
+			eleve.setEvaluation(new Evaluation("Management", eleve.randomMark(), eleve, profs.get(9)));
+    		
 		}
     }
 
