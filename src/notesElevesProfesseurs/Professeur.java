@@ -77,7 +77,7 @@ public class Professeur extends Personne {
 	}
 	
 	/**
-	 * Permet de modifier une i�me note si elle existe/ de la creer
+	 * Permet de modifier une note si elle existe/ de la creer
 	 * @param promo
 	 * @param numId
 	 * @param note

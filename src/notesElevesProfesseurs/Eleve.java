@@ -414,28 +414,44 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 	static final Comparator<Eleve> MOYENNE_ORDER = new Comparator<Eleve> (){
 		@Override
 		public int compare(Eleve eleve1, Eleve eleve2){
-			return (int)(eleve1.moyenne() - eleve2.moyenne());
+			if(eleve1.moyenne() < eleve2.moyenne())
+		          return -1;
+		    else if(eleve2.moyenne() < eleve1.moyenne())
+		          return 1;
+		    return 0;
 		}
 	};
 
 	static final Comparator<Eleve> MEDIANE_ORDER = new Comparator<Eleve> (){
 		@Override
 		public int compare(Eleve eleve1, Eleve eleve2){
-			return (int)(eleve1.mediane() - eleve2.mediane());
+			if(eleve1.mediane() < eleve2.mediane())
+		          return -1;
+		    else if(eleve2.mediane() < eleve1.mediane())
+		          return 1;
+		    return 0;
 		}
 	};
 
 	static final Comparator<Eleve> MOYENNE_REVERSE_ORDER = new Comparator<Eleve> (){
 		@Override
 		public int compare(Eleve eleve1, Eleve eleve2){
-			return (int)(eleve2.moyenne() - eleve1.moyenne());
+			if(eleve2.moyenne() < eleve1.moyenne())
+		          return -1;
+		    else if(eleve1.moyenne() < eleve2.moyenne())
+		          return 1;
+		    return 0;
 		}
 	};
 
 	static final Comparator<Eleve> MEDIANE_REVERSE_ORDER = new Comparator<Eleve> (){
 		@Override
 		public int compare(Eleve eleve1, Eleve eleve2){
-			return (int)(eleve2.mediane() - eleve1.mediane());
+			if(eleve2.mediane() < eleve1.mediane())
+		          return -1;
+		    else if(eleve1.mediane() < eleve2.mediane())
+		          return 1;
+		    return 0;
 		}
 	};
 
