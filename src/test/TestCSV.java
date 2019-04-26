@@ -8,6 +8,7 @@ import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Professeur;
 import notesElevesProfesseurs.Promotion;
 import readCSV.ReadCSV;
+import writeCSV.WriteCSV;
 
 public class TestCSV {
 
@@ -19,11 +20,12 @@ public class TestCSV {
 		/** Permet d'enregistrer dans la memoire tous les eleves et profs des fichiers csv*/
 		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
 		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
-		
+		System.out.println(eleves);
+		Eleve eleve1 = new Eleve("SERHIR", "Mohamed", 16, 01, 1998);
 		//afficherEleve(eleves, promotion);
 		//afficherProfesseur(profs, promotion);
-		
-		menu(promotion, profs);
+		WriteCSV.writeEleveToCSV(eleve1);
+		//menu(promotion, profs);
 
 			
 	}
@@ -117,11 +119,9 @@ public class TestCSV {
 	 * @param eleves
 	 * @param promotion
 	 */
-	public static void afficherEleve(List<Eleve> eleves, Promotion promotion) {
+	public static void afficherEleve(List<Eleve> eleves) {
 		/** Si le fichier contient au moins un eleve*/
 		if(eleves.size() > 0) {
-			/** On recupere la promo des eleves ajout�s (on part du principe qu'ils sont tous dans la meme promo*/
-			promotion = eleves.get(0).getPromotion();
 			for(Eleve eleve : eleves) {			
 				System.out.println(eleve);
 				System.out.println("---------------------");
