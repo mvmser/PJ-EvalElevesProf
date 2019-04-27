@@ -15,6 +15,7 @@ public class Promotion {
 	/**Attributs*/
 	private String nom;
 	private ArrayList<Eleve> eleves = new ArrayList<Eleve>();
+	private ArrayList<Professeur> professeurs = new ArrayList<Professeur>();
 	
 	/**
 	 * Constructeur d'une promotion
@@ -58,6 +59,14 @@ public class Promotion {
 		return eleves;
 	}
 	
+	public ArrayList<Professeur> getProfesseurs() {
+		return professeurs;
+	}
+
+	public void addProfesseur(Professeur professeur) {
+		this.professeurs.add(professeur);
+	}
+
 	/**
 	 * Permet d'ajouter un eleve � la promo
 	 * @param eleve
@@ -237,4 +246,27 @@ public class Promotion {
 		
 		return (double) Math.round(mediane * 100) / 100;
 	}
+	
+	/**
+     * Permet de remplir les evaluations des eleves avec des notes aleatoires
+     * a mettre dans promotion
+     */
+    public boolean remplirEvalEleves() {
+    	if(professeurs.size() > 9) {
+    		for (Eleve eleve : eleves) {
+    			eleve.setEvaluation(new Evaluation("Mathematiques", eleve.randomMark() , eleve, professeurs.get(0)));
+    			eleve.setEvaluation(new Evaluation("Physique", eleve.randomMark(), eleve, professeurs.get(1)));
+    			eleve.setEvaluation(new Evaluation("Anglais", eleve.randomMark(), eleve, professeurs.get(2)));
+    			eleve.setEvaluation(new Evaluation("Finance", eleve.randomMark(), eleve, professeurs.get(3)));
+    			eleve.setEvaluation(new Evaluation("Informatique", eleve.randomMark(), eleve, professeurs.get(4)));
+    			eleve.setEvaluation(new Evaluation("Algorithmie", eleve.randomMark(), eleve, professeurs.get(5)));
+    			eleve.setEvaluation(new Evaluation("Communication", eleve.randomMark(), eleve, professeurs.get(6)));
+    			eleve.setEvaluation(new Evaluation("LV2", eleve.randomMark(), eleve, professeurs.get(7)));
+    			eleve.setEvaluation(new Evaluation("Marketing", eleve.randomMark(), eleve, professeurs.get(8)));
+    			eleve.setEvaluation(new Evaluation("Management", eleve.randomMark(), eleve, professeurs.get(9)));
+    		}
+    		return true;
+    	}
+    	return false;    	
+    }
 }

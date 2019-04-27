@@ -34,6 +34,7 @@ public class Professeur extends Personne {
 	public Professeur(String nom, String prenom, Promotion promotion) {
 		super(nom, prenom);
 		promotionsOfProf.add(promotion);
+		promotion.addProfesseur(this);
 	}	
 	
 	public String getNom() {
