@@ -57,7 +57,9 @@ public class InterfaceGraphique extends JFrame{
 	final static String CLASSEMENT_PROMO = "CLASSEMENT_PROMO"; 
 	final static String CLASSEMENT_MATIERE = "CLASSEMENT_MATIERE"; 
 	private JTable table;
-	private JTable table_1;
+	private JTable tableauNotes;
+	
+	DefaultTableModel tableModel = new DefaultTableModel();
 
 	/**
 	 * Launch the application.
@@ -602,7 +604,11 @@ public class InterfaceGraphique extends JFrame{
 						matieres.toArray();
 						notes.toArray();
 						
-						table_1.setEnabled(true);
+						Object[] objs = {1, "Arsenal", 35, 11, 2, 2, 15, 30, 11, 19};
+						Object columnName[] = {"Pos","Team","P", "W", "L", "D", "MP", "GF", "GA", "GD"};
+						tableModel.setColumnIdentifiers(columnName);
+						//tableModel.addRow(objs);
+						tableauNotes.setVisible(true);
 					}
 				}
 				
@@ -614,15 +620,10 @@ public class InterfaceGraphique extends JFrame{
 		btnRechercher.setBounds(281, 67, 133, 23);
 		panelConsulterNotes.add(btnRechercher);
 		
-		table_1 = new JTable();
-		table_1.setEnabled(false);
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			matieres.toArray()
-		));
-		table_1.setBounds(27, 144, 644, 128);
-		panelConsulterNotes.add(table_1);
+		tableauNotes = new JTable(tableModel);
+		tableauNotes.setVisible(false);
+		tableauNotes.setBounds(27, 144, 644, 128);
+		panelConsulterNotes.add(tableauNotes);
 		
 		return panelConsulterNotes;
 	}
