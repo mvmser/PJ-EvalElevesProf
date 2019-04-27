@@ -64,7 +64,7 @@ public class Promotion {
 	}
 
 	public void addProfesseur(Professeur professeur) {
-		this.professeurs.add(professeur);
+		professeurs.add(professeur);
 	}
 
 	/**
@@ -252,6 +252,7 @@ public class Promotion {
      * a mettre dans promotion
      */
     public boolean remplirEvalEleves() {
+    	//System.out.println(professeurs.size());
     	if(professeurs.size() > 9) {
     		for (Eleve eleve : eleves) {
     			eleve.setEvaluation(new Evaluation("Mathematiques", eleve.randomMark() , eleve, professeurs.get(0)));
@@ -268,5 +269,10 @@ public class Promotion {
     		return true;
     	}
     	return false;    	
+    }
+    
+    @Override
+    public String toString() {
+		return "Promotion: " + nom;
     }
 }

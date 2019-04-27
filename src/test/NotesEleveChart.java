@@ -39,6 +39,14 @@ public class NotesEleveChart extends ApplicationFrame {
     	eleves = ReadCSV.readElevesFromCSV();
 		profs = ReadCSV.readProfesseursFromCSV();
 		
+		/** On donne la promotion sur laquelle les profs interviennent */
+		for (Professeur prof : profs) {
+			prof.addPromotionToProf(promotion);
+			//System.out.println(prof.getNom() + " " +prof.getPromotionsOfProf());
+		}
+		
+		//System.out.println(promotion.getProfesseurs());
+		
 		/** On lance notre graphique**/
 		final NotesEleveChart notesEleve = new NotesEleveChart("Bulletin de notes");
 		notesEleve.pack();
@@ -89,6 +97,8 @@ public class NotesEleveChart extends ApplicationFrame {
 
     private CategoryDataset createDataset1() {
 	
+        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
 		/** On en selectionne un aleatoire*/
     	Random random = new Random();
     	//System.out.println(promotion.getEleves().size());
@@ -96,56 +106,60 @@ public class NotesEleveChart extends ApplicationFrame {
 		ArrayList<Eleve> eleves = promotion.getEleves();
 		Eleve randomEleve = eleves.get(randomInt);
 		
-		/** On attribue des notes à tous les eleves*/
-		remplirEvalEleves();
-		System.out.println("---- Bulletin de: ----");
-		System.out.println(randomEleve);
-		
-        final String series1 = randomEleve.getNom() + " " + randomEleve.getPrenom();
-        final String series2 = "Moyenne " + promotion.getNom();
-        final String series3 = "Mediane "+ promotion.getNom();
-        
-//        final ArrayList<String> matieres = new ArrayList<String>();
-//        for (Evaluation evaluation : randomEleve.getEvaluations()) {
-//        	matieres.add(evaluation.getMatiere());
-//		}
-//        
-        System.out.println(eleves);
+		/** On attribue des notes à tous les eleves et si c bon on rempli les graphiques*/
+		if(promotion.remplirEvalEleves()) {
+			System.out.println("---- Bulletin de: ----");
+			System.out.println(randomEleve);
+			
+	        final String series1 = randomEleve.getNom() + " " + randomEleve.getPrenom();
+	        final String series2 = "Moyenne " + promotion.getNom();
+	        final String series3 = "Mediane "+ promotion.getNom();
+	        
+//	        final ArrayList<String> matieres = new ArrayList<String>();
+//	        for (Evaluation evaluation : randomEleve.getEvaluations()) {
+//	        	matieres.add(evaluation.getMatiere());
+//			}
+//	        
+	        System.out.println(eleves);
 
-        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        /** Les notes de l'eleve*/
-        for (Evaluation evaluation : randomEleve.getEvaluations()) {
-        	String matiere = evaluation.getMatiere();
-        	
-        	dataset.addValue(evaluation.getNote(), series1, matiere);
-        	
-        	/** Moyenne de la promo pour la matiere */
-        	dataset.addValue(promotion.moyenneParMatiere(matiere), series2, matiere);
-        	//System.out.println("moyenne promo pour: " + matiere + " : "+ promotion.moyenneParMatiere(matiere));
-            
-            /** Medianne de la promo pour la matiere */
-            dataset.addValue(promotion.medianeParMatiere(matiere), series3, matiere);
-            //System.out.println("mediane promo pour:" + matiere + " : "  + promotion.medianeParMatiere(matiere));
+	        /** Les notes de l'eleve*/
+	        for (Evaluation evaluation : randomEleve.getEvaluations()) {
+	        	String matiere = evaluation.getMatiere();
+	        	
+	        	dataset.addValue(evaluation.getNote(), series1, matiere);
+	        	
+	        	/** Moyenne de la promo pour la matiere */
+	        	dataset.addValue(promotion.moyenneParMatiere(matiere), series2, matiere);
+	        	//System.out.println("moyenne promo pour: " + matiere + " : "+ promotion.moyenneParMatiere(matiere));
+	            
+	            /** Medianne de la promo pour la matiere */
+	            dataset.addValue(promotion.medianeParMatiere(matiere), series3, matiere);
+	            //System.out.println("mediane promo pour:" + matiere + " : "  + promotion.medianeParMatiere(matiere));
+			}
+	        
+	        /** Moyenne de l'eleve*/
+	        System.out.print("Moyenne generale de " + randomEleve.getNom() + ": ");
+	        System.out.println(randomEleve.moyenne());
+	        
+	        /** Mediane de l'eleve*/
+	        System.out.print("Mediane generale de " + randomEleve.getNom() +  ": ");
+	        System.out.println(randomEleve.mediane());
+	        
+	        System.out.println("");
+	        
+	        /**Moyenne de la promotion*/
+	        System.out.print("Moyenne generale de la promotion: ");
+	        System.out.println(promotion.moyenne());
+	        
+	        /**Mediane de la promotion*/
+	        System.out.print("Mediane generale de la promotion: ");
+	        System.out.println(promotion.mediane());
+		}else {
+			System.out.println("Les notes n'ont pas correctement étés ajoutés.. "
+					+ "par conséquent bulletin vide");
 		}
-        
-        /** Moyenne de l'eleve*/
-        System.out.print("Moyenne generale de " + randomEleve.getNom() + ": ");
-        System.out.println(randomEleve.moyenne());
-        
-        /** Mediane de l'eleve*/
-        System.out.print("Mediane generale de " + randomEleve.getNom() +  ": ");
-        System.out.println(randomEleve.mediane());
-        
-        System.out.println("");
-        
-        /**Moyenne de la promotion*/
-        System.out.print("Moyenne generale de la promotion: ");
-        System.out.println(promotion.moyenne());
-        
-        /**Mediane de la promotion*/
-        System.out.print("Mediane generale de la promotion: ");
-        System.out.println(promotion.mediane());
+		
         
         return dataset;
     }

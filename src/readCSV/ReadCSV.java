@@ -73,7 +73,7 @@ public interface ReadCSV {
 				if(value.charAt(0) != '#') {
 					String[] array = value.split(",");
 					try {
-						professeurs.add(new Professeur(array[0], array[1]));
+						professeurs.add(new Professeur(array[1], array[0]));
 					}catch (NumberFormatException nfe) {
 						System.out.println("NumberFormatException: " + nfe.getMessage());
 					}

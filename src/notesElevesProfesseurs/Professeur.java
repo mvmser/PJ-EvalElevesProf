@@ -48,8 +48,16 @@ public class Professeur extends Personne {
 	 */
 	public void addPromotionToProf(Promotion promotion) {
 		promotionsOfProf.add(promotion);
+		/** Un prof connait sa promotion et une promotion connait ses profs*/
+		promotion.addProfesseur(this);
 	}
 	
+	
+	
+	public List<Promotion> getPromotionsOfProf() {
+		return promotionsOfProf;
+	}
+
 	/**
 	 * Permet de retrouver un eleve s'il existe
 	 * @param numId

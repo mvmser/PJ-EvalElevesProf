@@ -19,6 +19,7 @@ public class TestCSV {
 		/** On a besoin de la promotion pour un prof*/
 		
 		/** Permet d'enregistrer dans la memoire tous les eleves et profs des fichiers csv*/
+		@SuppressWarnings("unused")
 		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
 		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
 		//System.out.println(eleves);
@@ -108,7 +109,7 @@ public class TestCSV {
 				OK = false;
 			}
 		}while(OK == false);
-		
+		sc.close();
 		return nomProf;
 	}
 	
@@ -181,6 +182,8 @@ public class TestCSV {
 			System.out.println("Entrer un entier");
 			sc.nextLine();
 		}
+		
+		sc.close();
 	}
 	
 	/**
