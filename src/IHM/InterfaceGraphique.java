@@ -624,6 +624,8 @@ public class InterfaceGraphique extends JFrame{
 		tableModel = new DefaultTableModel(col, 0);
 
 		tableauNotes = new JTable(tableModel);
+		tableauNotes.setFillsViewportHeight(true);
+		tableauNotes.setCellSelectionEnabled(true);
 		tableauNotes.setColumnSelectionAllowed(true);
 		Object[] objs = {1, "Arsenal", 35, 11, 2, 2, 15, 30, 11, 19};
 
