@@ -36,6 +36,7 @@ import java.awt.Choice;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.ScrollPane;
 
 public class InterfaceGraphique extends JFrame{
 
@@ -57,9 +58,10 @@ public class InterfaceGraphique extends JFrame{
 	final static String CLASSEMENT_PROMO = "CLASSEMENT_PROMO"; 
 	final static String CLASSEMENT_MATIERE = "CLASSEMENT_MATIERE"; 
 	private JTable table;
-	private JTable tableauNotes;
+	private JTable eleveNotesTableau;
 	
-	DefaultTableModel tableModel = new DefaultTableModel();
+	DefaultTableModel tableModel;
+	
 
 	/**
 	 * Launch the application.
@@ -587,10 +589,24 @@ public class InterfaceGraphique extends JFrame{
 		ArrayList<String> matieres = new ArrayList<String>();
 		ArrayList<String> notes = new ArrayList<String>();
 		
-		JButton btnRechercher = new JButton("Rechercher");
+		JButton btnRechercher = new JButton("Consulter");
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Eleve eleveSelected = null;
+				String header[] = {"Nom","Prenom","Date de Naissance", "Promo", "Nom","Prenom","Date de Naissance", "Promo", "r"};
+				
+				DefaultTableModel modelEleve = new DefaultTableModel();
+				modelEleve.setColumnIdentifiers(header);
+				JTable eleveTableau = new JTable(tableModel);
+				eleveTableau.setModel(modelEleve);
+				eleveTableau.setBounds(20, 100, 660, 40);
+
+				JScrollPane scrollPane = new JScrollPane(eleveTableau);
+				scrollPane.setBounds(20, 100, 660, 40);
+				panelConsulterNotes.add(scrollPane);
+				
+				String[] data = {};
+				
 				for (Eleve eleve : eleves) {
 					if( (eleve.getNom() + " " + eleve.getPrenom()).compareTo(choixEleve.getSelectedItem()) == 0 ) {
 						eleveSelected = eleve;
@@ -601,14 +617,8 @@ public class InterfaceGraphique extends JFrame{
 							notes.add(Double.toString(evaluation.getNote()) );
 						}
 						
-						matieres.toArray();
-						notes.toArray();
-						
-						Object[] objs = {1, "Arsenal", 35, 11, 2, 2, 15, 30, 11, 19};
-						Object columnName[] = {"Pos","Team","P", "W", "L", "D", "MP", "GF", "GA", "GD"};
-						tableModel.setColumnIdentifiers(columnName);
-						//tableModel.addRow(objs);
-						tableauNotes.setVisible(true);
+						modelEleve.setColumnIdentifiers(matieres.toArray());
+						modelEleve.addRow(notes.toArray());						
 					}
 				}
 				
@@ -620,29 +630,107 @@ public class InterfaceGraphique extends JFrame{
 		btnRechercher.setBounds(281, 67, 133, 23);
 		panelConsulterNotes.add(btnRechercher);
 		
-		tableauNotes = new JTable(tableModel);
-		tableauNotes.setVisible(false);
-		tableauNotes.setBounds(27, 144, 644, 128);
-		panelConsulterNotes.add(tableauNotes);
+		
 		
 		return panelConsulterNotes;
 	}
 
 	private JPanel fenetreVoirEleves() {
 		JPanel panelVoirEleves = new JPanel();
+		
+		panelVoirEleves.setBackground(Color.WHITE);
+		panelVoirEleves.setBounds(0, 33, 694, 338);
+		panelVoirEleves.setLayout(null);
+		
+		JLabel lblTitre = new JLabel("Liste des eleves");
+		lblTitre.setFont(new Font("Verdana", Font.BOLD, 14));
+		lblTitre.setBounds(293, 11, 121, 18);
+		panelVoirEleves.add(lblTitre);
+		
+		String header[] = {"Nom","Prenom","Date de Naissance", "Promo"};
+		
+		DefaultTableModel modelEleve = new DefaultTableModel();
+		modelEleve.setColumnIdentifiers(header);
+		JTable eleveTableau = new JTable(tableModel);
+		eleveTableau.setModel(modelEleve);
+		eleveTableau.setBounds(21, 36, 647, 291);
 
+		JScrollPane scrollPane = new JScrollPane(eleveTableau);
+		scrollPane.setBounds(21, 36, 647, 291);
+		panelVoirEleves.add(scrollPane);
+		
+		/** On insert les eleves*/
+		for (Eleve eleve : eleves) {
+			String[] data = {eleve.getNom(), eleve.getPrenom(), eleve.getDateNaissance().toString(), eleve.getPromotion().getNom()};
+			modelEleve.addRow(data);
+		}
+		
 		return panelVoirEleves;
 	}
 
 	private JPanel fenetreVoirProfs() {
 		JPanel panelVoirProf = new JPanel();
 
+		panelVoirProf.setBackground(Color.WHITE);
+		panelVoirProf.setBounds(0, 33, 694, 338);
+		panelVoirProf.setLayout(null);
+		
+		JLabel lblTitre = new JLabel("Liste des professeurs");
+		lblTitre.setFont(new Font("Verdana", Font.BOLD, 14));
+		lblTitre.setBounds(262, 11, 193, 18);
+		panelVoirProf.add(lblTitre);
+		
+		String header[] = {"Nom","Prenom"};
+				
+		DefaultTableModel modelProf = new DefaultTableModel();
+		modelProf.setColumnIdentifiers(header);
+		JTable profTableau = new JTable(modelProf);
+		profTableau.setModel(modelProf);
+		profTableau.setBounds(21, 36, 647, 291);
+
+		JScrollPane scrollPane = new JScrollPane(profTableau);
+		scrollPane.setBounds(21, 36, 647, 291);
+		panelVoirProf.add(scrollPane);
+		
+		/** On insert les eleves*/
+		for (Professeur prof : profs) {
+			String[] data = {prof.getNom(), prof.getPrenom()};
+			modelProf.addRow(data);
+		}
+		
 		return panelVoirProf;
 	}
 
 	private JPanel fenetreVoirPromotions() {
 		JPanel panelPromotions = new JPanel();
 
+		panelPromotions.setBackground(Color.WHITE);
+		panelPromotions.setBounds(0, 33, 694, 338);
+		panelPromotions.setLayout(null);
+		
+		JLabel lblTitre = new JLabel("Liste des promotions");
+		lblTitre.setFont(new Font("Verdana", Font.BOLD, 14));
+		lblTitre.setBounds(258, 11, 193, 18);
+		panelPromotions.add(lblTitre);
+		
+		String header[] = {"Promotion", "Nombre d'eleves"};
+				
+		DefaultTableModel modelPromotion = new DefaultTableModel();
+		modelPromotion.setColumnIdentifiers(header);
+		JTable promotionTableau = new JTable(modelPromotion);
+		promotionTableau.setModel(modelPromotion);
+		promotionTableau.setBounds(23, 94, 647, 64);
+
+		JScrollPane scrollPane = new JScrollPane(promotionTableau);
+		scrollPane.setBounds(23, 94, 647, 64);
+		panelPromotions.add(scrollPane);
+		
+		/** On insert les eleves*/
+		for (Promotion promo : Promotion.getPromotions()) {
+			String[] data = {promo.getNom(), Integer.toString(promo.getEleves().size())};
+			modelPromotion.addRow(data);
+		}
+		
 		return panelPromotions;
 	}
 
