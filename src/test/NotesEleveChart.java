@@ -115,11 +115,6 @@ public class NotesEleveChart extends ApplicationFrame {
 	        final String series2 = "Moyenne " + promotion.getNom();
 	        final String series3 = "Mediane "+ promotion.getNom();
 	        
-//	        final ArrayList<String> matieres = new ArrayList<String>();
-//	        for (Evaluation evaluation : randomEleve.getEvaluations()) {
-//	        	matieres.add(evaluation.getMatiere());
-//			}
-//	        
 	        System.out.println(eleves);
 
 
