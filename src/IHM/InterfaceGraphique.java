@@ -17,6 +17,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
@@ -35,6 +36,8 @@ import writeCSV.WriteCSV;
 
 import javax.swing.AbstractListModel;
 import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+
 import java.awt.Choice;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -59,11 +62,7 @@ public class InterfaceGraphique extends JFrame{
 	final static String CLASSEMENT_PROMO = "CLASSEMENT_PROMO"; 
 	final static String CLASSEMENT_MATIERE = "CLASSEMENT_MATIERE"; 
 	
-	private JTextField textFieldNom;
-	private JTextField textFieldPrenom;
-	private JTextField textFieldJour;
-	private JTextField textFieldMois;
-	private JTextField textFieldAnnee;
+	private JTextField textFieldNom, textFieldPrenom, textFieldJour, textFieldMois, textFieldAnnee;
 
 	/**
 	 * Launch the application.
@@ -121,7 +120,7 @@ public class InterfaceGraphique extends JFrame{
 		
 		/** Le MENU */
 		panel.setBackground(Color.WHITE);
-		this.getContentPane().add(panel, BorderLayout.CENTER);
+		//this.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -156,9 +155,19 @@ public class InterfaceGraphique extends JFrame{
 		mnEdition.add(separator);
 		
 		JMenuItem mntmRechercherUnEleve = new JMenuItem("Rechercher un eleve");
+		mntmRechercherUnEleve.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				((CardLayout) cardsPanelCentral.getLayout()).show(cardsPanelCentral, RECHERCHER_ELEVE);
+			}
+		});
 		mnEdition.add(mntmRechercherUnEleve);
 		
 		JMenuItem mntmModifierLesNotes = new JMenuItem("Modifier les notes d'un eleve");
+		mntmModifierLesNotes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//a faire
+			}
+		});
 		mnEdition.add(mntmModifierLesNotes);
 		
 		JMenu mnConsultation = new JMenu("Consultation");
@@ -166,15 +175,31 @@ public class InterfaceGraphique extends JFrame{
 		menuBar.add(mnConsultation);
 		
 		JMenuItem mntmConsulterSesNotes = new JMenuItem("Consulter ses notes");
+		mntmConsulterSesNotes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		mnConsultation.add(mntmConsulterSesNotes);
 		
 		JMenuItem mntmVoirLesEleves = new JMenuItem("Voir les eleves");
+		mntmVoirLesEleves.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		mnConsultation.add(mntmVoirLesEleves);
 		
 		JMenuItem mntmVoirLesProfesseurs = new JMenuItem("Voir les professeurs");
+		mntmVoirLesProfesseurs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		mnConsultation.add(mntmVoirLesProfesseurs);
 		
 		JMenuItem mntmVoirLesPromotions = new JMenuItem("Voir les promotions");
+		mntmVoirLesPromotions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		mnConsultation.add(mntmVoirLesPromotions);
 		
 		JMenu mnClassement = new JMenu("Classement");
@@ -182,9 +207,17 @@ public class InterfaceGraphique extends JFrame{
 		menuBar.add(mnClassement);
 		
 		JMenuItem mntmClassementPromotion = new JMenuItem("Classement promotion");
+		mntmClassementPromotion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		mnClassement.add(mntmClassementPromotion);
 		
 		JMenuItem mntmClassementParMatiere = new JMenuItem("Classement par matiere");
+		mntmClassementParMatiere.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		mnClassement.add(mntmClassementParMatiere);
 		
 		JMenu mnAPropos = new JMenu("A propos");
@@ -213,20 +246,20 @@ public class InterfaceGraphique extends JFrame{
 		
 		/** Panel qui va contenir nos card*/
 		cardsPanelCentral = new JPanel(new CardLayout());
-		//JPanel panelCentral = new JPanel();
 		cardsPanelCentral.setBounds(0, 34, 694, 337);
 		panel.add(cardsPanelCentral);
-		cardsPanelCentral.setLayout(new CardLayout(0, 0));
 		
 		/** On cree nos cards */
 		JPanel cardEleve = fenetreAjouterEleve();
 		JPanel cardProf = fenetreAjouterProf();
 		JPanel cardRechercherEleve = fenetreRechercherEleve();
+		JPanel cardModifierNotes = fenetreModifierNotes();
 		
 		/** Et on les ajoutes*/
 		cardsPanelCentral.add(cardEleve, AJOUTER_ELEVE);		
 		cardsPanelCentral.add(cardProf, AJOUTER_PROF);	
 		cardsPanelCentral.add(cardRechercherEleve, RECHERCHER_ELEVE);
+		cardsPanelCentral.add(cardModifierNotes, MODIFIER_NOTES);
 		
 		return panel;
 	}
@@ -349,7 +382,7 @@ public class InterfaceGraphique extends JFrame{
 
 		JLabel lblAjouterUnEleve = new JLabel("Ajouter un professeur");
 		lblAjouterUnEleve.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblAjouterUnEleve.setBounds(280, 11, 145, 21);
+		lblAjouterUnEleve.setBounds(280, 11, 200, 21);
 		panelProf.add(lblAjouterUnEleve);
 		
 		JLabel lblNom = new JLabel("Nom: ");
@@ -417,13 +450,93 @@ public class InterfaceGraphique extends JFrame{
 	}
 
 	public JPanel fenetreRechercherEleve() {
+		JPanel panelRecherche = new JPanel();
+		JTextField textFieldID;
+
+		panelRecherche.setBackground(Color.WHITE);
+		panelRecherche.setBounds(0, 33, 694, 338);
+		panelRecherche.setLayout(null);
+
+		JLabel lblAjouterUnEleve = new JLabel("Rechercher un eleve");
+		lblAjouterUnEleve.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblAjouterUnEleve.setBounds(261, 11, 200, 21);
+		panelRecherche.add(lblAjouterUnEleve);
+		
+		JLabel lblNom = new JLabel("Identifiant: ");
+		lblNom.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblNom.setBounds(218, 103, 150, 18);
+		panelRecherche.add(lblNom);
+		
+		JLabel lblPromotion = new JLabel("Qui êtes vous: ");
+		lblPromotion.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblPromotion.setBounds(192, 66, 109, 18);
+		panelRecherche.add(lblPromotion);
+		
+		Choice choixProfesseur = new Choice();
+		choixProfesseur.setBounds(375, 66, 109, 20);
+		for (Professeur prof : profs) {
+			choixProfesseur.add(prof.getNom());
+		}
+		panelRecherche.add(choixProfesseur);
+		
+		textFieldID = new JTextField();
+		textFieldID.setBounds(375, 104, 109, 20);
+		textFieldID.setColumns(10);
+		panelRecherche.add(textFieldID);
+		
+		JTextArea zoneAffichage = new JTextArea("");
+		zoneAffichage.setBounds(208, 185, 303, 128);
+		panelRecherche.add(zoneAffichage);
+		
+		JButton btnAjouter = new JButton("Rechercher");
+		btnAjouter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int idRecherche = 0;
+				boolean error = false;
+				
+				try {
+					idRecherche = Integer.parseInt(textFieldID.getText());
+				}catch (NumberFormatException nfe) {
+					error = true;
+		            JOptionPane.showMessageDialog(null,"Merci d'entrer un ID valide", "Erreur", JOptionPane.ERROR_MESSAGE);	
+				}
+				
+				Professeur professeurSelected = null;
+				for (Professeur professeur : profs) {
+					if(professeur.getNom() == choixProfesseur.getSelectedItem())
+						professeurSelected = professeur;
+				}
+				
+				if(!error) {
+					if(professeurSelected != null && idRecherche != 0) {
+						Eleve eleveRecherche = professeurSelected.rechercheEleve(idRecherche);
+						if(eleveRecherche != null) {
+							zoneAffichage.setText(eleveRecherche.toString());
+						}else {
+							JOptionPane.showMessageDialog(null,"Eleve inexistant!", "Erreur", JOptionPane.ERROR_MESSAGE);	
+						}
+					}else {
+			            JOptionPane.showMessageDialog(null,"Merci de remplir correctement tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				
+			}
+		});
+		
+		btnAjouter.setBounds(293, 142, 133, 23);
+		panelRecherche.add(btnAjouter);
+		
+		return panelRecherche;
+	}
+
+	public JPanel fenetreModifierNotes() {
 		JPanel panelProf = new JPanel();
 
 		panelProf.setBackground(Color.WHITE);
 		panelProf.setBounds(0, 33, 694, 338);
 		panelProf.setLayout(null);
 
-		JLabel lblAjouterUnEleve = new JLabel("Ajouter un professeur");
+		JLabel lblAjouterUnEleve = new JLabel("Ajouter un prof");
 		lblAjouterUnEleve.setFont(new Font("Verdana", Font.BOLD, 16));
 		lblAjouterUnEleve.setBounds(280, 11, 145, 21);
 		panelProf.add(lblAjouterUnEleve);
