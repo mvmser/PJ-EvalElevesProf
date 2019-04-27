@@ -40,5 +40,10 @@ public class Date {
 	public void setJour(int jour) {
 		this.jour = jour;
 	}
+	
+	@Override
+	public String toString() {
+		return this.jour + "/" + this.mois + "/" + this.annee;
+	}
 
 }
