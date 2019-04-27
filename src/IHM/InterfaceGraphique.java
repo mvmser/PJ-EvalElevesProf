@@ -59,7 +59,7 @@ public class InterfaceGraphique extends JFrame{
 	private JTable table;
 	private JTable tableauNotes;
 	
-	DefaultTableModel tableModel = new DefaultTableModel();
+	DefaultTableModel tableModel;
 
 	/**
 	 * Launch the application.
@@ -606,7 +606,7 @@ public class InterfaceGraphique extends JFrame{
 						
 						Object[] objs = {1, "Arsenal", 35, 11, 2, 2, 15, 30, 11, 19};
 						Object columnName[] = {"Pos","Team","P", "W", "L", "D", "MP", "GF", "GA", "GD"};
-						tableModel.setColumnIdentifiers(columnName);
+						//tableModel.setColumnIdentifiers(columnName);
 						//tableModel.addRow(objs);
 						tableauNotes.setVisible(true);
 					}
@@ -620,8 +620,15 @@ public class InterfaceGraphique extends JFrame{
 		btnRechercher.setBounds(281, 67, 133, 23);
 		panelConsulterNotes.add(btnRechercher);
 		
+		String col[] = {"Pos","Team","P", "W", "L", "D", "MP", "GF", "GA", "GD"};
+		tableModel = new DefaultTableModel(col, 0);
+
 		tableauNotes = new JTable(tableModel);
-		tableauNotes.setVisible(false);
+		tableauNotes.setColumnSelectionAllowed(true);
+		Object[] objs = {1, "Arsenal", 35, 11, 2, 2, 15, 30, 11, 19};
+
+		tableModel.addRow(objs);
+		tableauNotes.setVisible(true);
 		tableauNotes.setBounds(27, 144, 644, 128);
 		panelConsulterNotes.add(tableauNotes);
 		
