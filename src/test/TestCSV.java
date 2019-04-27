@@ -49,10 +49,11 @@ public class TestCSV {
 			if(choix == 1) {
 				/** Savoir qui est ce prof */
 				whoProf(profs);
+				
 				System.out.println("11. Rechercher eleve ");
 				System.out.println("12. Ajouter Notes ou modification d'une note ");
 				int choix1 = sc.nextInt();
-				sc.nextLine();
+				//sc.nextLine();
 				
 				if(choix1 == 11) {
 					rechercherEleve(promotion);
@@ -108,6 +109,7 @@ public class TestCSV {
 		do {
 			try {
 				 numProf = sc.nextInt();
+				 sc.nextLine();
 			} catch (InputMismatchException e) {
 				System.out.println("Entrer un entier");
 				OK = false;
