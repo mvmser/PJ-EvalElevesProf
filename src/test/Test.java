@@ -98,6 +98,7 @@ public class Test {
 		System.out.print("\n----------classementOrdreDecroissantMediane------------------\n");
 		System.out.println(P2021.classementOrdreDecroissantMediane());
 		 
+		
 		/**----RECHERCHER ELEVE et l'afficher----*/
 		System.out.println("\n----------Rechercher un eleve avec son identifiant :----------");
 		System.out.printf("Quel est l'identifiant ?  ");
