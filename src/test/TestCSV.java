@@ -89,6 +89,11 @@ public class TestCSV {
 	
 
 	
+	/**
+	 * Permet de savoir quel profeseur est l'utilisateur parmi la liste de professeur
+	 * @param profs
+	 * @return Professeur
+	 */
 	public static Professeur whoProf(List<Professeur> profs) {
 		Scanner sc = new Scanner(System.in);
 		
