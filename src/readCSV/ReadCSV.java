@@ -70,7 +70,7 @@ public interface ReadCSV {
 			while (inFile.hasNext()) {
 				String value = inFile.nextLine();
 				
-				if(value.charAt(0) != '#') {
+				if(value.charAt(0) != '#' || value != "") {
 					String[] array = value.split(",");
 					try {
 						professeurs.add(new Professeur(array[1], array[0]));
