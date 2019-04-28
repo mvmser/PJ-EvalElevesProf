@@ -235,7 +235,7 @@ public class Eleve extends Personne implements Comparable<Eleve>{
 		try {
 			if(evaluations.size() > 0) {
 
-				//Collections.sort(evaluations); //trier les notes : deja tri� dans getMatieresAndNotes
+				Collections.sort(evaluations); //trier les notes : deja tri� dans getMatieresAndNotes
 				//System.out.println("evals: "+ evaluations);
 
 					if(evaluations.size() %2 == 0)

@@ -8,7 +8,9 @@ import java.util.Scanner;
 import notesElevesProfesseurs.*;
 
 
-/*
+/**
+ * Permet de creer des eleves, des profs et des evaluations
+ * puis de les tester 
  * @author SERHIR
  * @author ZARGA
  * @version 2.0
@@ -187,7 +189,7 @@ public class Test {
 	}
 		
 		
-		/** idee ines:
+		/** idee :
 		 * for(Professeur prof : profs) {
 			if(prof.getNom() == nom) {
 				System.out.println("Vous etes " + prof +", vous pouvez modifier une note d'un eleve : ");

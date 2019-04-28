@@ -20,7 +20,6 @@ import java.awt.CardLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
-
 import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Evaluation;
 import notesElevesProfesseurs.Professeur;
@@ -29,15 +28,11 @@ import readCSV.ReadCSV;
 import writeCSV.WriteCSV;
 import javax.swing.JTextArea;
 import java.awt.Choice;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
-
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JProgressBar;
@@ -45,7 +40,7 @@ import javax.swing.ListSelectionModel;
 
 /**
  * L'interface graphique de l'application Evaluation Prof eleve
- * Attention: neccessite le rajout des librairies de JFREECHART
+ * Attention: neccessite les librairies de JFREECHART
  * @version 2.0
  * @author SERHIR
  * @author ZARGA
@@ -437,14 +432,17 @@ public class InterfaceGraphique extends JFrame{
 				if(nom.length() > 0  && prenom.length() > 0 && promotionEleve != null && jour != 0 && mois != 0 && annee != 0) {
 					Eleve eleve = new Eleve(nom, prenom, jour, mois, annee);
 					/** Une fois cr�e, on l'ajoute dans le fichier mais aussi dans le tableau eleves*/
-					eleves.add(eleve);
-					WriteCSV.writeEleveToCSV(eleve);
-					System.out.println(eleves);
-					System.out.println(nom);
-					System.out.println(prenom);
-					System.out.println(eleve.getDateNaissance());
-					System.out.println(promotion);
-		            JOptionPane.showMessageDialog(null,"L'eleve a bien ete ajoutee", "Ajout", JOptionPane.INFORMATION_MESSAGE);	
+					if(WriteCSV.writeEleveToCSV(eleve)) {
+						eleves.add(eleve);
+						System.out.println(eleves);
+						System.out.println(nom);
+						System.out.println(prenom);
+						System.out.println(eleve.getDateNaissance());
+						System.out.println(promotion);
+			            JOptionPane.showMessageDialog(null,"L'eleve a bien ete ajoutee", "Ajout", JOptionPane.INFORMATION_MESSAGE);	
+					}else {
+			            JOptionPane.showMessageDialog(null,"L'eleve existe deja..", "Ajout", JOptionPane.INFORMATION_MESSAGE);	
+					}
 
 				}else {
 		            JOptionPane.showMessageDialog(null,"Merci de remplir correctement tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);	
@@ -532,12 +530,16 @@ public class InterfaceGraphique extends JFrame{
 				if(nom.length() > 0  && prenom.length() > 0 && promotionProf != null) {
 					Professeur professeur = new Professeur(nom, prenom);
 					/** Une fois cr�e, on l'ajoute dans le fichier mais aussi dans le tableau profs*/
-					profs.add(professeur);
-					WriteCSV.writeProfToCSV(professeur);
-					System.out.println(nom);
-					System.out.println(prenom);
-					System.out.println(promotion);
-		            JOptionPane.showMessageDialog(null,"Le prof a bien ete ajoutee", "Ajout", JOptionPane.INFORMATION_MESSAGE);	
+					if(WriteCSV.writeProfToCSV(professeur)) {
+						profs.add(professeur);
+						System.out.println(nom);
+						System.out.println(prenom);
+						System.out.println(promotion);
+			            JOptionPane.showMessageDialog(null,"Le prof a bien ete ajoutee", "Ajout", JOptionPane.INFORMATION_MESSAGE);	
+					}else {
+			            JOptionPane.showMessageDialog(null,"Le prof existe deja..", "Ajout", JOptionPane.INFORMATION_MESSAGE);	
+					}
+					
 
 				}else {
 		            JOptionPane.showMessageDialog(null,"Merci de remplir correctement tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);	
@@ -925,6 +927,7 @@ public class InterfaceGraphique extends JFrame{
 
 					final BulletinEleve notesEleve = new BulletinEleve("Bulletin de notes", eleveSelected, promotion);
 					notesEleve.pack();
+
 			        RefineryUtilities.centerFrameOnScreen(notesEleve); 
 			        notesEleve.setVisible(true);
 

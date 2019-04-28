@@ -59,7 +59,7 @@ public interface WriteCSV{
 	
 	public static boolean writeProfToCSV(Professeur prof){
 		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
-		if(!profs.contains(prof)) {
+		if(!isProfExist(profs, prof)) {
 			BufferedWriter bufWriter = null;
 	        FileWriter fileWriter = null;
 	        try {
@@ -83,8 +83,22 @@ public interface WriteCSV{
 	
 	public static boolean isEleveExist (List<Eleve> eleves, Eleve addedEleve) {
 		for (Eleve eleve : eleves) {
-			if(eleve.getNom() == addedEleve.getNom() && eleve.getPrenom() == addedEleve.getPrenom())
+			if(addedEleve.getNom().equalsIgnoreCase(eleve.getNom()) 
+					&& addedEleve.getPrenom().equalsIgnoreCase(eleve.getPrenom())) {
+				System.out.println("L'eleve existe deja dans le fichier..");
 				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean isProfExist (List<Professeur> profs, Professeur addedProf) {
+		for (Professeur prof : profs) {
+			if(addedProf.getNom().equalsIgnoreCase(prof.getNom()) 
+					&& addedProf.getPrenom().equalsIgnoreCase(prof.getPrenom())) {
+				System.out.println("Le prof existe deja dans le fichier..");
+				return true;
+			}
 		}
 		return false;
 	}
