@@ -25,7 +25,6 @@ public class TestCSV {
 		/** On donne la promotion sur laquelle les profs interviennent */
 		for (Professeur prof : profs) {
 			prof.addPromotionToProf(P2021);
-			//System.out.println(prof.getNom() + " " +prof.getPromotionsOfProf());
 		}
 		/** On rempli les notes des eleves*/
 		P2021.remplirEvalEleves();

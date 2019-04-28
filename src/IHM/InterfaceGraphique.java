@@ -19,6 +19,8 @@ import java.awt.SystemColor;
 import java.awt.CardLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Evaluation;
 import notesElevesProfesseurs.Professeur;
@@ -27,6 +29,8 @@ import readCSV.ReadCSV;
 import writeCSV.WriteCSV;
 import javax.swing.JTextArea;
 import java.awt.Choice;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -317,10 +321,17 @@ public class InterfaceGraphique extends JFrame{
 		lblEvaluationEleve.setBounds(244, 11, 231, 18);
 		panelAccueil.add(lblEvaluationEleve);
 		
+		
+		
 		JLabel lblRr = new JLabel("<html><p style=\"text-align: center;\">Bienvenue sur le projet evaluation eleves et professeurs.</p>\r\n" + 
 				"<p style=\"text-align: center;\">Le menu ci-dessus, vous donne acc&egrave;s &agrave; de nombreuses fonctionnalit&eacute;s!</p></html>");
 		lblRr.setBounds(185, 55, 359, 151);
 		panelAccueil.add(lblRr);
+		
+		JLabel lblImage = new JLabel("");
+		lblImage.setIcon(new ImageIcon(new ImageIcon("img.png").getImage().getScaledInstance(300, 150, Image.SCALE_DEFAULT)));
+		lblImage.setBounds(195, 169, 383, 119);
+		panelAccueil.add(lblImage);
 		
 		
 		return panelAccueil;
