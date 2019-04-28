@@ -239,9 +239,9 @@ public class InterfaceGraphique extends JFrame{
 		mntmCopyright.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, 
-						  "Cette application est entierement réalisée par"
+						  "Cette application est entierement realisee par"
 						+ "\n          SERHIR Mohamed et ZARGA Ines"
-						+ "\n Pour le projet de JAVA du S6 à l'EFREI PARIS", "Copyright", JOptionPane.INFORMATION_MESSAGE);
+						+ "\n Pour le projet de JAVA du S6 a l'EFREI PARIS", "Copyright", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		
@@ -416,7 +416,7 @@ public class InterfaceGraphique extends JFrame{
 				
 				if(nom.length() > 0  && prenom.length() > 0 && promotionEleve != null && jour != 0 && mois != 0 && annee != 0) {
 					Eleve eleve = new Eleve(nom, prenom, jour, mois, annee);
-					/** Une fois crée, on l'ajoute dans le fichier mais aussi dans le tableau eleves*/
+					/** Une fois crï¿½e, on l'ajoute dans le fichier mais aussi dans le tableau eleves*/
 					eleves.add(eleve);
 					WriteCSV.writeEleveToCSV(eleve);
 					System.out.println(eleves);
@@ -498,7 +498,7 @@ public class InterfaceGraphique extends JFrame{
 				
 				if(nom.length() > 0  && prenom.length() > 0 && promotionProf != null) {
 					Professeur professeur = new Professeur(nom, prenom);
-					/** Une fois crée, on l'ajoute dans le fichier mais aussi dans le tableau profs*/
+					/** Une fois crï¿½e, on l'ajoute dans le fichier mais aussi dans le tableau profs*/
 					profs.add(professeur);
 					WriteCSV.writeProfToCSV(professeur);
 					System.out.println(nom);
@@ -580,7 +580,7 @@ public class InterfaceGraphique extends JFrame{
 		lblNom.setBounds(218, 103, 150, 18);
 		panelRecherche.add(lblNom);
 		
-		JLabel lblPromotion = new JLabel("Qui êtes vous: ");
+		JLabel lblPromotion = new JLabel("Qui ï¿½tes vous: ");
 		lblPromotion.setFont(new Font("Verdana", Font.PLAIN, 14));
 		lblPromotion.setBounds(192, 66, 109, 18);
 		panelRecherche.add(lblPromotion);

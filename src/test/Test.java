@@ -125,7 +125,6 @@ public class Test {
 		String nomProf = null;
 		int numProf = Integer.MAX_VALUE;
 		
-		@SuppressWarnings("unused")
 		boolean OK = true;
 		
 		do {

@@ -19,14 +19,16 @@ public class TestCSV {
 		/** On a besoin de la promotion pour un prof*/
 		
 		/** Permet d'enregistrer dans la memoire tous les eleves et profs des fichiers csv*/
-		@SuppressWarnings("unused")
 		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
 		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
-		//System.out.println(eleves);
-		Eleve eleve1 = new Eleve("SERHIR", "Mohamed", 16, 01, 1998);
+		
+		//Eleve eleve1 = new Eleve("SERHIR", "Mohamed", 16, 01, 1998);
+		
+		/** Afficher la liste de tous les eleves*/
 		//afficherEleve(eleves);
+		/** Afficher la liste de tous les professeurs*/
 		//afficherProfesseur(profs);
-		WriteCSV.writeEleveToCSV(eleve1);
+		//WriteCSV.writeEleveToCSV(eleve1);
 		menu(P2021, profs);
 	}
 	
@@ -36,48 +38,59 @@ public class TestCSV {
 		System.out.println("----------MENU----------");
 		System.out.println("1. Vous etes un prof ? ");
 		System.out.println("2. Vous etes un eleve ? ");
+		System.out.println("3. Consultation ");
+		System.out.println("4. Classement ");
+		System.out.println("0. Quitter ");
 		int choix = sc.nextInt();
 		sc.nextLine();
 		
-		if(choix == 1) {
-			System.out.println(whoProf(profs));
-			System.out.println("3. Rechercher eleve ");
-			System.out.println("4. Ajouter Notes ");
-			int choix1 = sc.nextInt();
+		do {
+			/** Si choix = professeur */
+			if(choix == 1) {
+				/** Savoir qui est ce prof */
+				whoProf(profs);
+				
+				System.out.println("11. Rechercher eleve ");
+				System.out.println("12. Ajouter Notes ou modification d'une note ");
+				int choix1 = sc.nextInt();
+				//sc.nextLine();
+				
+				if(choix1 == 11) {
+					rechercherEleve(promotion);
+				}
+				if(choix == 12) {	
+					//whoProf(profs);
+					//ajouterNote(profs, whoProf(profs));	
+				}	
+				else {
+					System.out.println("\n----------error----------");
+				}
+				
+			/** Si choix = eleve */
+			}else if(choix == 2) {
+				System.out.println("21. Consulter mon bulletin de note ");
+				System.out.println("22. Ma moyenne ");
+				System.out.println("23. Ma mediane ");
+				
+			/** Si choix = consultation */
+			}else if(choix == 3) {
+				System.out.println("31. Voir la liste des élèves ");
+				System.out.println("32. Voir la liste des professeurs ");
+				
+			/** Si choix = classement */	
+			}else if(choix == 4) {
+				System.out.println("41. Classement de la promotion ");
+				System.out.println("42. Classement par matière ");	
+			}
+			sc.close();		
+		}while(choix == 1 || choix == 2 || choix == 3 || choix == 4);
 		
-			if(choix1 == 3) {
-				rechercherEleve(promotion);
-			}
-			if(choix == 4) {	
-				//whoProf(profs);
-				ajouterNote(profs, whoProf(profs));	
-			}	
-			else {
-				System.out.println("\n----------error----------");
-			}
-		}else if(choix == 2) {
-			
-		}
-		sc.close();		
 	}
 	
 
 	
-	public static String whoProf(List<Professeur> profs) {
+	public static Professeur whoProf(List<Professeur> profs) {
 		Scanner sc = new Scanner(System.in);
-		
-//		System.out.println("Quel est votre nom : ");
-//		String nomm = sc.nextLine();
-//		
-//		for(Professeur prof : profs) {
-//			if(prof.getNom().equals(nomm)) {
-//				sc.close();
-//				return prof;
-//			}
-//		}
-//		System.out.println("Pas de prof trouvé avec ce nom");
-//		sc.close();
-//		return null;
 		
 		System.out.println("Vous etes profs, mais qui etes-vous ? ");
 		int i = 0;
@@ -87,14 +100,16 @@ public class TestCSV {
 		}
 		
 		String nomProf = null;
+		Professeur proff = new Professeur(null, null);
 		int numProf = Integer.MAX_VALUE;
 		
-		@SuppressWarnings("unused")
+
 		boolean OK = true;
 		
 		do {
 			try {
 				 numProf = sc.nextInt();
+				 sc.nextLine();
 			} catch (InputMismatchException e) {
 				System.out.println("Entrer un entier");
 				OK = false;
@@ -103,6 +118,7 @@ public class TestCSV {
 			
 			if(numProf <= profs.size()){
 				nomProf = profs.get(numProf).getNom();
+				proff = profs.get(numProf);
 				OK = true;
 			}else {
 				System.out.println("Veuillez entre un numero valide");
@@ -110,7 +126,7 @@ public class TestCSV {
 			}
 		}while(OK == false);
 		sc.close();
-		return nomProf;
+		return proff;
 	}
 	
 	
