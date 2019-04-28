@@ -15,13 +15,12 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.ApplicationFrame;
 import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Evaluation;
 import notesElevesProfesseurs.Promotion;
 
 
-public class BulletinEleve extends ApplicationFrame {
+public class BulletinEleve extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 //	private Eleve bulletinEleve = null;
@@ -29,8 +28,7 @@ public class BulletinEleve extends ApplicationFrame {
 
 	public BulletinEleve(final String title, Eleve _bulletinEleve, Promotion _promotion) {
         super(title);      
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+       
         Eleve bulletinEleve = _bulletinEleve;
     	Promotion promotion = _promotion;
         final CategoryDataset dataset1 = createDataset1(bulletinEleve, promotion);

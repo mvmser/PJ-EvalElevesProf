@@ -119,7 +119,7 @@ public class InterfaceGraphique extends JFrame{
 	private void build() {
 		//frmEvaluationEleve = new JFrame();
 		this.setSize(400,200);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setLocationRelativeTo(null); 
 		this.setResizable(false); 
 		this.setBackground(Color.LIGHT_GRAY);
@@ -927,12 +927,14 @@ public class InterfaceGraphique extends JFrame{
 
 					final BulletinEleve notesEleve = new BulletinEleve("Bulletin de notes", eleveSelected, promotion);
 					notesEleve.pack();
+					notesEleve.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 			        RefineryUtilities.centerFrameOnScreen(notesEleve); 
 			        notesEleve.setVisible(true);
 
+
 				}else {
-					JOptionPane.showMessageDialog(null,"Indiquez d'abord qui vous �tes", "Erreur", JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(null,"Indiquez d'abord qui vous etes", "Erreur", JOptionPane.ERROR_MESSAGE);	
 				}
 				
 			}
