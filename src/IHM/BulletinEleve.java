@@ -29,7 +29,9 @@ public class BulletinEleve extends ApplicationFrame {
 
 	public BulletinEleve(final String title, Eleve _bulletinEleve, Promotion _promotion) {
         super(title);      
-		this.setDefaultCloseOperation(ApplicationFrame.EXIT_ON_CLOSE);
+		//this.setDefaultCloseOperation(ApplicationFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(ApplicationFrame.DISPOSE_ON_CLOSE);
+		//this.setDefaultCloseOperation(ApplicationFrame.HIDE_ON_CLOSE);
 
         Eleve bulletinEleve = _bulletinEleve;
     	Promotion promotion = _promotion;
