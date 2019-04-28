@@ -89,7 +89,7 @@ public class Promotion {
 				return eleve;
 			}	
 		}	
-		System.out.println("Pas d'eleve trouv� avec cet identifiant");
+		System.out.println("Pas d'eleve trouve avec cet identifiant");
 		return null;
 	}
 	
