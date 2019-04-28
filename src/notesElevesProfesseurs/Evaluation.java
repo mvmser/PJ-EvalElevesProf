@@ -1,6 +1,8 @@
 package notesElevesProfesseurs;
 
 /**
+ * @author SERHIR
+ * @author ZARGA
  * @version 1.0
  */
 public class Evaluation implements Comparable<Evaluation>{
@@ -20,22 +22,42 @@ public class Evaluation implements Comparable<Evaluation>{
 	}
 	
 	/**Getters */
+	/**
+	 * Permet de connaitre la matiere
+	 * @return la matiere
+	 */
 	public String getMatiere() {
 		return matiere;
 	}
 
+	/**
+	 * Permet de connaitre la note
+	 * @return
+	 */
 	public double getNote() {
 		return note;
 	}
 
+	/**
+	 * Permet de connaitre l'eleve corrigé
+	 * @return
+	 */
 	public Eleve getEleveCorrige() {
 		return eleveCorrige;
 	}
 
+	/**
+	 * Permetde connaitre le professeur correcteur
+	 * @return
+	 */
 	public Professeur getProfesseurCorrecteur() {
 		return professeurCorrecteur;
 	}
 
+	/**
+	 * Permet de modifier la note
+	 * @param note
+	 */
 	public void setNote(double note) {
 		this.note = note;
 	}
@@ -52,6 +74,10 @@ public class Evaluation implements Comparable<Evaluation>{
 				+ this.matiere + " " + this.note + ")\n";
 	}
 	
+	/**
+	 * Pour ordonner les notes par ordre croissant
+	 * @since 1.0
+	 */
 	public int compareTo(Evaluation evaluation){
 		if(evaluation.note < this.note)
 	          return -1;

@@ -26,7 +26,13 @@ import notesElevesProfesseurs.Professeur;
 import notesElevesProfesseurs.Promotion;
 import readCSV.ReadCSV;
 
-
+/**
+ * Permet d'avoir un bulletin de note d'un eleve aléatoir avec des notes aleatoire
+ * ainsi que des statiques concernant une plus grande promotion.
+ * @author SERHIR
+ * @author ZARGA
+ *
+ */
 public class NotesEleveChart extends ApplicationFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -34,6 +40,10 @@ public class NotesEleveChart extends ApplicationFrame {
 	private static List<Eleve> eleves = new ArrayList<>();
 	private static List<Professeur> profs = new ArrayList<>();
 
+	/**
+	 * 
+	 * @param args
+	 */
     public static void main(final String[] args) {
 		/** On cree les eleves*/
     	eleves = ReadCSV.readElevesFromCSV();
@@ -55,6 +65,10 @@ public class NotesEleveChart extends ApplicationFrame {
 
     }
 
+    /**
+     * 
+     * @param title
+     */
 	public NotesEleveChart(final String title) {
         super(title);
         
@@ -95,6 +109,10 @@ public class NotesEleveChart extends ApplicationFrame {
         setContentPane(chartPanel);
     }
 
+	/**
+	 * 
+	 * @return
+	 */
     private CategoryDataset createDataset1() {
 	
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();

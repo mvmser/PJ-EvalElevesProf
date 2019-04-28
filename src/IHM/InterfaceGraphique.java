@@ -55,6 +55,7 @@ public class InterfaceGraphique extends JFrame{
 	
 	private JPanel cardsPanelCentral;
 	
+	/** Constantes des cards*/
 	final static String ACCUEIL = "ACCUEIL";
 	final static String AJOUTER_ELEVE = "AJOUTER_ELEVE";
 	final static String AJOUTER_PROF = "AJOUTER_PROF"; 
@@ -68,6 +69,7 @@ public class InterfaceGraphique extends JFrame{
 	final static String CLASSEMENT_MATIERE = "CLASSEMENT_MATIERE"; 
 	final static String AJOUTER_PROMOTION = "AJOUTER_PROMOTION";
 	
+	/** Attributs */
 	DefaultTableModel tableModel;
 	static JProgressBar progressBar = new JProgressBar();
 	Eleve eleveRecherche = null;
@@ -77,7 +79,7 @@ public class InterfaceGraphique extends JFrame{
 	Eleve eleveSelected = null;
 
 	/**
-	 * Launch the application.
+	 * Lancer l'application
 	 */
 	public static void main(String[] args) {	
 		
@@ -130,6 +132,10 @@ public class InterfaceGraphique extends JFrame{
 		setContentPane(buildContentPane());
 	}
 	
+	/**
+	 * 
+	 * @return le panel
+	 */
 	private JPanel buildContentPane(){
 		JPanel panel = new JPanel();
 		
@@ -306,6 +312,10 @@ public class InterfaceGraphique extends JFrame{
 		return panel;
 	}
 
+	/**
+	 * Permet de construire notre page acceuil
+	 * @return 
+	 */
 	private JPanel fenetreAccueil() {
 		JPanel panelAccueil = new JPanel();
 		
@@ -341,6 +351,10 @@ public class InterfaceGraphique extends JFrame{
 		return panelAccueil;
 	}
 
+	/**
+	 * Permet de construire notre page Ajouter eleve
+	 * @return 
+	 */
 	public JPanel fenetreAjouterEleve() {
 		JPanel panelEleve = new JPanel();
 		JTextField textFieldNom, textFieldPrenom, textFieldJour, textFieldMois, textFieldAnnee;
@@ -470,6 +484,10 @@ public class InterfaceGraphique extends JFrame{
 		return panelEleve;
 	}
 	
+	/**
+	 * Permet de construire notre page Ajouter prof
+	 * @return 
+	 */
 	public JPanel fenetreAjouterProf() {
 		JPanel panelProf = new JPanel();
 		JTextField textFieldNom, textFieldPrenom;
@@ -566,6 +584,10 @@ public class InterfaceGraphique extends JFrame{
 		return panelProf;
 	}
 
+	/**
+	 * Permet de construire notre page ajouter promotion
+	 * @return 
+	 */
 	public JPanel fenetreAjouterPromotion() {
 		JPanel panelPromotion = new JPanel();
 		JTextField textFieldNom;
@@ -610,6 +632,10 @@ public class InterfaceGraphique extends JFrame{
 		return panelPromotion;
 	}
 
+	/**
+	 * Permet de construire notre page rechercher eleve
+	 * @return 
+	 */
 	public JPanel fenetreRechercherEleve() {
 		JPanel panelRecherche = new JPanel();
 		JTextField textFieldID;
@@ -691,6 +717,10 @@ public class InterfaceGraphique extends JFrame{
 		return panelRecherche;
 	}
 
+	/**
+	 * Permet de construire notre page modifier notes
+	 * @return 
+	 */
 	public JPanel fenetreModifierNotes() {
 		JPanel panelModiferNotes = new JPanel();
 		JTextField textFieldID;
@@ -826,6 +856,10 @@ public class InterfaceGraphique extends JFrame{
 		return panelModiferNotes;
 	}
 
+	/**
+	 * Permet de construire notre page consulter note
+	 * @return 
+	 */
 	private JPanel fenetreConsulterNotes() {
 		JPanel panelConsulterNotes = new JPanel();
 
@@ -945,6 +979,10 @@ public class InterfaceGraphique extends JFrame{
 		return panelConsulterNotes;
 	}
 
+	/**
+	 * Permet de construire notre page voir les eleves de la promo
+	 * @return 
+	 */
 	private JPanel fenetreVoirEleves() {
 		JPanel panelVoirEleves = new JPanel();
 		
@@ -998,6 +1036,10 @@ public class InterfaceGraphique extends JFrame{
 		return panelVoirEleves;
 	}
 
+	/**
+	 * Permet de construire notre page voir les profs de la promo
+	 * @return 
+	 */
 	private JPanel fenetreVoirProfs() {
 		JPanel panelVoirProf = new JPanel();
 
@@ -1049,7 +1091,10 @@ public class InterfaceGraphique extends JFrame{
 		return panelVoirProf;
 	}
 	
-
+	/**
+	 * Permet de construire notre page voir promotion
+	 * @return 
+	 */
 	private JPanel fenetreVoirPromotions() {
 		JPanel panelPromotions = new JPanel();
 
@@ -1102,6 +1147,10 @@ public class InterfaceGraphique extends JFrame{
 	}
 	
 
+	/**
+	 * Permet de construire notre page Classement promotion
+	 * @return 
+	 */
 	private JPanel fenetreClassementPromo() {
 		JPanel panelClassementPromo = new JPanel();
 		panelClassementPromo.setBackground(Color.WHITE);

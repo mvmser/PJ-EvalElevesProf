@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * @version 1.1
- * 
+ * @version 1.2
+ * @author SERHIR
+ * @author ZARGA
+ * Une promotion
  */
 
 public class Promotion {
@@ -45,7 +47,10 @@ public class Promotion {
 		this.nom = nom;
 	}
 	
-	
+	/**
+	 * Permet de connaitre toutes les promotions existantes
+	 * @return
+	 */
 	public static ArrayList<Promotion> getPromotions() {
 		return promotions;
 	}
@@ -59,10 +64,18 @@ public class Promotion {
 		return eleves;
 	}
 	
+	/**
+	 * Permet de connaitres les profs qui interviennent dans la promo
+	 * @return
+	 */
 	public ArrayList<Professeur> getProfesseurs() {
 		return professeurs;
 	}
 
+	/**
+	 * Permet d'ajouter un intervenant à la promo
+	 * @param professeur
+	 */
 	public void addProfesseur(Professeur professeur) {
 		professeurs.add(professeur);
 	}
@@ -145,6 +158,11 @@ public class Promotion {
 		return eleveOrdreDecroissantMediane;
 	}
 	
+	/**
+	 * Permet de connaitre la moyenne des moyennes des eleves d'une promotion
+	 * @return la moyenne generale de la promotion
+	 * @since 1.2
+	 */
 	public double moyenne() {
 		double moyenne = 0;
 		double total = 0;
@@ -157,6 +175,11 @@ public class Promotion {
 		return (double) Math.round(moyenne * 100) / 100;
 	}
 	
+	/**
+	 * Permet de connaitre la moyenne de la promotion sur une seule matiere donnee en parametre
+	 * @param matiere
+	 * @return la moyenne de la promotion pour une matiere
+	 */
 	public double moyenneParMatiere(String matiere) {
 		double moyenne = 0;
 		double total = 0;
@@ -182,6 +205,10 @@ public class Promotion {
 		return (double) Math.round(moyenne * 100) / 100;
 	}
 	
+	/**
+	 * Permet de connaitre la mediane des medianes des eleves de la promotion
+	 * @return la mediane de la promotion
+	 */
 	public double mediane() {
 		double mediane = 0;
 		ArrayList<Eleve> elevesOrdreCroissantMediane = classementOrdreCroissantMediane();
@@ -210,7 +237,8 @@ public class Promotion {
 	/**
 	 * Permet de connaitre la mediane de la promotion par matiere
 	 * on enregistre tout dabord les notes de la matiere voulu
-	 * @return
+	 * @return la mediane de la promotion pour une matiere
+	 * @param matiere dont ont veut la mediane
 	 */
 	public double medianeParMatiere(String matiere) {
 		double mediane = 0;
@@ -250,6 +278,7 @@ public class Promotion {
 	/**
      * Permet de remplir les evaluations des eleves avec des notes aleatoires
      * a mettre dans promotion
+     * @return vrai si on a rempli les eval faux sinon
      */
     public boolean remplirEvalEleves() {
     	//System.out.println(professeurs.size());
@@ -271,6 +300,10 @@ public class Promotion {
     	return false;    	
     }
     
+    /**
+     * Pour afficher le nom de la promotion
+     * @return Promotion: nomPromo
+     */
     @Override
     public String toString() {
 		return "Promotion: " + nom;

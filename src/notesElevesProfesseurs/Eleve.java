@@ -4,9 +4,10 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 /**
+ * Classe eleve
  * @version 1.4
- *
- * pivot table (tableau crois� dynamique) ?
+ * @author SERHIR
+ * @author ZARGA
  */
 public class Eleve extends Personne implements Comparable<Eleve>{
 

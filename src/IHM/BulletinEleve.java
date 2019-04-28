@@ -19,13 +19,24 @@ import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Evaluation;
 import notesElevesProfesseurs.Promotion;
 
-
+/**
+ * 
+ * @author SERHIR
+ * @author ZARGA
+ * Pour afficher le bulletin d'un eleve dans l'interface graphique onglet "consulter notes"
+ */
 public class BulletinEleve extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 //	private Eleve bulletinEleve = null;
 //	private Promotion promotion = null;
 
+	/**
+	 * Constructeur
+	 * @param title
+	 * @param _bulletinEleve
+	 * @param _promotion
+	 */
 	public BulletinEleve(final String title, Eleve _bulletinEleve, Promotion _promotion) {
         super(title);      
        
@@ -65,6 +76,12 @@ public class BulletinEleve extends JFrame {
         setContentPane(chartPanel);
     }
 
+	/**
+	 * 
+	 * @param bulletinEleve
+	 * @param promotion
+	 * @return
+	 */
     private CategoryDataset createDataset1(Eleve bulletinEleve, Promotion promotion) {
 	
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();

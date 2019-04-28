@@ -11,12 +11,21 @@ import notesElevesProfesseurs.Promotion;
 import readCSV.ReadCSV;
 import writeCSV.WriteCSV;
 
+/**
+ * 
+ * @author SERHIR
+ * @author ZARGA
+ */
 public class TestCSV {
 
+	/** */
 	private static Promotion P2021 = new Promotion("2021");
 	static private Scanner sc;
 
-
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {		
 		/** Afficher la liste de tous les eleves*/
 		//afficherEleve(eleves);
@@ -29,7 +38,10 @@ public class TestCSV {
 		sc.close();
 	}
 	
-	
+	/**
+	 * 
+	 * @param promotion
+	 */
 	public static void menu(Promotion promotion) {
 		/** Permet d'enregistrer dans la memoire tous les eleves et profs des fichiers csv*/
 		ArrayList<Professeur> profs = (ArrayList<Professeur>) ReadCSV.readProfesseursFromCSV();

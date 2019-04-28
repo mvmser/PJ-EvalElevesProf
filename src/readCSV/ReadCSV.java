@@ -10,7 +10,8 @@ import notesElevesProfesseurs.Eleve;
 import notesElevesProfesseurs.Professeur;
 
 /**
- * @author SERHIR, ZARGA
+ * @author SERHIR
+ * @author ZARGA
  * @version 1.0
  */
 public interface ReadCSV {

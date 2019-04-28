@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 /**
  * @version 1.4
- *
+ * @author SERHIR
+ * @author ZARGA
  */
 public class Professeur extends Personne {
 
@@ -37,6 +38,10 @@ public class Professeur extends Personne {
 		promotion.addProfesseur(this);
 	}	
 	
+	/**
+	 * Permet de connaitre le nom
+	 * @return le nom
+	 */
 	public String getNom() {
 		return nom;
 	}
@@ -53,7 +58,10 @@ public class Professeur extends Personne {
 	}
 	
 	
-	
+	/**
+	 * Permet davoir la liste des promotions ou le professeur intervient
+	 * @return
+	 */
 	public List<Promotion> getPromotionsOfProf() {
 		return promotionsOfProf;
 	}

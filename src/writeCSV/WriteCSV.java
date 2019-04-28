@@ -13,7 +13,8 @@ import notesElevesProfesseurs.Professeur;
 import readCSV.ReadCSV;
 
 /**
- * @author SERHIR, ZARGA
+ * @author SERHIR
+ * @author ZARGA
  * @version 1.0
  */
 public interface WriteCSV{
@@ -57,6 +58,13 @@ public interface WriteCSV{
 		return false; 
 	}
 	
+	/**
+	 * Permet d'ecrire un prof dans le fichier CSV
+	 * sans supprimer les autres prof
+	 * si le prof existe deja, il nest pas ajouté
+	 * @param prof
+	 * @return vrai si le prof a ete ajoute faux sinon
+	 */
 	public static boolean writeProfToCSV(Professeur prof){
 		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
 		if(!isProfExist(profs, prof)) {
@@ -81,6 +89,12 @@ public interface WriteCSV{
 		return false; 
 	}
 	
+	/**
+	 * Permet de savoir si un eleve existe deja dans le fichier
+	 * @param eleves
+	 * @param addedEleve
+	 * @return vrai s'il existe faux sinon
+	 */
 	public static boolean isEleveExist (List<Eleve> eleves, Eleve addedEleve) {
 		for (Eleve eleve : eleves) {
 			if(addedEleve.getNom().equalsIgnoreCase(eleve.getNom()) 
@@ -92,6 +106,12 @@ public interface WriteCSV{
 		return false;
 	}
 	
+	/**
+	 * Permet de savoir si un prof existe dans le fichier
+	 * @param profs
+	 * @param addedProf
+	 * @return vrai s'il existe faux sinon
+	 */
 	public static boolean isProfExist (List<Professeur> profs, Professeur addedProf) {
 		for (Professeur prof : profs) {
 			if(addedProf.getNom().equalsIgnoreCase(prof.getNom()) 
