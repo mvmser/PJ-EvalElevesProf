@@ -1,5 +1,6 @@
 package test;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -15,20 +16,7 @@ public class TestCSV {
 	private static Promotion P2021 = new Promotion("2021");
 	static int numProf;
 
-	public static void main(String[] args) {
-		/** On a besoin de la promotion pour un prof*/
-		
-		/** Permet d'enregistrer dans la memoire tous les eleves et profs des fichiers csv*/
-		ReadCSV.readElevesFromCSV(); //on connaitra les eleves grace a la promo
-		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
-		
-		/** On donne la promotion sur laquelle les profs interviennent */
-		for (Professeur prof : profs) {
-			prof.addPromotionToProf(P2021);
-		}
-		/** On rempli les notes des eleves*/
-		P2021.remplirEvalEleves();
-		
+	public static void main(String[] args) {		
 		/** Afficher la liste de tous les eleves*/
 		//afficherEleve(eleves);
 		
@@ -40,8 +28,18 @@ public class TestCSV {
 	
 	
 	public static void menu(Promotion promotion) {
-		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
-		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
+		/** Permet d'enregistrer dans la memoire tous les eleves et profs des fichiers csv*/
+		ArrayList<Professeur> profs = (ArrayList<Professeur>) ReadCSV.readProfesseursFromCSV();
+		ArrayList<Eleve> eleves = (ArrayList<Eleve>) ReadCSV.readElevesFromCSV();
+		
+		/** On donne la promotion sur laquelle les profs interviennent */
+		for (Professeur prof : profs) {
+			prof.addPromotionToProf(P2021);
+		}
+		
+		/** On rempli les notes des eleves*/
+		P2021.remplirEvalEleves();
+
 		Scanner sc = new Scanner(System.in);
 		int choix = 0;
 		
@@ -60,7 +58,6 @@ public class TestCSV {
 				try {
 					choix = sc.nextInt();
 					isNumber = true;
-					
 				}catch(InputMismatchException e) {
 					System.out.println("Entrer un entier");
 					sc.nextLine();
@@ -74,115 +71,248 @@ public class TestCSV {
 				/** Savoir qui est ce prof */
 				whoProf(profs);
 				
-				System.out.println("11. Rechercher eleve ");
-				System.out.println("12. Ajouter Notes ou modification d'une note ");
-				int choix1 = sc.nextInt();
-				sc.nextLine();
+				int choixProf = 0;
+				do {
+					System.out.println("1. Rechercher eleve");
+					System.out.println("2. Ajouter Notes ou modification d'une note");
+
+					isNumber = false;
+					do {
+						try {
+							choixProf = sc.nextInt();
+							isNumber = true;
+						}catch(InputMismatchException e) {
+							System.out.println("Entrer un entier");
+							isNumber = false;
+							sc.nextLine();
+						}
+					}while(isNumber == false);
+					
+				}while(choixProf < 1 || choixProf > 2);
 				
-				if(choix1 == 11) {
-					rechercherEleve(promotion);
-				}
-				if(choix1 == 12) {	
-					ajouterNote(profs, whoProf(profs).getNom());	
-				}	
-				else {
-					System.out.println("\n----------error----------");
+				switch (choixProf) {
+					case 1:
+						rechercherEleve(promotion);
+						break;
+					case 2:
+						ajouterNote(profs, whoProf(profs).getNom());	
+						break;
+		
+					default:
+						System.out.println("\n----------error----------");
+						break;
 				}
 				
 			/** Si choix = eleve */
 			}else if(choix == 2) {
-				System.out.println("21. Consulter mon bulletin de note ");
-				System.out.println("22. Ma moyenne ");
-				System.out.println("23. Ma mediane ");
-				int choix2 = sc.nextInt();
-				sc.nextLine();
-				
-				if(choix2 == 21) {
-					consulterBulletin(eleves, P2021);
-				}
-				else if(choix2 == 22) {
-					consulterMoy(eleves, promotion);
-				}
-				else if(choix2 == 23) {
-					consulterMed(eleves, promotion);
+				int choixBulletin = 0;
+				Eleve eleve =  getEleveFromID(eleves);
+				if(eleve != null) {
+					do {
+						System.out.println("1. Consulter mon bulletin de note");
+						System.out.println("2. Consulter ma moyenne");
+						System.out.println("3. Consulter ma mediane");
+
+						isNumber = false;
+						do {
+							try {
+								choixBulletin = sc.nextInt();
+								isNumber = true;
+							}catch(InputMismatchException e) {
+								System.out.println("Entrer un entier");
+								isNumber = false;
+								sc.nextLine();
+							}
+						}while(!isNumber);
+						
+					}while(choixBulletin < 1 || choixBulletin > 3);
+					
+					switch (choixBulletin) {
+						case 1:
+							System.out.println("Mes notes:");
+							System.out.println(eleve.getMatieresAndNotes());
+							break;
+						case 2:
+							System.out.println("Mes notes:");
+							System.out.println(eleve.moyenne());
+							break;
+						case 3:
+							System.out.println("Mes notes:");
+							System.out.println(eleve.mediane());
+							break;
+			
+						default:
+							break;
+					}
+				}else {
+					System.out.println("Eleve introuvable.");
 				}
 				
 				
 			/** Si choix = consultation */
 			}else if(choix == 3) {
-				System.out.println("31. Voir la liste des élèves ");
-				System.out.println("32. Voir la liste des professeurs ");
-				int choix3 = sc.nextInt();
-				sc.nextLine();
-				
-				if(choix3 == 31) {
-					afficherListeEleve(eleves);
-				}
-				else if(choix3 == 32) {
-					afficherListeProf(profs);
+				int choixListe = 0;
+				do {
+					System.out.println("1. Voir liste des eleves");
+					System.out.println("2. Voir liste des professeurs");
+
+					isNumber = false;
+					do {
+						try {
+							choixListe = sc.nextInt();
+							isNumber = true;
+						}catch(InputMismatchException e) {
+							System.out.println("Entrer un entier");
+							isNumber = false;
+							sc.nextLine();
+						}
+					}while(isNumber == false);
+					
+				}while(choixListe < 1 || choixListe > 2);
+
+				switch (choixListe) {
+					case 1:
+						afficherListeEleve(eleves);
+						break;
+					case 2:
+						afficherListeProf(profs);
+						break;
+	
+					default:
+						break;
 				}
 				
 			/** Si choix = classement */	
 			}else if(choix == 4) {
-				System.out.println("41. Classement par moyenne ");
-				System.out.println("42. Classement par mediane ");	
-				int choix4 = sc.nextInt();
-				sc.nextLine();
-				
-				if(choix4 == 41) {
-					System.out.println("411. Ordre croissant ");
-					System.out.println("412. Ordre décroissant ");	
-					int choix41 = sc.nextInt();
-					sc.nextLine();
+				int choixClassement = 0;
+				do {
+					System.out.println("1. Classement par moyenne (ordre croissant)");
+					System.out.println("2. Classement par moyenne (ordre decroissant)");
+					System.out.println("3. Classement par mediane (ordre croissant)");	
+					System.out.println("4. Classement par mediane (ordre decroissant)");	
+
+					isNumber = false;
+					do {
+						try {
+							choixClassement = sc.nextInt();
+							isNumber = true;
+						}catch(InputMismatchException e) {
+							System.out.println("Entrer un entier");
+							isNumber = false;
+							sc.nextLine();
+						}
+					}while(isNumber == false);
 					
-					if(choix41 == 411) {
-						System.out.print("\n-------------classementOrdreCroissantMoyenne--------------\n");
-						System.out.println(P2021.classementOrdreCroissantMoyenne());
-					}
-					else if(choix41 == 412) {
-						System.out.print("\n------------classementOrdreDecroissantMoyenne-----------------\n");
-						System.out.println(P2021.classementOrdreDecroissantMoyenne());
-					}
+				}while(choixClassement < 1 || choixClassement > 4);
 				
-				}
-				else if(choix4 == 42) {
-					System.out.println("421. Ordre croissant ");
-					System.out.println("422. Ordre décroissant ");	
-					int choix42 = sc.nextInt();
-					sc.nextLine();
+				switch (choixClassement) {
+					case 1:
+						System.out.print("\n--classementOrdreCroissantMoyenne-- Nb eleves: "
+								+ P2021.classementOrdreCroissantMoyenne().size() +"\n");
+							for (Eleve eleve : P2021.classementOrdreCroissantMoyenne()) {
+								System.out.println(eleve.getNom() + " " + eleve.getPrenom() 
+								+ " moyenne: " + eleve.moyenne());
+							}	
+						break;
+					case 2:
+						System.out.print("\n--classementOrdreDecroissantMoyenne-- Nb eleves: "
+								+ P2021.classementOrdreDecroissantMoyenne().size() +"\n");
+						for (Eleve eleve : P2021.classementOrdreDecroissantMoyenne()) {
+							System.out.println(eleve.getNom() + " " + eleve.getPrenom() 
+							+ " moyenne: " + eleve.moyenne());
+						}
+						break;
+					case 3:
+						System.out.print("\n--classementOrdreCroissantMediane-- Nb eleves: "
+								+ P2021.classementOrdreCroissantMediane().size() +"\n");
+						for (Eleve eleve : P2021.classementOrdreCroissantMediane()) {
+							System.out.println(eleve.getNom() + " " + eleve.getPrenom() 
+							+ " mediane: " + eleve.moyenne());
+						}
+						break;
+					case 4:
+						System.out.print("\n--classementOrdreDecroissantMediane-- Nb eleves: "
+								+ P2021.classementOrdreDecroissantMediane().size() +"\n");
+						for (Eleve eleve : P2021.classementOrdreDecroissantMediane()) {
+							System.out.println(eleve.getNom() + " " + eleve.getPrenom() 
+							+ " mediane: " + eleve.moyenne());
+						}
+						break;
 					
-					if(choix42 == 421) {
-						System.out.print("\n------------classementOrdreCroissantMediane---------------\n");
-						System.out.println(P2021.classementOrdreCroissantMediane());
-					}
-					else if(choix42 == 422) {
-						System.out.print("\n----------classementOrdreDecroissantMediane------------------\n");
-						System.out.println(P2021.classementOrdreDecroissantMediane());
-					}
+					default:
+						break;
 				}
-				
 				
 			/** Si choix = ajout */	
 			}else if(choix == 5) {
-				System.out.println("51. Ajout de professeur ");
-				System.out.println("52. Ajout d'eleve ");	
-				int choix5 = sc.nextInt();
-				sc.nextLine();
+				int choixAjout = 0;
+				do {
+					System.out.println("1. Ajout de professeur");
+					System.out.println("2. Ajout d'eleve");
+					System.out.println("2. Ajout de promotion");
+
+					isNumber = false;
+					do {
+						try {
+							choixAjout = sc.nextInt();
+							isNumber = true;
+						}catch(InputMismatchException e) {
+							System.out.println("Entrer un entier");
+							isNumber = false;
+							sc.nextLine();
+						}
+					}while(isNumber == false);
+					
+				}while(choixAjout < 1 || choixAjout > 3);
 				
-				if(choix5 == 51) {
-					ajoutProf();
-				}
-				else if(choix5 == 52) {
-					ajoutEleve();
+				switch (choixAjout) {
+					case 1:
+						
+						break;
+						
+					case 2:
+						
+						break;
+						
+					case 3:
+						
+						break;
+	
+					default:
+						break;
 				}
 			}
-			//sc.close();		
-		}while(choix == 1 || choix == 2 || choix == 3 || choix == 4 || choix == 5);
+		}while(choix != 0);
 		
 		sc.close();
 	}
 	
 	
+	public static Eleve getEleveFromID(ArrayList<Eleve> eleves) {
+		int id = 0;
+		System.out.printf("Quel est l'identifiant ?  ");
+		Scanner sc = new Scanner(System.in);
+		
+		boolean isNumber = false;
+		do {
+			try {
+				id = sc.nextInt();
+				isNumber = true;
+			}catch(InputMismatchException e) {
+				System.out.println("Entrer un entier");
+				isNumber = false;
+				sc.nextLine();
+			}
+		}while(isNumber == false);
+		
+		sc.close();
+		
+		for (Eleve eleve : eleves) {
+			if(eleve.getNumIdentifiant() == id)
+				return eleve;
+		}
+		return null;
+	}
 	
 	/**
 	 * Permet de savoir quel profeseur est l'utilisateur parmi la liste de professeur
@@ -213,7 +343,7 @@ public class TestCSV {
 			} catch (InputMismatchException e) {
 				System.out.println("Entrer un entier");
 				OK = false;
-				//sc.nextLine();
+				sc.nextLine();
 			}
 			
 			if(numProf <= profs.size()){
@@ -226,7 +356,7 @@ public class TestCSV {
 			}
 		}while(OK == false);
 		
-		sc.close();
+		
 		return proff;
 	}
 	
@@ -234,18 +364,20 @@ public class TestCSV {
 	 * Permet de rechercher un eleve par un professeur
 	 * @param promotion
 	 */
-	public static void rechercherEleve(Promotion promotion) {
-		System.out.println("\n----------Rechercher un eleve avec son identifiant :----------");
+	public static Eleve rechercherEleve(Promotion promotion) {
+		//System.out.println("\n----------Rechercher un eleve avec son identifiant :----------");
 		System.out.printf("Quel est l'identifiant ?  ");
 		Scanner sc = new Scanner(System.in);
-
+		Eleve eleve = null;
 		try {
 			int numid = sc.nextInt();
-			Professeur.rechercheEleve(numid, promotion);
+			eleve = Professeur.rechercheEleve(numid, promotion);
 		} catch (InputMismatchException e) {
 			System.out.println("Entrer un entier");
+			sc.nextLine();
 		}
 		sc.close();
+		return eleve;
 	}
 	
 	
@@ -290,22 +422,25 @@ public class TestCSV {
 		sc.close();
 	}
 	
-	public static void consulterBulletin(List<Eleve> eleves, Promotion promotion) {
+	public static void consulterBulletin(Promotion promotion) {
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("Consultation des notes : ");
 		System.out.printf("Entrer son identifiant : ");
 		int numid = 0;
+		Eleve eleve = null;
 		try {
 			numid = sc.nextInt();
 			sc.nextLine();
-			Professeur.rechercheEleve(numid, P2021);
-			
-			
+			eleve = Professeur.rechercheEleve(numid, P2021);
 		} catch (InputMismatchException e) {
 			System.out.println("Entrer un entier");
+			sc.nextLine();
 		}
 		
+		if(eleve != null) {
+			System.out.println("ok eleve1");
+		}
 		//getMatieresAndNotes()
 		sc.close();
 	}
@@ -335,9 +470,6 @@ public class TestCSV {
 		sc.close();
 	}
 	
-	public static void consulterMed(List<Eleve> eleves, Promotion promotion) {
-		
-	}
 	
 	public static void afficherListeEleve(List<Eleve> eleves) {
 		for(Eleve eleve : eleves) {	
