@@ -35,6 +35,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
 import java.awt.event.ItemListener;
@@ -924,10 +925,11 @@ public class InterfaceGraphique extends JFrame{
 
 					final BulletinEleve notesEleve = new BulletinEleve("Bulletin de notes", eleveSelected, promotion);
 					notesEleve.pack();
-			        RefineryUtilities.centerFrameOnScreen(notesEleve);
+			        RefineryUtilities.centerFrameOnScreen(notesEleve); 
 			        notesEleve.setVisible(true);
+
 				}else {
-					JOptionPane.showMessageDialog(null,"Indiquez d'abord qui vous êtes", "Erreur", JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(null,"Indiquez d'abord qui vous ï¿½tes", "Erreur", JOptionPane.ERROR_MESSAGE);	
 				}
 				
 			}
