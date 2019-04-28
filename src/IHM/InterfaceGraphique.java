@@ -42,6 +42,13 @@ import java.awt.event.ItemEvent;
 import javax.swing.JProgressBar;
 import javax.swing.ListSelectionModel;
 
+/**
+ * L'interface graphique de l'application Evaluation Prof eleve
+ * Attention: neccessite le rajout des librairies de JFREECHART
+ * @version 2.0
+ * @author SERHIR
+ * @author ZARGA
+ */
 public class InterfaceGraphique extends JFrame{
 
 	private static final long serialVersionUID = 1L;

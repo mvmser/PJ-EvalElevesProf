@@ -19,7 +19,7 @@ public class TestCSV {
 		/** On a besoin de la promotion pour un prof*/
 		
 		/** Permet d'enregistrer dans la memoire tous les eleves et profs des fichiers csv*/
-		List<Eleve> eleves = ReadCSV.readElevesFromCSV();
+		ReadCSV.readElevesFromCSV(); //on connaitra les eleves grace a la promo
 		List<Professeur> profs = ReadCSV.readProfesseursFromCSV();
 		
 		/** On donne la promotion sur laquelle les profs interviennent */
@@ -29,16 +29,11 @@ public class TestCSV {
 		/** On rempli les notes des eleves*/
 		P2021.remplirEvalEleves();
 		
-	
-		
-		
 		/** Afficher la liste de tous les eleves*/
 		//afficherEleve(eleves);
 		
 		/** Afficher la liste de tous les professeurs*/
 		//afficherProfesseur(profs);
-		
-		
 		
 		menu(P2021);
 	}
@@ -184,6 +179,7 @@ public class TestCSV {
 			//sc.close();		
 		}while(choix == 1 || choix == 2 || choix == 3 || choix == 4 || choix == 5);
 		
+		sc.close();
 	}
 	
 	
@@ -203,6 +199,7 @@ public class TestCSV {
 			i++;
 		}
 		
+		@SuppressWarnings("unused")
 		String nomProf = null;
 		Professeur proff = new Professeur(null, null);
 		int numProf = Integer.MAX_VALUE;
@@ -228,9 +225,8 @@ public class TestCSV {
 				OK = false;
 			}
 		}while(OK == false);
-		//sc.close();
 		
-		
+		sc.close();
 		return proff;
 	}
 	
@@ -249,7 +245,7 @@ public class TestCSV {
 		} catch (InputMismatchException e) {
 			System.out.println("Entrer un entier");
 		}
-		//sc.close();
+		sc.close();
 	}
 	
 	
@@ -291,7 +287,7 @@ public class TestCSV {
 		
 		Professeur.rechercheEleve(numid, P2021);
 		
-		//sc.close();
+		sc.close();
 	}
 	
 	public static void consulterBulletin(List<Eleve> eleves, Promotion promotion) {
@@ -311,6 +307,7 @@ public class TestCSV {
 		}
 		
 		//getMatieresAndNotes()
+		sc.close();
 	}
 	
 	public static void consulterMoy(List<Eleve> eleves, Promotion promotion) {
@@ -335,7 +332,7 @@ public class TestCSV {
 			sc.nextLine();
 		}
 	
-		
+		sc.close();
 	}
 	
 	public static void consulterMed(List<Eleve> eleves, Promotion promotion) {
@@ -365,6 +362,8 @@ public class TestCSV {
 		
 		Professeur prof1 = new Professeur(nom, prenom);
 		WriteCSV.writeProfToCSV(prof1);
+		
+		sc.close();
 	}
 	public static void ajoutEleve() {
 		Scanner sc = new Scanner(System.in);
@@ -389,7 +388,7 @@ public class TestCSV {
 		Eleve eleve1 = new Eleve(nom, prenom, jour, mois, annee);
 		WriteCSV.writeEleveToCSV(eleve1);
 		
-		
+		sc.close();
 	}
 	
 	/**

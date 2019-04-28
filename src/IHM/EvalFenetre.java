@@ -5,14 +5,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 import notesElevesProfesseurs.Professeur;
 
 
-
+/**
+ * @version 1.0
+ * @author SERHIR
+ * @author ZARGA
+ * @deprecated Utiliser InterfaceGraphique
+ */
 public class EvalFenetre extends JFrame implements ActionListener{
 	
 	private static final long serialVersionUID = 1L;
