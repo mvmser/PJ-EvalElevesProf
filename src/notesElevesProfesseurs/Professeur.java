@@ -93,7 +93,7 @@ public class Professeur extends Personne {
 	 * @param indice
 	 * @since 1.4
 	 */
-	public boolean setNote(Promotion promotion, int numId, int note, int indice) {
+	public boolean setNote(Promotion promotion, int numId, double note, int indice) {
 		try {
 			Eleve eleve = rechercheEleve(numId, promotion);
 			if(indice <= eleve.getEvaluations().size() && eleve.getEvaluations() != null) {

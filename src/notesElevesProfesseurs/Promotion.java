@@ -85,7 +85,7 @@ public class Promotion {
 	public Eleve rechercher(int numId) {
 		for(Eleve eleve: eleves) {
 			if(eleve.getNumIdentifiant() == numId) {
-				System.out.println(eleve);
+				//System.out.println(eleve);
 				return eleve;
 			}	
 		}	

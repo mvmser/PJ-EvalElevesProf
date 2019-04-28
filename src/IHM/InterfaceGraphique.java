@@ -34,9 +34,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import org.jfree.ui.RefineryUtilities;
+
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JProgressBar;
+import javax.swing.ListSelectionModel;
 
 public class InterfaceGraphique extends JFrame{
 
@@ -63,6 +67,11 @@ public class InterfaceGraphique extends JFrame{
 	
 	DefaultTableModel tableModel;
 	static JProgressBar progressBar = new JProgressBar();
+	Eleve eleveRecherche = null;
+	Professeur professeurSelected = null;
+	boolean eleveTrouve;
+	boolean genererBulletin;
+	Eleve eleveSelected = null;
 
 	/**
 	 * Launch the application.
@@ -439,6 +448,7 @@ public class InterfaceGraphique extends JFrame{
 		panelEleve.add(btnAjouter);
 		
 		JButton btnActualiserPromo = new JButton("Actualiser");
+		btnActualiserPromo.setToolTipText("Permet d'actualiser la liste des promotions dans le cas ou vous en avez ajout\u00E9");
 		btnActualiserPromo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				choice.removeAll();
@@ -531,6 +541,7 @@ public class InterfaceGraphique extends JFrame{
 		panelProf.add(btnAjouter);
 		
 		JButton button = new JButton("Actualiser");
+		button.setToolTipText("Permet d'actualiser la liste des promotions dans le cas ou vous en avez ajout\u00E9");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				choice.removeAll();
@@ -707,6 +718,9 @@ public class InterfaceGraphique extends JFrame{
 		
 		DefaultTableModel modelModifNote = new DefaultTableModel();
 		JTable modifierNoteTableau = new JTable(tableModel);
+		modifierNoteTableau.setToolTipText("Il est possible de modifier une ou plusieurs notes, mais noubliez pas d'appuyer sur entrer pour valider votre choix, puis de cliquer sur modifier pour enregistrer vos notes.");
+		modifierNoteTableau.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		modifierNoteTableau.setCellSelectionEnabled(true);
 		modifierNoteTableau.setModel(modelModifNote);
 		modifierNoteTableau.setBounds(20, 100, 660, 40);
 
@@ -714,13 +728,43 @@ public class InterfaceGraphique extends JFrame{
 		scrollPane.setBounds(10, 159, 674, 40);
 		panelModiferNotes.add(scrollPane);
 		
+		eleveTrouve = false;
+
 		/** */
 		ArrayList<String> matieres = new ArrayList<String>();
 		ArrayList<String> notes = new ArrayList<String>();
 		
+		JButton btnModifier = new JButton("Modifier");
+		btnModifier.setBounds(595, 303, 89, 23);
+		panelModiferNotes.add(btnModifier);
+		btnModifier.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(eleveTrouve) {
+					for (int i = 0; i < eleveRecherche.getEvaluations().size(); i++) {
+						System.out.print(modifierNoteTableau.getValueAt(0,i).toString() + ", ");
+						try {
+							professeurSelected.setNote(eleveRecherche.getPromotion(), eleveRecherche.getNumIdentifiant(), 
+									Double.parseDouble(modifierNoteTableau.getValueAt(0,i).toString()), i);
+						}catch(NumberFormatException nfe){
+				            JOptionPane.showMessageDialog(null,"Merci d'entrer une note valide", "Erreur", JOptionPane.ERROR_MESSAGE);
+						}		
+					}
+					System.out.println("");
+
+		            JOptionPane.showMessageDialog(null,"ok", "Attention", JOptionPane.INFORMATION_MESSAGE);	
+				}else {
+		            JOptionPane.showMessageDialog(null,"Merci de chercher un eleve", "Attention", JOptionPane.INFORMATION_MESSAGE);	
+				}
+			}
+		});
+						
 		JButton btnAjouter = new JButton("Rechercher");
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/** On supprime toutes les lignes pour ajouter les anciennes et les nouvelles (actualiser)*/
+				int n = modelModifNote.getRowCount();
+				for (int i=n-1 ; i>=0 ; --i) modelModifNote.removeRow(i);
+				
 				int idRecherche = 0;
 				boolean error = false;
 				
@@ -731,7 +775,6 @@ public class InterfaceGraphique extends JFrame{
 		            JOptionPane.showMessageDialog(null,"Merci d'entrer un ID valide", "Erreur", JOptionPane.ERROR_MESSAGE);	
 				}
 				
-				Professeur professeurSelected = null;
 				for (Professeur professeur : profs) {
 					if(professeur.getNom() == choixProfesseur.getSelectedItem())
 						professeurSelected = professeur;
@@ -739,9 +782,10 @@ public class InterfaceGraphique extends JFrame{
 				
 				if(!error) {
 					if(professeurSelected != null && idRecherche != 0) {
-						Eleve eleveRecherche = professeurSelected.rechercheEleve(idRecherche);
+						eleveRecherche = professeurSelected.rechercheEleve(idRecherche);
 						if(eleveRecherche != null) {
 							/** On va modifier les notes de cet eleve*/
+							eleveTrouve = true;
 							/** On enregistre*/
 							for (Evaluation evaluation : eleveRecherche.getEvaluations()) {
 								matieres.add(evaluation.getMatiere());
@@ -750,15 +794,6 @@ public class InterfaceGraphique extends JFrame{
 							
 							modelModifNote.setColumnIdentifiers(matieres.toArray());
 							modelModifNote.addRow(notes.toArray());	
-							
-							JButton btnModifier = new JButton("Modifier");
-							btnModifier.addActionListener(new ActionListener() {
-								public void actionPerformed(ActionEvent e) {
-									//
-								}
-							});
-							btnModifier.setBounds(595, 303, 89, 23);
-							panelModiferNotes.add(btnModifier);
 							
 							/** On vide car plus utile et reutilisable*/
 							notes.clear();
@@ -776,6 +811,7 @@ public class InterfaceGraphique extends JFrame{
 		
 		btnAjouter.setBounds(292, 114, 133, 23);
 		panelModiferNotes.add(btnAjouter);
+		
 		
 		return panelModiferNotes;
 	}
@@ -808,6 +844,8 @@ public class InterfaceGraphique extends JFrame{
 		ArrayList<String> matieres = new ArrayList<String>();
 		ArrayList<String> notes = new ArrayList<String>();
 		
+		genererBulletin = false;
+		
 		JLabel lblMoyenneGenerale = new JLabel();
 		lblMoyenneGenerale.setFont(new Font("Verdana", Font.PLAIN, 12));
 		lblMoyenneGenerale.setBounds(261, 183, 223, 16);
@@ -823,7 +861,9 @@ public class InterfaceGraphique extends JFrame{
 		JButton btnRechercher = new JButton("Consulter");
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Eleve eleveSelected = null;
+				eleveSelected = null;
+				
+				genererBulletin = false;
 				
 				DefaultTableModel modelEleve = new DefaultTableModel();
 				JTable eleveTableau = new JTable(tableModel);
@@ -852,6 +892,9 @@ public class InterfaceGraphique extends JFrame{
 						lblMoyenneGenerale.setVisible(true);
 						lblMedianeGenerale.setVisible(true);
 						
+						/** leleve est trouve dnc on peut generer le bulletin */
+						genererBulletin = true;
+						
 						notes.clear();
 						matieres.clear();
 					}
@@ -861,9 +904,29 @@ public class InterfaceGraphique extends JFrame{
 				
 			}
 		});
-		
+
 		btnRechercher.setBounds(281, 67, 133, 23);
 		panelConsulterNotes.add(btnRechercher);		
+		
+		JButton btnVoirBulletin = new JButton("Voir bulletin");
+		btnVoirBulletin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("OK1:" +eleveSelected);
+				if(genererBulletin && eleveSelected != null) {
+					System.out.println("OK2:" +eleveSelected);
+
+					final BulletinEleve notesEleve = new BulletinEleve("Bulletin de notes", eleveSelected, promotion);
+					notesEleve.pack();
+			        RefineryUtilities.centerFrameOnScreen(notesEleve);
+			        notesEleve.setVisible(true);
+				}else {
+					JOptionPane.showMessageDialog(null,"Indiquez d'abord qui vous êtes", "Erreur", JOptionPane.ERROR_MESSAGE);	
+				}
+				
+			}
+		});
+		btnVoirBulletin.setBounds(556, 303, 128, 23);
+		panelConsulterNotes.add(btnVoirBulletin);
 		
 		return panelConsulterNotes;
 	}
@@ -894,6 +957,7 @@ public class InterfaceGraphique extends JFrame{
 		panelVoirEleves.add(scrollPane);
 		
 		JButton button = new JButton("Actualiser");
+		button.setToolTipText("Permet d'actualiser la liste des eleves dans le cas ou vous en avez ajout\u00E9");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/** On supprime toutes les lignes pour ajouter les anciennes et les nouvelles (actualiser)*/
@@ -947,6 +1011,7 @@ public class InterfaceGraphique extends JFrame{
 		panelVoirProf.add(scrollPane);
 		
 		JButton button = new JButton("Actualiser");
+		button.setToolTipText("Permet d'actualiser la liste des professeurs dans le cas ou vous en avez ajout\u00E9");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int n = modelProf.getRowCount();
@@ -998,6 +1063,7 @@ public class InterfaceGraphique extends JFrame{
 		panelPromotions.add(scrollPane);
 		
 		JButton btnActualiser = new JButton("Actualiser");
+		btnActualiser.setToolTipText("Permet d'actualiser la liste des promotions dans le cas ou vous en avez ajout\u00E9");
 		btnActualiser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int n = modelPromotion.getRowCount();
