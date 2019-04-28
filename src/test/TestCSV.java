@@ -309,6 +309,8 @@ public class TestCSV {
 		} catch (InputMismatchException e) {
 			System.out.println("Entrer un entier");
 		}
+		
+		//getMatieresAndNotes()
 	}
 	
 	public static void consulterMoy(List<Eleve> eleves, Promotion promotion) {
@@ -333,7 +335,7 @@ public class TestCSV {
 			sc.nextLine();
 		}
 	
-		//getMatieresAndNotes()
+		
 	}
 	
 	public static void consulterMed(List<Eleve> eleves, Promotion promotion) {
