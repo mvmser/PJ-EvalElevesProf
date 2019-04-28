@@ -1,5 +1,8 @@
 package IHM;
 import java.awt.Color;
+
+import javax.swing.JFrame;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -26,6 +29,8 @@ public class BulletinEleve extends ApplicationFrame {
 
 	public BulletinEleve(final String title, Eleve _bulletinEleve, Promotion _promotion) {
         super(title);      
+		this.setDefaultCloseOperation(ApplicationFrame.EXIT_ON_CLOSE);
+
         Eleve bulletinEleve = _bulletinEleve;
     	Promotion promotion = _promotion;
         final CategoryDataset dataset1 = createDataset1(bulletinEleve, promotion);
